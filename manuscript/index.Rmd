@@ -1,0 +1,177 @@
+---
+title: "High flow nasal oxygen during sedation in the cardiac catheterisation laboratory"
+description: |
+  A randomized controlled trial
+author:
+  - name: Aaron Conway 
+    url: https://www.aaronconway.info
+    affiliation: University of Toronto
+date: "`r Sys.Date()`"
+output: distill::distill_article
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<div class="l-page-outset">
+<blockquote>
+### Abstract
+
+**Background**
+
+High flow nasal oxygen (HFNO) permits flows of heated, humidified gas to be delivered to the lungs via nasal prongs at up to 70 liters per minute. Delivering oxygen at such high flow rates into the lungs has multiple physiological effects that may better support the vulnerable breathing state of patients during procedural sedation. The objective of this study is to test the hypothesis that using HFNO improves ventilation during cardiac implantable electronic device procedures performed with sedation.
+
+**Methods**
+A randomized controlled design was used with participants randomized in a 1:1 ratio to receive oxygen supplementation as per usual practice through a standard facemask or to receive nasal high flow oxygen.
+
+**Results**
+
+
+**Conclusion**
+
+
+
+
+</blockquote>
+</div>
+
+## Introduction
+
+High flow nasal oxygen (HFNO) is increasingly regarded as a promising technology for oxygen delivery in critical care and anesthetic management.[@drakeHighFlowNasalCannula2018]  It permits flows of heated, humidified gas to be delivered to the lungs via nasal prongs at up to 70 liters per minute. Delivering oxygen at such high flow rates into the lungs has multiple physiological effects that may better support the vulnerable breathing state of patients during procedural sedation. For example, it permits more precise titration of the amount of oxygen being administered to the patient because the flow rate exceeds normal inspiratory volumes (about 30 liters per minute). HFNO also increases pressure in the upper airways (which may reduce airway obstruction) and decreases the space within the airways where gas is not able to come in contact with blood and exchange oxygen for carbon dioxide to be exhaled.
+
+It is important to evaluate the effects of this new technology in each of the diverse contexts in which procedural sedation is used. None of the previous or in-progress clinical trials have enrolled patients undergoing cardiology procedures. In this regard, it is important to note that oxygen desaturation occurs rarely in the context of the common clinical situation where conscious sedation is administered with prophylactic oxygen supplementation at flow rates between 6-10 liters per minute through a face mask during procedures performed in the cardiac catheterisation laboratory.[@conway2013risk]  Results from trials of HFNO during sedation conducted in other clinical settings, such as bronchoscopy and gastrointestinal endoscopy, where desaturation occurs more often, can therefore not be directly generalised to the cardiology context.
+
+It is also essential that all of the potentially beneficial effects of HFNO on respiratory function during sedation are comprehensively evaluated. Although oxygen desaturation is not common during cardiology procedures, patients commonly have raised arterial carbon dioxide levels, indicating that hypoventilation does occur. One of the proposed physiological effects of HFNO is that it facilitates active gas exchange during times of hypoventilation due to the highly turbulent supraglottic flow vortices.[@Hermez_2019] 
+
+The effects of the potential disadvantages of using HFNO during sedation should also be evaluated. It is possible that potential gains arising from delivering oxygen supplementation through the HFNO device may be offset by reduced ability to monitor ventilation from capnography waveforms when it is being used. Capnography waveforms have not been validated for accuracy during HFNO therapy due to exhaled carbon dioxide being "washed out" by the high flows of gas.
+
+Although promising, further high-quality studies examining the effects of using HFNO during procedural sedation are required to inform decision-making regarding implementation of this new technology into practice. The 2018 guidelines from the American Society of Anesthesiology stated that there is insufficient evidence regarding which methods of supplemental oxygen administration (_e.g._, nasal cannula, face mask, or specialized devices such as HFNO) are more effective. This trial will address this limitation in the evidence base specifically in regard to the efficacy of using HFNO during conscious sedation in the cardiac catheterisation laboratory. Results from our study will provide clinical evidence regarding the effects of HFNO on ventilation in sedated patients. The objective of this study was to test the hypothesis that using nasal high flow oxygen (HFNO) improves ventilation during cardiac implantable electronic device procedures performed with conscious sedation.
+
+## Methods
+
+### Design
+
+A randomized controlled design was used with participants randomized in a 1:1 ratio to the following treatment conditions:
+
+- Oxygen supplementation through a standard facemask; or
+- Nasal high flow oxygen.
+
+### Participants
+
+Adults undergoing an elective cardiac implantable electronic device procedure with sedation administered by an Anesthesia Assistant (de novo and replacement/revision procedures) were included. As per the hospital's policy for conscious sedation administered by Anesthesia Assistants, these patients were determined by the Anesthesiologist to be appropriate to receive care from the Anesthesia Assistants.
+
+*Exclusion criteria*
+
+1. Under 16 years of age (excluded from this study as they are considered pediatric patients). 
+2. Underlying condition requiring chronic oxygen supplementation.
+3. Diagnosed respiratory condition with confirmed current hypercapnia. Hypercapnic COPD or obesity hypoventilation syndrome with PaCO~2~ during current admission over 45mmHg.
+4. Pre-existing untreated pneumothorax.
+5. Transesophageal echocardiography planned for the procedure.
+6. Active nasal bleeding.
+7. Complete nasal obstruction.
+8. Recent upper airway surgery or base of skull fracture.
+9. Previous participation in the study.
+
+### Interventions
+
+All randomized participants received usual care in regard to the medications used for sedation and physiological monitoring or other interventions to support respiratory function that are considered necessary to be initiated during the procedure by the clinicians. As per the hospital policy for sedation administered by Anesthesia Assistants, oxygen therapy is administered as indicated and prescribed to maintain oxygen saturation greater than 93%. In this study, Anesthesia Assistants followed this policy. Also in accordance with this hospital policy, the Anesthesia Assistants administer a combination of sedation to target the level of conscious sedation, which is defined as “A drug-induced depression of consciousness during which patients respond purposefully to verbal commands, either alone or accompanied by light tactile stimulation." As such, by practicing in accordance with this hospital policy, the level of sedation being administered by the Anesthesia Assistant for participants included in this trial was ‘standardized’. The hospital policy does not stipulate any dose ranges of the different classes of sedative medications to be used and there were no restrictions on the type or dose of sedation used by Anesthesia Assistants as part of this trial. The actual doses of sedation were recorded. Only the device used for oxygen supplementation delivery differed between groups in the following ways:
+
+>Facemask oxygen supplementation
+
+Supplemental oxygen through a facemask with the flow rate chosen by the clinician responsible for sedation as per their standard practice.
+
+>High flow nasal oxygen
+
+The Optiflow device (Fisher and Paykel Healthcare, Auckland, New Zealand), heated breathing tube and chamber, and nasal cannula was used. This system is a humidifier with an integrated flow generator, able to humidify respiratory gases and deliver them down a heated breathing tube and through the nasal cannula interface. The gas temperature was set to the 'High' setting (ranges 30-32º Celsius) and titrated downwards if the patient complained of irritation. The gas flow rate was commenced at 30 liters per minute prior to sedation administration and titrated up to 50 liters per minute as tolerated by the patient after sedative medication was administered. The fraction of oxygen in the gas was commenced at 50% but could be titrated according to patient requirements (i.e. increased if there is evidence of hypoventilation, airway obstruction or inadequate oxygenation, decreased during use of diathermy). Anesthesia Assistants at the site were provided with training in the use of this mode of oxygen delivery prior to study commencement. 
+
+### Outcomes
+
+The selection of outcomes was informed by recommendations from the Sedation Consortium on Endpoints and Procedures for Treatment, Education and Research (SCEPTER) to assess differences between groups regarding the safety and efficacy of sedation.[@Williams_2017; @Ward_2018]
+
+The primary outcome was peak transcutaneous carbon dioxide ( TcCO~2~) concentration. Secondary outcomes were:
+
+1. Mean transcutaneous carbon dioxide concentration measured throughout the whole procedure using the VSign 2 sensor.
+2. Trajectory of transcutaneous carbon dioxide concentration as a function of time throughout the whole procedure using the VSign 2 sensor.
+3. Area under the curve of oxygen desaturation: This is a composite measure comprising the incidence, depth, and duration of oxygen desaturation events. It is calculated as the difference between the threshold (90%) and actual oxygen saturation (SpO~2~) summed every second during which oxygen saturation was below threshold).
+4. Adverse sedation events: Adverse effects of delivering gas at a high flow rate through the nasal passages will be assessed. These include nose bleeding arising from damage to the mucosal surface and pressure injury to skin from the device. The RA will inspect intervention group participants' skin integrity around the nasal region at the end of procedures to assess for these potentially anticipated as well as unanticipated adverse effects.
+5. Patient satisfaction with sedation: The Iowa Satisfaction with Anesthesia Scale (ISAS) will be used to measure patient satisfaction with the anesthetic used during the procedure performed.
+7. Patient comfort of oxygen delivery: Participants will be asked to rate at the end of procedures their perceived overall comfort with the oxygen delivery device used during the procedure using a 6-level ratings scale.
+8. Anesthesia Assistant rating of difficulty maintaining oxygenation status.
+9. Anesthesia Assistant rating of difficulty using oxygen delivery device.
+
+
+### Data collection
+
+#### Instruments
+
+Transcutaneous carbon dioxide concentrations were measured continuously using the Sentec Digital Monitoring system with VSign 2 sensor. TcCO~2~ monitoring provides continuous, accurate (mean bias -0.1 mmHg) and precise (95% limits of agreement within 6 mmHg) estimates of arterial CO~2~ (PaCO~2~) when the sensor is placed on the earlobe.[@conway2019accuracy] TcCO~2~ monitoring may provide even more precise estimates of changes in PaCO~2~ (mean bias 0.03 mmHg, 95% limits of agreement -0.44 to 0.38 mmHg).[@Fingleton2017] The RA attached the Sentec VSign 2 sensor to the participant's forehead using a multi-site attachment ring. Once the Sentec Digital Monitoring System displayed a stabilized TcCO~2~ level, the monitor was covered with a drape so that it was not visible to research staff or clinicians. The monitor was not used by the clinicians to guide treatment. Data were downloaded after procedures for analysis.
+
+Percentage of hemoglobin saturated with oxygen (SpO~2~) was measured continuously using the Sentec Digital Monitoring system with VSign 2 sensor. We filtered SpO~2~ measurements if a pulse rate was not detectable.
+
+Adverse sedation events were measured using the tracking and reporting outcomes of procedural sedation (TROOPS) tool.[@Roback2018] Completion of the tool requires identification and description of the adverse event, the intervention, the outcome and the overall severity of the adverse event. The Anaesthesia Assistant completed this tool at the end of procedures.
+
+Satisfaction with sedation was measured using the Iowa Satisfaction with Anesthesia Scale (ISAS). The ISAS is a questionnaire that can be used to measure patient satisfaction with the anesthetic used during a procedure performed with sedation.[@dexter1997development; @dexter2011multicenter]  It contains 11 items and takes 4-5 minutes to complete. Comfort associated with oxygen delivery: Participants were asked to rate at the end of procedures their perceived overall comfort with the oxygen delivery device used during the procedure using a 6-level rating scale with ratings of 'maximal discomfort', 'very uncomfortable', 'uncomfortable', 'comfortable', 'very comfortable' and 'maximal comfort'.
+
+Adverse effects of delivering gas at a high flow rate through the nasal passages was assessed. The RA inspected intervention group participants' skin integrity around the nasal region at the end of procedures to assess for these potentially anticipated as well as unanticipated adverse effects.
+
+Anaesthesia Assistants were asked to rate their: 1) perceived level of difficulty in maintaining oxygenation using a 6-level rating scale with ratings of 'extremely difficult', 'very difficult', 'difficult', 'easy', 'very easy', 'extremely easy'; and 2) perceived level of difficulty using the oxygen delivery device: The Anaesthesia Assistant will be asked to rate their perceived level of difficulty using the oxygen delivery device using a 6-level rating scale with ratings of 'extremely difficult', 'very difficult', 'difficult', 'easy', 'very easy', 'extremely easy'.
+
+Supplemental oxygen use and flow settings were documented by Anesthesia Assistants in a case report form provided to them by the Research Assistant. Information on the FiO2 setting, flow rate and temperature were recorded in the HFNO group. The oxygen flow rate was recorded in the control group. The Anesthesia Assistant also recorded the total doses of sedative medications used during procedures.
+
+### Sample size caclulation
+
+We estimated based on data from our prior work[@Conway_2019]  that the peak TcCO~2~ level in the control group will be 47 mmHg and standard deviation in both groups will be 7 mmHg. Assuming a type I error rate of 5%, a sample of 130 participants would achieve 90% power to detect a reduction in mean TcCO~2~ levels of 4 mmHg in the intervention period. A difference in TcCO~2~ levels of 4 mmHg was selected for this sample size calculation because it was used to power previous randomized controlled trials of the effect of oxygen supplementation on ventilation status in other populations, with the authors noting that an effect of this magnitude was of physiological significance.[@perrin2011randomised; @Wijesinghe2012]  Also, differences in CO~2~ levels of a similar magnitude have been detected in previous trials evaluating the efficacy of interventions to improve sedation safety.[@Baulig2015; @Carmi2011; @deoliveirajrDetectionHypoventilationDeep2010; @deoliveirajrEffectKetamineHypoventilation2014; @Smith2015] 
+
+### Statistical analyses
+
+For the primary outcome, peak TcCO~2~ was compared between the intervention and control groups using a Bayesian hierarchical model with baseline TcCO~2~ concentration included in the model as a covariate as is recommended for this type of design.[@Egbewale2014] Bayesian models will also be used to compare secondary outcomes among the randomization groups. Prior distributions for all model parameters will initially be chosen to be non-informative and will be adjusted as necessary to improve model fit. The posterior distributions of parameters and quantities of interest will be presented as well as their medians and 95% highest-density intervals (HDI). Subgroup analyses will be conducted to compare the effects of HFNO with standard care in patients who have a diagnosis of sleep apnea and those who have a cardiac resynchronization therapy device implant (the variables used for stratification) by including these variables in the model as interaction terms.
+
+In addition to comparing the peak TcCO~2~, per-second TcCO~2~ levels will be compared between randomization groups using methods of functional data analysis. Functional observations will be estimated by fitting a B-spline basis to the TcCO~2~ data, subject to a roughness penalty on the second derivative of the estimated function. Common features of these estimated functions will be examined using functional principal component analysis (FPCA). A formal comparison of TcCO~2~ levels between randomization groups will be performed using functional analysis of variance (FANOVA). Results of this functional analysis will be compared to those obtained in the bayesian analysis on just the peak TcCO~2~ levels.
+
+## Results
+
+
+### Participant characteristics
+
+A CONSORT flow diagram is presented in Figure 1. From August 2019 to March 2020, we screened 270 patients undergoing CIED procedures. A total of 130 participants were randomized. One participant was subsequently excluded from the study because their procedure was cancelled after the randomization was performed. One further participant, who was randomized to the HFNO group, had their procedure rescheduled to a time that the Research Assistant was not available. As such, this participant received oxygen via standard face mask and TcCO~2~ data were not collected. For two participants, the TcCO~2~ sensor failed to callibrate prior to commencement of the procedure, so they were not able to be included in the analyses for the TcCO~2~ outcomes.  
+
+```{r fig.cap="CONSORT flow diagram"}
+knitr::include_graphics(here::here("plots/consort.png"))
+```
+
+A summary of demographic and clinical characteristics of the participants is presented in Table 1. The sample was mostly elder. Anesthesia Assistants' rated the ASA Physical Classification Status for participants as either III or IV, reflecting the underlying cardiovascular disease and multiple comorbidities. Obstructive sleep apnea was common, with 27% of participants reporting a diagnosis of this condition. About 20% of procedures were for cardiac resnchronisation therapy. 
+
+##### Table 1. Participant Characteristics
+
+```{r}
+drake::readd(characteristics_table)
+```
+
+### Oxygen use
+
+Participants randomized to the HFNO group received flow rates at 50 litres per minute or higher for the majority of the time (Figure 2). 
+
+```{r fig.cap="Oxygen flow rate in litres per minute for each participant"}
+drake::readd(oxygen_flow_plot)
+```
+
+### Primary outcome
+
+
+
+### Secondary outcomes
+
+
+
+
+## Discussion
+
+The primary result for this trial was that using HFNO did not reduce peak TcCO~2~ concentration, indicating that ventilation was not improved.
+
+There is heightened interest in investigating the effects of HFNO therapy for procedural sedation. Three small randomized controlled trials of HFNO during procedural sedation have been published in the last year, with a further 5 trials registered at clinicaltrials.gov. One study randomized 60 participants undergoing bronchoscopy to receive HFNO at 50 liters per minute with 100% oxygen or to receive oxygen at 10-15 liters per minute through a facemask.[@douglasRandomisedControlledTrial2018]  There was no difference observed between the treatment groups for the primary outcome, which was the proportion of patients who experienced oxygen desaturation (defined as SpO~2~ 90%). Another study randomized 59 morbidly obese patients undergoing endoscopy to receive a fraction of inspired oxygen concentration of 0.36 either via HFNO at a flow rate of 60 liters per minute or via nasal cannula at 4 liters per minute.[@riccio2019high]  Again, there was no difference in the primary outcome of oxygen desaturation (SpO~2~ 90%). The third study randomized 30 participants undergoing dental sedation into three groups to receive a fraction of inspired oxygen concentration of 0.4 either via HFNO at a flow rate of 50 liters per minute, via HFNO at a flow rate of 30 liters per minute or via nasal cannula at 5 liters per minute.[@sago2015nasal]  Participants randomized to the HFNO groups had higher nadir blood oxygen levels recorded than the low flow oxygen group.
+
+Intervention fidelity. Participants randomized to HFNO received oxygen at flows at or exceeding 50 liters per minure for the majority of the time. It is therefore likely that ....
+
+This trial provides strong evidence that indicated HFNO neither improves *or worsens* ventilation during sedation to a significant degree. It seems the mechanism of any protective effects agains transient episodes of hypoxemia is due to superior pre-oxygenation rather than active gas exchange mediated by the turbulent air flow.

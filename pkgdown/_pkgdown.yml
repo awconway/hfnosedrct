@@ -1,0 +1,62 @@
+url: http://hfnorctpackage.netlify.com
+
+navbar:
+  type: default
+  left:
+  - icon: fa-home
+    href: index.html
+  - text: Reference
+    href: reference/index.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/awconway/hfnoRCT
+
+reference:
+  - title: Functions used in data analysis plan
+  - subtitle: Screening and recruitment
+  - contents:
+      - create_consort_png
+      - create_exclusions_plot
+  - subtitle: Data processing
+  - contents:
+      - label_data
+      - create_trial_datatable
+      - make_co2_long
+      - process_primary
+      - process_fanova
+      - process_assist
+      - process_isas
+      - process_comfort
+      - process_spo2
+      - process_troops
+      - convert_stratification_factors
+      - time_to_date
+  - subtitle: Participant Characteristics
+  - contents:
+      - create_characteristics_table
+  - subtitle: Oxygen device settings
+  - contents:
+      - create_oxygen
+      - create_oxygen_table
+      - create_oxygen_table_long
+      - create_oxygen_flow_plot
+      - create_oxygen_proportion_plot
+      - create_fio2
+      - create_fio2_table
+      - create_fio2_table_long
+      - create_oxygen_fio2_plot
+  - subtitle: Models
+  - contents:
+      - fit_primary
+      - fit_fanova
+      - fit_isas
+      - fit_propodds
+      - fit_troops
+      - fit_spo2
+  - subtitle: Results
+  - contents:
+      - make_plot_co2_peak
+      - make_plot_co2_mean
+  - subtitle: Drake plan
+  - contents:
+      - get_analysis_plan

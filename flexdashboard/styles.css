@@ -1,0 +1,43 @@
+
+.jumbotron {
+  padding:30px;
+  color:white;
+  background-color: #fdae61;
+  border-radius: 25px;
+
+}
+.jumbotron h1{
+  color:inherit
+}
+.jumbotron p{
+  margin-bottom:15px;
+  font-size:21px;
+  font-weight:200
+}
+
+
+.page{
+  margin: 2rem 1rem 1rem;
+  border-radius: 25px;
+  border: 3px solid #2780e3;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.navbar-brand {
+  display:none;
+}
+
+.button {
+  background-color: #2780e3;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 25px;
+
+}
