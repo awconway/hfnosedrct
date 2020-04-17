@@ -159,7 +159,8 @@ make_plot_component <- function(data_fanova, model, reso, component_str, title, 
 #' @rdname make_plot_fanova_data
 #' @param data_fanova dataframe
 #' @param reso Number of seconds resolution for functional data
-#' @importFrom dplyr arrange
+#' @importFrom dplyr ungroup group_by summarize first arrange desc slice pull mutate filter
+
 #' @export
 
 
