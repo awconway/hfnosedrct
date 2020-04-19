@@ -209,5 +209,5 @@ reactable::reactable(drake::readd(tcco2_data),
 Reproducibility {data-navmenu=Data data-icon="fa-repeat"}
 =======================================================================
 
-<iframe style="border:none" src="https://hfnosedrct.netlify.com" height="100%" width="100%"></iframe>
+<iframe style="border:none" src="https://hfnosedrct-package.netlify.app" height="100%" width="100%"></iframe>
 
