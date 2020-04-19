@@ -9,9 +9,14 @@ RUN install2.r --error \
     vroom \
     flexdashboard \
     distill \
-    visNetwork
+    visNetwork \
+    janitor \
+    labelled \
+    downloadthis \
+    reactable
 
 RUN Rscript -e "install.packages('INLA', repos=c(getOption('repos'), INLA='https://inla.r-inla-download.org/R/testing'), dep=TRUE)"
 
-RUN installGithub.r julianfaraway/brinla
-
+RUN installGithub.r \
+    julianfaraway/brinla \
+    awconway/hfnosedrct

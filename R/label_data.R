@@ -3,286 +3,9 @@
 
 
 #' @export
-#' 
+#'
 label_data <- function(data){
-  # Hmisc::label(data$id)="Record ID"
-  Hmisc::label(data$redcap_event_name)="Event Name"
-  Hmisc::label(data$screendate)="Date of screening"
-  Hmisc::label(data$screenprocedure)=
-    "CIED procedure with sedation by Anesthesia Assistant?"
-  Hmisc::label(data$screenage)="Under 16 years of age"
-  Hmisc::label(data$screenchronicoxygen)=
-    "Underlying condition requiring chronic oxygen supplementation?"
-  Hmisc::label(data$screenhypercapnia)=
-    "Diagnosed respiratory condition with confirmed current hypercapnia
-    (hypercapnic COPD or obesity hypoventilation syndrome with PaCO2 during
-  current admission over 45mmHg)."
-  Hmisc::label(data$screenpneumothorax)="Pre-existing untreated pneumothorax"
-  Hmisc::label(data$screen_tee)=
-    "Transesophageal echocardiography planned for the procedure."
-  Hmisc::label(data$screenepistaxis)="Active nasal bleeding"
-  Hmisc::label(data$screennasalobstruction)="Complete nasal obstruction"
-  Hmisc::label(data$screenairwaysurgery)=
-    "Recent upper airway surgery or base of skull fracture"
-  Hmisc::label(data$screenprior)="Prior participation in the study"
-  Hmisc::label(data$screenpriorrefusal)="Prior refusal to participate"
-  Hmisc::label(data$screen_eligible)="Eligible?"
-  Hmisc::label(data$screeninvited)="Invitation to participate provided?"
-  Hmisc::label(data$screenconsented)="Provided consent?"
-  Hmisc::label(data$studyid)="Study ID"
-  Hmisc::label(data$screening_complete)="Complete?"
-  Hmisc::label(data$date_baseline)="Date"
-  Hmisc::label(data$age)="Age (years)"
-  Hmisc::label(data$sex)="Gender"
-  Hmisc::label(data$height)="Height (cm)"
-  Hmisc::label(data$weight)="Weight (kilograms)"
-  Hmisc::label(data$smoke)="Smoking Status"
-  Hmisc::label(data$osa)="Do you have sleep apnoea"
-  Hmisc::label(data$cpap)="Do you use CPAP?"
-  Hmisc::label(data$admward)="Admitted from"
-  Hmisc::label(data$admsource)="Admission status"
-  Hmisc::label(data$asaclass)="ASA class"
-  Hmisc::label(data$lastfood)="Time last food/non-clear fluids"
-  Hmisc::label(data$lastfluids)="Time last clear fluids"
-  Hmisc::label(data$procedure)="Scheduled procedure"
-  Hmisc::label(data$procedureother)="Describe procedure if other selected"
-  Hmisc::label(data$comments_v2)="Comments"
-  Hmisc::label(data$baseline_information_v1_complete)="Complete?"
-  Hmisc::label(data$cci___1)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Myocardial infarct (+1))"
-  Hmisc::label(data$cci___2)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Congestive heart failure (+1))"
-  Hmisc::label(data$cci___3)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Peripheral vascular disease (+1))"
-  Hmisc::label(data$cci___4)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-    condition the patient has ( ) (choice=Cerebrovascular disease (except
-  hemiplegia) (+1))"
-  Hmisc::label(data$cci___5)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Dementia (+1))"
-  Hmisc::label(data$cci___6)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Chronic pulmonary disease (+1))"
-  Hmisc::label(data$cci___7)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Connective tissue disease (+1))"
-  Hmisc::label(data$cci___8)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Ulcer disease (+1))"
-  Hmisc::label(data$cci___9)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Mild liver disease (+1))"
-  Hmisc::label(data$cci___10)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Diabetes (without complications) (+1))"
-  Hmisc::label(data$cci___11)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Diabetes with end organ damage (+2))"
-  Hmisc::label(data$cci___12)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Hemiplegia (+2))"
-  Hmisc::label(data$cci___13)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Moderate or severe renal disease (+2))"
-  Hmisc::label(data$cci___14)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Solid tumor (non metastatic) (+2))"
-  Hmisc::label(data$cci___15)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Leukemia (+2))"
-  Hmisc::label(data$cci___16)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Lymphoma, Multiple myeloma (+2))"
-  Hmisc::label(data$cci___17)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Moderate or severe liver disease (+3))"
-  Hmisc::label(data$cci___18)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=Metastatic solid tumor (+6))"
-  Hmisc::label(data$cci___19)=
-    "Comorbidity (Choose all that are present)  Assigned weights for each
-  condition the patient has ( ) (choice=AIDS (+6))"
-  Hmisc::label(data$cciage)="Age"
-  Hmisc::label(data$ccitotal)="Total points:"
-  Hmisc::label(data$charlson_comorbidity_index_v1_complete)="Complete?"
-  Hmisc::label(data$randomizationdate)="Date of randomization"
-  Hmisc::label(data$eligibility_confirmed)=
-    "Eligibility confirmed and consent form signed"
-  Hmisc::label(data$sleepapneastratify)="Diagnosis of sleep apnea"
-  Hmisc::label(data$crtstratify)=
-    "Is a bi-ventricular device implant (CRT-P or CRT-D) to be performed?"
-  Hmisc::label(data$randomization)="Randomization"
-  Hmisc::label(data$randomization_complete)="Complete?"
-  Hmisc::label(data$adverseeffectsoxygen)=
-    "RA to describe any adverse effects associated with oxygen delivery (e.g.,
-    nose bleeding, damage to mucosal surface, or pressure injury to skin from
-  device)."
-  Hmisc::label(data$adverse_effects_v1_complete)="Complete?"
-  Hmisc::label(data$isasvomit)="I threw up or felt like throwing up"
-  Hmisc::label(data$isassameanesthetic)=
-    "I would want to have the same anesthetic again"
-  Hmisc::label(data$isasitch)="I itched"
-  Hmisc::label(data$isasrelaxed)="I felt relaxed"
-  Hmisc::label(data$isaspain)="I felt pain"
-  Hmisc::label(data$isassafe)="I felt safe"
-  Hmisc::label(data$isastoocoldhot)="I was too cold or hot"
-  Hmisc::label(data$isassatisfiedcare)=
-    "I was satisfied with my anesthetic care"
-  Hmisc::label(data$isassurgerypain)="I felt pain during surgery"
-  Hmisc::label(data$isasfeltgood)="I felt good"
-  Hmisc::label(data$isashurt)="I hurt"
-  Hmisc::label(data$oxygencomfort)=
-    "How comfortable did you feel with the oxygen mask or nasal prongs?"
-  Hmisc::label(data$participant_satisfaction_v1_complete)="Complete?"
-  Hmisc::label(data$aacode)="AA unique code"
-  Hmisc::label(data$procedurestart)="Procedure start time"
-  Hmisc::label(data$procedureend)="Procedure end time"
-  # Hmisc::label(data$oxygenbaselinetime)="Time oxygen started"
-  Hmisc::label(data$oxygenbaselineflow)=
-    "Baseline oxygen flow (litres per minute)"
-  Hmisc::label(data$oxygenbaselinefio2)="Baseline Fi02"
-  Hmisc::label(data$oxygenbaselinetemp)=
-    "Baseline temperature setting of HFNO device"
-  # Hmisc::label(data$oxygenchangetime1)="Change in oxygen setting Time 1"
-  Hmisc::label(data$oxygenchangeflow1)="Change 1 oxygen flow (L/min)"
-  Hmisc::label(data$oxygenchange1fio2)="Change 1 FiO2"
-  Hmisc::label(data$oxygenchangetemp1)=
-    "Change 1 temperature setting of HFNO device"
-  # Hmisc::label(data$oxygenchangetime2)="Change in oxygen setting Time 2"
-  Hmisc::label(data$oxygenchangeflow2)="Change 2 oxygen flow (L/min)"
-  Hmisc::label(data$oxygenchange2fio2)="Change 2 FiO2"
-  Hmisc::label(data$oxygenchangetemp2)=
-    "Change 2 temperature setting of HFNO device"
-  # Hmisc::label(data$oxygenchangetime3)="Change in oxygen setting Time 3"
-  Hmisc::label(data$oxygenchangeflow3)="Change 3 oxygen flow (L/min)"
-  Hmisc::label(data$oxygenchange3fio2)="Change 3 FiO2"
-  Hmisc::label(data$oxygenchangetemp3)=
-    "Change 3 temperature setting of HFNO device "
-  # Hmisc::label(data$oxygenchangetime4)="Change in oxygen setting Time 4"
-  Hmisc::label(data$oxygenchangeflow4)="Change 4 oxygen flow (L/min)"
-  Hmisc::label(data$oxygenchange4fio2)="Change 4 FiO2"
-  Hmisc::label(data$oxygenchangetemp4)=
-    "Change 4 temperature setting of HFNO device"
-  Hmisc::label(data$troopsnoevents)="No events occured"
-  Hmisc::label(data$troopssenairway)=
-    "Sentinel adverse events related to airway and breathing"
-  Hmisc::label(data$troopsintairway)=
-    "Intermediate adverse events related to airway and breathing"
-  Hmisc::label(data$troopsetairway___1)=
-    "Suspected etiology for adverse events related to airway and breathing
-  (select as many that apply) (choice=Apnea)"
-  Hmisc::label(data$troopsetairway___2)=
-    "Suspected etiology for adverse events related to airway and breathing
-  (select as many that apply) (choice=Respiratory distress)"
-  Hmisc::label(data$troopsetairway___3)=
-    "Suspected etiology for adverse events related to airway and breathing
-  (select as many that apply) (choice=Upper airway obstruction)"
-  Hmisc::label(data$troopsetairway___4)=
-    "Suspected etiology for adverse events related to airway and breathing
-  (select as many that apply) (choice=Laryngospasm)"
-  Hmisc::label(data$troopsetairway___5)=
-    "Suspected etiology for adverse events related to airway and breathing
-  (select as many that apply) (choice=Oxygen desaturation)"
-  Hmisc::label(data$troopsetairway___6)=
-    "Suspected etiology for adverse events related to airway and breathing
-  (select as many that apply) (choice=Abnormal capnography)"
-  Hmisc::label(data$troopsminairway)=
-    "Minor adverse events related to airway and breathing "
-  Hmisc::label(data$troopssencirculation)=
-    "Sentinel adverse events related to circulation "
-  Hmisc::label(data$troopsintcirculation)=
-    "Intermediate adverse events related to circulation"
-  Hmisc::label(data$troopsetcirculation___1)=
-    "Suspected etiology for adverse events related to circulation(select as
-  many that apply) (choice=Hypotension)"
-  Hmisc::label(data$troopsetcirculation___2)=
-    "Suspected etiology for adverse events related to circulation(select as
-  many that apply) (choice=Hypertension)"
-  Hmisc::label(data$troopsetcirculation___3)=
-    "Suspected etiology for adverse events related to circulation(select as
-  many that apply) (choice=Bradycardia)"
-  Hmisc::label(data$troopsetcirculation___4)=
-    "Suspected etiology for adverse events related to circulation(select as
-  many that apply) (choice=Tachycardia)"
-  Hmisc::label(data$troopsetcirculation___5)=
-    "Suspected etiology for adverse events related to circulation(select as
-  many that apply) (choice=Cardiac arrest)"
-  Hmisc::label(data$troopsmingi)="Minor adverse events related to GI"
-  Hmisc::label(data$troopsetgi___1)=
-    "Suspected etiology for adverse events related to GI (select as many that
-  apply) (choice=Nausea)"
-  Hmisc::label(data$troopsetgi___2)=
-    "Suspected etiology for adverse events related to GI (select as many that
-  apply) (choice=Vomiting)"
-  Hmisc::label(data$troopssenneuro)="Sentinel adverse events related to neuro"
-  Hmisc::label(data$troopsintneuro)=
-    "Intermediate adverse events related to neuro"
-  Hmisc::label(data$troopsminneuro)="Minor adverse events related to neuro"
-  Hmisc::label(data$troopsetneuro___1)=
-    "Suspected etiology for adverse events related to neuro (select as many
-  that apply) (choice=Seizure or seizure-like movements)"
-  Hmisc::label(data$troopsetneuro___2)=
-    "Suspected etiology for adverse events related to neuro (select as many
-  that apply) (choice=Myoclonus/ muscle rigidity)"
-  Hmisc::label(data$troopsintallergy)=
-    "Intermediate adverse events related to allergy"
-  Hmisc::label(data$troopsminallergy)="Minor adverse events related to allergy"
-  Hmisc::label(data$troopsetallergy___1)=
-    "Suspected etiology of adverse events related to allergy (select as many
-  that apply) (choice=Allergic reaction)"
-  Hmisc::label(data$troopsetallergy___2)=
-    "Suspected etiology of adverse events related to allergy (select as many
-  that apply) (choice=Anaphylaxis)"
-  Hmisc::label(data$troopsintquality)=
-    "Intermediate adverse events related to sedation quality and patient
-  experience"
-  Hmisc::label(data$troopsetquality___1)=
-    "Suspected etiology for adverse events related to sedation quality and
-    patient experience (select as many that apply) (choice=Patient active
-  resistance or need for restraint)"
-  Hmisc::label(data$troopsetquality___2)=
-    "Suspected etiology for adverse events related to sedation quality and
-  patient experience (select as many that apply) (choice=Sedation)"
-  Hmisc::label(data$troopsetquality___3)=
-    "Suspected etiology for adverse events related to sedation quality and
-  patient experience (select as many that apply) (choice=Paradoxical response)"
-  Hmisc::label(data$troopsetquality___4)=
-    "Suspected etiology for adverse events related to sedation quality and
-    patient experience (select as many that apply) (choice=Unpleasant recovery
-  reaction/agitation)"
-  Hmisc::label(data$troopsetquality___5)=
-    "Suspected etiology for adverse events related to sedation quality and
-  patient experience (select as many that apply) (choice=Unpleasant recall)"
-  Hmisc::label(data$deepsedation)=
-    "Did the anesthesioloist attend the procedure to administer deep sedation?"
-  Hmisc::label(data$ga)=
-    "Did an anesthesiologist attend the procedure for airway management/GA?"
-  Hmisc::label(data$propofol)="Total dose of propofol (mg)"
-  Hmisc::label(data$midazolam)="Total dose of midazolam (mg)"
-  Hmisc::label(data$fentanyl)="Total dose of fentanyl (mcg)"
-  Hmisc::label(data$remifentanil)="Remifentanil (mcg)"
-  Hmisc::label(data$otheropioidname)="Other opioid name"
-  Hmisc::label(data$otheropioiddose)="Other opioid total dose"
-  Hmisc::label(data$otheropioidunits)="Other opioid unit of measurement"
-  Hmisc::label(data$diffuseoxygen)=
-    "How difficult was it to use the supplemental oxygen delivery device?"
-  Hmisc::label(data$diffoxygen)=
-    "How difficult was it to maintain the patients oxygenation status
-  throughout the procedure?"
-  Hmisc::label(data$timesusedhfno)=
-    "How many times have you used high flow nasal oxygen?"
-  Hmisc::label(data$anesthesia_assistant_ratings_complete)="Complete?"
-  Hmisc::label(data$tcco2peak)="PeakTcCO2 concentration"
-  Hmisc::label(data$tcco2mean)="Mean TcCO2 concentration"
-  Hmisc::label(data$aucdesat)="AUCdesat"
-  Hmisc::label(data$tcco2_and_spo2_outcomes_complete)="Complete?"
-  #Setting Units
-  
-  
+
   #Setting Factors(will create new variable for factors)
   data$redcap_event_name.factor =
     factor(data$redcap_event_name,levels=c("baseline_arm_1","screening_arm_2"))
@@ -460,7 +183,7 @@ label_data <- function(data){
     factor(data$anesthesia_assistant_ratings_complete,levels=c("0","1","2"))
   data$tcco2_and_spo2_outcomes_complete.factor =
     factor(data$tcco2_and_spo2_outcomes_complete,levels=c("0","1","2"))
-  
+
   levels(data$redcap_event_name.factor)=
     c("Baseline (Arm 1: Participation)","Screening (Arm 2: Screening)")
   levels(data$screenprocedure.factor)=c("Yes","No")
@@ -636,5 +359,263 @@ label_data <- function(data){
     c("Incomplete","Unverified","Complete")
   levels(data$tcco2_and_spo2_outcomes_complete.factor)=
     c("Incomplete","Unverified","Complete")
+
+
+  attr(data$id, "label")="Record ID"
+  attr(data$redcap_event_name.factor, "label")="Event Name"
+  attr(data$screendate, "label")="Date of screening"
+  attr(data$screenprocedure, "label")=
+    "CIED procedure with sedation by Anesthesia Assistant?"
+  attr(data$screenage, "label")="Under 16 years of age"
+  attr(data$screenchronicoxygen, "label")=
+    "Underlying condition requiring chronic oxygen supplementation?"
+  attr(data$screenhypercapnia, "label")=
+    "Diagnosed respiratory condition with confirmed current hypercapnia
+    (hypercapnic COPD or obesity hypoventilation syndrome with PaCO2 during
+  current admission over 45mmHg)."
+  attr(data$screenpneumothorax, "label")="Pre-existing untreated pneumothorax"
+  attr(data$screen_tee, "label")=
+    "Transesophageal echocardiography planned for the procedure."
+  attr(data$screenepistaxis, "label")="Active nasal bleeding"
+  attr(data$screennasalobstruction, "label")="Complete nasal obstruction"
+  attr(data$screenairwaysurgery, "label")=
+    "Recent upper airway surgery or base of skull fracture"
+  attr(data$screenprior, "label")="Prior participation in the study"
+  attr(data$screenpriorrefusal, "label")="Prior refusal to participate"
+  attr(data$screen_eligible, "label")="Eligible?"
+  attr(data$screeninvited, "label")="Invitation to participate provided?"
+  attr(data$screenconsented, "label")="Provided consent?"
+  attr(data$studyid, "label")="Study ID"
+  attr(data$screening_complete, "label")="Complete?"
+  attr(data$date_baseline, "label")="Date"
+  attr(data$age, "label")="Age (years)"
+  attr(data$sex.factor, "label")="Gender"
+  attr(data$height, "label")="Height (cm)"
+  attr(data$weight, "label")="Weight (kilograms)"
+  attr(data$smoke.factor, "label")="Smoking Status"
+  attr(data$osa.factor, "label")="Do you have sleep apnoea"
+  attr(data$cpap.factor, "label")="Do you use CPAP?"
+  attr(data$admward.factor, "label")="Admitted from"
+  attr(data$admsource.factor, "label")="Admission status"
+  attr(data$asaclass.factor, "label")="ASA class"
+  attr(data$lastfood, "label")="Time last food/non-clear fluids"
+  attr(data$lastfluids, "label")="Time last clear fluids"
+  attr(data$procedure.factor, "label")="Scheduled procedure"
+  attr(data$procedureother, "label")="Describe procedure if other selected"
+  attr(data$comments_v2, "label")="Comments"
+  attr(data$baseline_information_v1_complete, "label")="Complete?"
+  attr(data$cci___1.factor, "label")=
+    "Myocardial infarct (+1)"
+  attr(data$cci___2.factor, "label")=
+    "choice=Congestive heart failure (+1)"
+  attr(data$cci___3.factor, "label")=
+    "Peripheral vascular disease (+1)"
+  attr(data$cci___4.factor, "label")=
+    "Cerebrovascular disease (except hemiplegia) (+1)"
+  attr(data$cci___5.factor, "label")=
+    "Dementia (+1)"
+  attr(data$cci___6.factor, "label")=
+    "Chronic pulmonary disease (+1)"
+  attr(data$cci___7.factor, "label")=
+    "Connective tissue disease (+1)"
+  attr(data$cci___8.factor, "label")=
+    "Ulcer disease (+1)"
+  attr(data$cci___9.factor, "label")=
+    "Mild liver disease (+1)"
+  attr(data$cci___10.factor, "label")=
+    "Diabetes (without complications) (+1)"
+  attr(data$cci___11.factor, "label")=
+    "Diabetes with end organ damage (+2)"
+  attr(data$cci___12.factor, "label")=
+    "Hemiplegia (+2)"
+  attr(data$cci___13.factor, "label")=
+    "Moderate or severe renal disease (+2)"
+  attr(data$cci___14.factor, "label")=
+    "Solid tumor (non metastatic) (+2)"
+  attr(data$cci___15.factor, "label")=
+    "Leukemia (+2)"
+  attr(data$cci___16.factor, "label")=
+    "Lymphoma, Multiple myeloma (+2)"
+  attr(data$cci___17.factor, "label")=
+    "Moderate or severe liver disease (+3)"
+  attr(data$cci___18.factor, "label")=
+    "Metastatic solid tumor (+6)"
+  attr(data$cci___19.factor, "label")=
+    "AIDS (+6)"
+  attr(data$cciage, "label")="Age score for CCI"
+  attr(data$ccitotal, "label")="Charlson Comorbidity Index Score"
+  attr(data$charlson_comorbidity_index_v1_complete, "label")="Complete?"
+  attr(data$randomizationdate, "label")="Date of randomization"
+  attr(data$eligibility_confirmed.factor, "label")=
+    "Eligibility confirmed and consent form signed"
+  attr(data$sleepapneastratify.factor, "label")="Diagnosis of sleep apnea"
+  attr(data$crtstratify.factor, "label")=
+    "Is a bi-ventricular device implant (CRT-P or CRT-D) to be performed?"
+  attr(data$randomization.factor, "label")="Randomization"
+  attr(data$randomization_complete.factor, "label")="Complete?"
+  attr(data$adverseeffectsoxygen, "label")=
+    "RA to describe any adverse effects associated with oxygen delivery (e.g.,
+    nose bleeding, damage to mucosal surface, or pressure injury to skin from
+  device)."
+  attr(data$adverse_effects_v1_complete.factor, "label")="Complete?"
+  attr(data$isasvomit.factor, "label")="I threw up or felt like throwing up"
+  attr(data$isassameanesthetic.factor, "label")=
+    "I would want to have the same anesthetic again"
+  attr(data$isasitch.factor, "label")="I itched"
+  attr(data$isasrelaxed.factor, "label")="I felt relaxed"
+  attr(data$isaspain.factor, "label")="I felt pain"
+  attr(data$isassafe.factor, "label")="I felt safe"
+  attr(data$isastoocoldhot.factor, "label")="I was too cold or hot"
+  attr(data$isassatisfiedcare.factor, "label")=
+    "I was satisfied with my anesthetic care"
+  attr(data$isassurgerypain.factor, "label")="I felt pain during surgery"
+  attr(data$isasfeltgood.factor, "label")="I felt good"
+  attr(data$isashurt.factor, "label")="I hurt"
+  attr(data$oxygencomfort.factor, "label")=
+    "How comfortable did you feel with the oxygen mask or nasal prongs?"
+  attr(data$participant_satisfaction_v1_complete.factor, "label")="Complete?"
+  attr(data$aacode, "label")="AA unique code"
+  attr(data$procedurestart, "label")="Procedure start time"
+  attr(data$procedureend, "label")="Procedure end time"
+  attr(data$oxygenbaselinetime, "label")="Time oxygen started"
+  attr(data$oxygenbaselineflow, "label")=
+    "Baseline oxygen flow (litres per minute)"
+  attr(data$oxygenbaselinefio2, "label")="Baseline Fi02"
+  attr(data$oxygenbaselinetemp, "label")=
+    "Baseline temperature setting of HFNO device"
+  attr(data$oxygenchangetime1, "label")="Change in oxygen setting Time 1"
+  attr(data$oxygenchangeflow1, "label")="Change 1 oxygen flow (L/min)"
+  attr(data$oxygenchange1fio2, "label")="Change 1 FiO2"
+  attr(data$oxygenchangetemp1, "label")=
+    "Change 1 temperature setting of HFNO device"
+  attr(data$oxygenchangetime2, "label")="Change in oxygen setting Time 2"
+  attr(data$oxygenchangeflow2, "label")="Change 2 oxygen flow (L/min)"
+  attr(data$oxygenchange2fio2, "label")="Change 2 FiO2"
+  attr(data$oxygenchangetemp2, "label")=
+    "Change 2 temperature setting of HFNO device"
+  attr(data$oxygenchangetime3, "label")="Change in oxygen setting Time 3"
+  attr(data$oxygenchangeflow3, "label")="Change 3 oxygen flow (L/min)"
+  attr(data$oxygenchange3fio2, "label")="Change 3 FiO2"
+  attr(data$oxygenchangetemp3, "label")=
+    "Change 3 temperature setting of HFNO device "
+  attr(data$oxygenchangetime4, "label")="Change in oxygen setting Time 4"
+  attr(data$oxygenchangeflow4, "label")="Change 4 oxygen flow (L/min)"
+  attr(data$oxygenchange4fio2, "label")="Change 4 FiO2"
+  attr(data$oxygenchangetemp4, "label")=
+    "Change 4 temperature setting of HFNO device"
+  attr(data$troopsnoevents.factor, "label")="No events occured"
+  attr(data$troopssenairway.factor, "label")=
+    "Sentinel adverse events related to airway and breathing"
+  attr(data$troopsintairway.factor, "label")=
+    "Intermediate adverse events related to airway and breathing"
+  attr(data$troopsetairway___1.factor, "label")=
+    "Suspected etiology for adverse events related to airway and breathing
+  (select as many that apply) (choice=Apnea)"
+  attr(data$troopsetairway___2.factor, "label")=
+    "Suspected etiology for adverse events related to airway and breathing
+  (select as many that apply) (choice=Respiratory distress)"
+  attr(data$troopsetairway___3.factor, "label")=
+    "Suspected etiology for adverse events related to airway and breathing
+  (select as many that apply) (choice=Upper airway obstruction)"
+  attr(data$troopsetairway___4.factor, "label")=
+    "Suspected etiology for adverse events related to airway and breathing
+  (select as many that apply) (choice=Laryngospasm)"
+  attr(data$troopsetairway___5.factor, "label")=
+    "Suspected etiology for adverse events related to airway and breathing
+  (select as many that apply) (choice=Oxygen desaturation)"
+  attr(data$troopsetairway___6.factor, "label")=
+    "Suspected etiology for adverse events related to airway and breathing
+  (select as many that apply) (choice=Abnormal capnography)"
+  attr(data$troopsminairway.factor, "label")=
+    "Minor adverse events related to airway and breathing "
+  attr(data$troopssencirculation.factor, "label")=
+    "Sentinel adverse events related to circulation "
+  attr(data$troopsintcirculation.factor, "label")=
+    "Intermediate adverse events related to circulation"
+  attr(data$troopsetcirculation___1.factor, "label")=
+    "Suspected etiology for adverse events related to circulation(select as
+  many that apply) (choice=Hypotension)"
+  attr(data$troopsetcirculation___2.factor, "label")=
+    "Suspected etiology for adverse events related to circulation(select as
+  many that apply) (choice=Hypertension)"
+  attr(data$troopsetcirculation___3.factor, "label")=
+    "Suspected etiology for adverse events related to circulation(select as
+  many that apply) (choice=Bradycardia)"
+  attr(data$troopsetcirculation___4.factor, "label")=
+    "Suspected etiology for adverse events related to circulation(select as
+  many that apply) (choice=Tachycardia)"
+  attr(data$troopsetcirculation___5.factor, "label")=
+    "Suspected etiology for adverse events related to circulation(select as
+  many that apply) (choice=Cardiac arrest)"
+  attr(data$troopsmingi.factor, "label")="Minor adverse events related to GI"
+  attr(data$troopsetgi___1.factor, "label")=
+    "Suspected etiology for adverse events related to GI (select as many that
+  apply) (choice=Nausea)"
+  attr(data$troopsetgi___2.factor, "label")=
+    "Suspected etiology for adverse events related to GI (select as many that
+  apply) (choice=Vomiting)"
+  attr(data$troopssenneuro.factor, "label")="Sentinel adverse events related to neuro"
+  attr(data$troopsintneuro.factor, "label")=
+    "Intermediate adverse events related to neuro"
+  attr(data$troopsminneuro.factor, "label")="Minor adverse events related to neuro"
+  attr(data$troopsetneuro___1.factor, "label")=
+    "Suspected etiology for adverse events related to neuro (select as many
+  that apply) (choice=Seizure or seizure-like movements)"
+  attr(data$troopsetneuro___2.factor, "label")=
+    "Suspected etiology for adverse events related to neuro (select as many
+  that apply) (choice=Myoclonus/ muscle rigidity)"
+  attr(data$troopsintallergy.factor, "label")=
+    "Intermediate adverse events related to allergy"
+  attr(data$troopsminallergy.factor, "label")="Minor adverse events related to allergy"
+  attr(data$troopsetallergy___1.factor, "label")=
+    "Suspected etiology of adverse events related to allergy (select as many
+  that apply) (choice=Allergic reaction)"
+  attr(data$troopsetallergy___2.factor, "label")=
+    "Suspected etiology of adverse events related to allergy (select as many
+  that apply) (choice=Anaphylaxis)"
+  attr(data$troopsintquality, "label")=
+    "Intermediate adverse events related to sedation quality and patient
+  experience"
+  attr(data$troopsetquality___1.factor, "label")=
+    "Suspected etiology for adverse events related to sedation quality and
+    patient experience (select as many that apply) (choice=Patient active
+  resistance or need for restraint)"
+  attr(data$troopsetquality___2.factor, "label")=
+    "Suspected etiology for adverse events related to sedation quality and
+  patient experience (select as many that apply) (choice=Sedation)"
+  attr(data$troopsetquality___3.factor, "label")=
+    "Suspected etiology for adverse events related to sedation quality and
+  patient experience (select as many that apply) (choice=Paradoxical response)"
+  attr(data$troopsetquality___4.factor, "label")=
+    "Suspected etiology for adverse events related to sedation quality and
+    patient experience (select as many that apply) (choice=Unpleasant recovery
+  reaction/agitation)"
+  attr(data$troopsetquality___5.factor, "label")=
+    "Suspected etiology for adverse events related to sedation quality and
+  patient experience (select as many that apply) (choice=Unpleasant recall)"
+  attr(data$deepsedation.factor, "label")=
+    "Did the anesthesioloist attend the procedure to administer deep sedation?"
+  attr(data$ga.factor, "label")=
+    "Did an anesthesiologist attend the procedure for airway management/GA?"
+  attr(data$propofol, "label")="Total dose of propofol (mg)"
+  attr(data$midazolam, "label")="Total dose of midazolam (mg)"
+  attr(data$fentanyl, "label")="Total dose of fentanyl (mcg)"
+  attr(data$remifentanil, "label")="Remifentanil (mcg)"
+  attr(data$otheropioidname, "label")="Other opioid name"
+  attr(data$otheropioiddose, "label")="Other opioid total dose"
+  attr(data$otheropioidunits.factor, "label")="Other opioid unit of measurement"
+  attr(data$diffuseoxygen.factor, "label")=
+    "How difficult was it to use the supplemental oxygen delivery device?"
+  attr(data$diffoxygen.factor, "label")=
+    "How difficult was it to maintain the patients oxygenation status
+  throughout the procedure?"
+  attr(data$timesusedhfno.factor, "label")=
+    "How many times have you used high flow nasal oxygen?"
+  attr(data$anesthesia_assistant_ratings_complete.factor, "label")="Complete?"
+  attr(data$tcco2peak, "label")="PeakTcCO2 concentration"
+  attr(data$tcco2mean, "label")="Mean TcCO2 concentration"
+  attr(data$aucdesat, "label")="AUCdesat"
+  attr(data$tcco2_and_spo2_outcomes_complete.factor, "label")="Complete?"
+
   data
 }

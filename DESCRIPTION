@@ -1,12 +1,17 @@
 Package: hfnosedrct
 Title: Functions used in Statistical Analyses
 Version: 0.0.0.9000
-Authors@R:
+Authors@R: 
+    c(
     person(given = "Aaron",
            family = "Conway",
            role = c("aut", "cre"),
            email = "aaron.conway@utoronto.ca",
-           comment = c(ORCID = "0000-0002-9583-8636"))
+           comment = c(ORCID = "0000-0002-9583-8636")),
+    person(given = "Peter",
+           family = "Collins",
+           role = c("aut"),
+           email = "peter.carsten.collins@gmail.com"))
 Description: Drake pipeline of functions used to
   perform statistical analyses for the study.
 License: MIT + file LICENSE

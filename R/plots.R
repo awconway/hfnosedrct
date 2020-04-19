@@ -160,6 +160,7 @@ make_plot_component <- function(data_fanova, model, reso, component_str, title, 
 #' @param data_fanova dataframe
 #' @param reso Number of seconds resolution for functional data
 #' @importFrom dplyr ungroup group_by summarize first arrange desc slice pull mutate filter
+#' @importFrom ggplot2 ggplot aes geom_line scale_y_continuous scale_x_continuous scale_alpha_continuous scale_size_continuous theme_bw theme element_blank ggtitle geom_vline annotate
 
 #' @export
 
@@ -266,7 +267,7 @@ make_plot_fanova_data <- function(data_fanova, reso){
              col="gray75")
 
   result <- grid.arrange(plot_fmo, plot_hfno, ncol=2)
-  saveRDS(result, file = "./plots/plot_fanova_data.RDS")
+  # saveRDS(result, file = "./plots/plot_fanova_data.RDS")
 
   return(result)
 }

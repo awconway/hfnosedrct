@@ -1,4 +1,4 @@
-devtools::load_all()
+library(hfnosedrct)
 
 drake::make(get_analysis_plan(), lock_envir = FALSE)
 

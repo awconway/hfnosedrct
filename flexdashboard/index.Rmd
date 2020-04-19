@@ -162,14 +162,52 @@ Codebook {data-navmenu=Data data-icon="fa-book"}
 
 Insert a codebook: https://rubenarslan.github.io/codebook/
 
-View and download data {data-navmenu=Data data-icon="fa-database"}
+Clinical and demographic variables {data-navmenu=Data data-icon="fa-database"}
 =======================================================================
-
-Column
------------------------------------------------------------------------
-
-### Data
 
 ```{r, datatable-chunk}
 DT::datatable(drake::readd(trial_datatable), extensions = "Buttons", options = list(dom = "Bfrtip", buttons = c("copy", "csv", "excel")))
 ```
+
+TcCO2 {data-navmenu=Data data-icon="fa-database"}
+=======================================================================
+
+```{r}
+drake::readd(tcco2_data) %>%
+  downloadthis::download_this(
+    output_name = "tcc02-dataset",
+    output_extension = ".csv",
+    button_label = "Download data as csv",
+    button_type = "warning",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+```
+
+```{r}
+drake::readd(tcco2_data) %>%
+  downloadthis::download_this(
+    output_name = "tcc02-dataset",
+    output_extension = ".xlsx",
+    button_label = "Download datasets as xlsx",
+    button_type = "warning",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+```
+
+```{r, tcco2-chunk}
+reactable::reactable(drake::readd(tcco2_data),
+                    filterable = TRUE,
+                    searchable = TRUE,
+                    pagination = FALSE, 
+                    groupBy = "id",
+                    onClick = "expand",
+                    rowStyle = list(cursor = "pointer"))
+```
+
+Reproducibility {data-navmenu=Data data-icon="fa-repeat"}
+=======================================================================
+
+<iframe style="border:none" src="https://hfnosedrct.netlify.com" height="100%" width="100%"></iframe>
+

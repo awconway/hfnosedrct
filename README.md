@@ -1,0 +1,81 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# High flow nasal oxygen during sedation in the cardiac catheterisation laboratory: A randomized controlled trial
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+> This repository hosts raw data and code for the statistical analyses.
+> All code is in `R`. The drake package was used to manage the workflow.
+
+## Reproducible analysis with Docker
+
+The statistical anlyses requires various packages to be installed, and
+may not work properly if package versions have changed. Therefore, a
+[Docker image is
+provided](https://hub.docker.com/repository/docker/awconway/hfnosedrct)
+to run the code reproducibly.
+
+### Run Docker locally
+
+**If you already have [docker](https://docs.docker.com/install/)
+installed**
+
+  - Run the following in a terminal (substituting in a user name and
+    password):
+
+<!-- end list -->
+
+    docker run -d -p 8787:8787 -e USER=<user> -e PASSWORD=<password> awconway/hfnosedrct
+
+  - Open a web browser and go to: localhost:8787
+  - Enter your username and password to enter an RStudio session.
+  - Create a new project from version control (File \> New project \>
+    Version Control \> Git \>
+    <https://github.com/awconway/hfnosedrct.git> )
+  - In the `hfnosedrct` project directory open the file `plan.R` and run
+    the code to reproduce the analysis.
+
+You will see the targets being built by `drake`, and the final
+manuscript should be compiled at the end as `index.html` in the
+`manuscript` directory. It may take about 20-30 minutes for all the
+models to be fit and output produced. A network diagram of all the
+output will be shown.
+
+### Run Docker on a Cloud
+
+Instead of installing docker on your system you can run it on a remote
+server, such as [Digital Ocean](https://www.digitialocean.com). This
+[link](https://m.do.co/c/89cf8df06791) provides you with $100 free
+credit to use for a 60-day period. After signing up, follow these steps
+to run this project on a Digital Ocean droplet:
+
+  - Create a DigitalOcean droplet. Choose a server with Docker installed
+    from the *Marketplace* menu and choose a size for your server
+    (number of CPUs and amount of RAM). The statistical analyses used
+    Bayesian modelling so it would be best to choose a server with at
+    least 16GB RAM.
+
+  - Select `User data` from the `Select additional options` section and
+    enter the text as displayed below (substituting in a username and
+    password).
+
+<!-- end list -->
+
+    #cloud-config
+    runcmd:
+      - docker run -d -p 8787:8787 -e USER=<user> -e PASSWORD=<password> awconway/hfnosedrct
+
+  - Create the droplet.
+
+  - Wait a few minutes for the docker image to load into the server then
+    open a web browser and type in the ip address of the droplet you
+    just created followed by the port 8787 (e.g. ipaddress:8787).
+
+  - Follow the instructions for cloning the repository and running the
+    analyses as outlined above.
+
+  - *Destroy the DigitalOcean droplet when finished inspecting the
+    analyses.*
