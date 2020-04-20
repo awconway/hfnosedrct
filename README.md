@@ -7,8 +7,9 @@
 
 <!-- badges: end -->
 
-> This repository hosts raw data and code for the statistical analyses.
-> All code is in `R`. The drake package was used to manage the workflow.
+> This repository hosts raw data and code required to completely
+> reproduce the statistical analyses. All code is in `R`. The drake
+> package was used to manage the workflow.
 
 ## Reproducible analysis with Docker
 

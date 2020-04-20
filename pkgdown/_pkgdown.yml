@@ -32,6 +32,7 @@ reference:
       - process_troops
       - convert_stratification_factors
       - time_to_date
+      - create_codebook
   - subtitle: Participant Characteristics
   - contents:
       - create_characteristics_table

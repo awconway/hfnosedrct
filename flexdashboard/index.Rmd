@@ -53,23 +53,12 @@ HTML('<div>
 )
 ```
 
-Methods {data-navmenu="" data-icon="<i class='fad fa-tools'></i>" }
+
+
+Protocol {data-navmenu="" data-icon="<i class='fad fa-tools'></i>" }
 =======================================================================
 
-### Overview 
-
-<div
- class="canva-embed"
- data-design-id="DADen_OjGzk"
- data-height-ratio="1.25000"
- style="padding:125.0000% 5px 5px 5px;background:rgba(0,0,0,0.03);border-radius:8px;"
-></div>
-<script async src="https:&#x2F;&#x2F;sdk.canva.com&#x2F;v1&#x2F;embed.js"></script>
-<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DADen_OjGzk&#x2F;view?utm_content=DADen_OjGzk&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener"></a>
-
-### Overview {.mobile}
-
-![](HFNOinfographic.png)
+<iframe style="border:none" src="https://www.aaronconway.info/HFNO/Protocol.html" height="100%" width="100%"></iframe>
 
 Screening {data-navmenu=Participants data-icon="fa-check"}
 =======================================================================
@@ -160,7 +149,9 @@ drake::readd(spo2_plot)
 Codebook {data-navmenu=Data data-icon="fa-book"}
 =======================================================================
 
-Insert a codebook: https://rubenarslan.github.io/codebook/
+```{r}
+DT::datatable(drake::readd(codebook), extensions = "Buttons", options = list(dom = "Bfrtip", buttons = c("copy", "csv", "excel")))
+```
 
 Clinical and demographic variables {data-navmenu=Data data-icon="fa-database"}
 =======================================================================

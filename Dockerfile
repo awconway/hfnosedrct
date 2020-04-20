@@ -13,7 +13,8 @@ RUN install2.r --error \
     janitor \
     labelled \
     downloadthis \
-    reactable
+    reactable \
+    naniar
 
 RUN Rscript -e "install.packages('INLA', repos=c(getOption('repos'), INLA='https://inla.r-inla-download.org/R/testing'), dep=TRUE)"
 

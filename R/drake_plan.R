@@ -131,6 +131,10 @@ get_analysis_plan <- function(){
     data_troops = process_troops(trial_mod),
     model_troops = fit_troops(data_troops),
 
+    # Codebook
+
+    codebook = create_codebook(trial_datatable),
+
     flexdashboard = callr::r(
       function(...) rmarkdown::render(...),
       args = list(

@@ -407,7 +407,7 @@ label_data <- function(data){
   attr(data$cci___1.factor, "label")=
     "Myocardial infarct (+1)"
   attr(data$cci___2.factor, "label")=
-    "choice=Congestive heart failure (+1)"
+    "Congestive heart failure (+1)"
   attr(data$cci___3.factor, "label")=
     "Peripheral vascular disease (+1)"
   attr(data$cci___4.factor, "label")=
