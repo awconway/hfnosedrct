@@ -41,3 +41,30 @@
   border-radius: 25px;
 
 }
+
+.storyboard-nav .sbframelist {
+        margin: 0 auto;
+        width: 94%;
+        height: 80px;
+        overflow: hidden;
+        text-shadow: none;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+
+.storyboard-nav .sbnext, .storyboard-nav .sbprev {
+        width: 2%;
+        height: 80px;
+        font-size: 50px;
+    }
+
+
+.chart-wrapper .chart-notes {
+  background: #fbfbfb;
+  border-top: 1px solid #e2e2e2;
+  color: #808080;
+  font-size: 20px;
+  padding: 8px 10px 5px;
+  text-align: center;
+
+}

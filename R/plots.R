@@ -74,7 +74,7 @@ make_plot_co2_mean <- function(data_primary, model){
 #' @importFrom ggplot2 geom_hline
 #' @importFrom gridExtra grid.arrange
 #' @export
-make_plot_fanova_effect <- function(data_fanova, model, model_type, reso){
+make_plot_fanova_effect <- function(data_fanova, model, reso){
 
   plot_mu <- make_plot_component(data_fanova, model, reso, component_str = "mu",
                             title = "Baseline effect", ylim=c(0,80))
@@ -82,12 +82,12 @@ make_plot_fanova_effect <- function(data_fanova, model, model_type, reso){
                                title = "Treatment effect", ylim=c(-40,40)) +
     ggplot2::geom_hline(yintercept = -4, colour="red", lty="dotted", size=0.75)
 
-  plot_path <- paste0("./plots/fanova_plot_effect_", model_type, ".RDS")
+  # plot_path <- paste0("./plots/fanova_plot_effect_", model_type, ".RDS")
 
   result <- gridExtra::grid.arrange(plot_mu, plot_alpha, ncol=2,
                          left="TcCO2 (mmHg)",
                          bottom="Time (min)")
-  saveRDS(result, plot_path)
+  # saveRDS(result, plot_path)
 
   return(result)
 }

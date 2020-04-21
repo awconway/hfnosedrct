@@ -2,8 +2,7 @@
 title: 'High flow nasal oxygen during sedation in the cardiac catheterisation laboratory'
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
+    orientation: rows
     includes:
       in_header: fa.html
     css: [styles.css]
@@ -12,6 +11,20 @@ output:
 ```{r setup, include=FALSE}
 library(magrittr)
 library(htmltools)
+library(hfnosedrct)
+library(drake)
+devtools::load_all()
+# Values of interest pre-processing
+CI_co2_peak <- extract_CI(readd(model_co2_peak), "mmHg")
+CI_co2_mean <- extract_CI(readd(model_co2_mean), "mmHg")
+CI_spo2_mean <- extract_CI(readd(model_spo2), "%")
+CI_isas <- extract_CI(readd(model_isas))
+CI_diffoxygen <- extract_CI(readd(model_diffoxygen))
+CI_diffuseoxygen <- extract_CI(readd(model_diffuseoxygen))
+CI_troops <- extract_CI(readd(model_troops))
+CI_comfort <- extract_CI(readd(model_comfort))
+
+
 ```
 
 Home {data-navmenu="" data-icon="fa-home"}
@@ -55,120 +68,205 @@ HTML('<div>
 
 
 
-Protocol {data-navmenu="" data-icon="<i class='fad fa-tools'></i>" }
+Protocol {data-icon="fa-tools"}
 =======================================================================
 
 <iframe style="border:none" src="https://www.aaronconway.info/HFNO/Protocol.html" height="100%" width="100%"></iframe>
 
-Screening {data-navmenu=Participants data-icon="fa-check"}
+Participants {data-icon="fa-users" .storyboard}
 =======================================================================
 
-Column {data-width=550}
------------------------------------------------------------------------
+### **CONSORT diagram** 
 
-### CONSORT diagram
 
 ```{r consort-chunk}
 knitr::include_graphics(here::here("plots/consort.png"))
 ```
 
-Column {data-width=450}
------------------------------------------------------------------------
+***
 
-### Reasons for exclusion
+- From August 2019 to March 2020, we screened 270 patients undergoing CIED procedures. 
+- A total of 130 participants were randomized. 
+- One participant was subsequently excluded from the study because their procedure was cancelled after the randomization was performed. 
+- One further participant, who was randomized to the HFNO group, had their procedure rescheduled to a time that the Research Assistant was not available. As such, this participant received oxygen via standard face mask and TcCO~2~ data were not collected. 
+- Two participants who were randomized to HFNO did not receive this intervention at all during procedures at the discretion of the Anesthesia Assistant, with the rationale that the high flow of oxygen interfered with capnography monitoring. 
+- For two participants, the TcCO~2~ sensor failed to callibrate prior to commencement of the procedure, so they were not able to be included in the analyses for the TcCO~2~ outcomes.  
+
+### **Reasons for exclusion from the trial**
 
 ```{r exclusions-chunk}
 drake::readd(exclusions_plot)
 ```
 
-Characteristics {data-navmenu=Participants data-icon="fa-users"}
-=======================================================================
+>The total number of exclusions displayed here is not equal to the actual total number of participants not meeting the inclusion criteria (displayed in the CONSORT diagram), as some participants had multiple reasons for exlcusion.
 
-### Participant characteristics
+
+### **Sample characteristics** 
 
 ```{r characteristics-chunk}
 drake::readd(characteristics_table)
 ```
 
-Oxygen use {data-navmenu=Results data-orientation=rows data-icon="fa-tachometer"}
+***
+
+- The sample was mostly elder and predominantly male. 
+- Anesthesia Assistants' rated the ASA Physical Classification Status for participants as either III or IV, reflecting the underlying cardiovascular disease and multiple comorbidities. 
+- Obstructive sleep apnea was common, with 27% of participants reporting a diagnosis of this condition. 
+- About 20% of procedures were for cardiac resnchronisation therapy. 
+
+TcCO~2~ {data-icon="fa-chart-bar" .storyboard}
 =======================================================================
 
-Column {data-width = 500}
------------------------------------------------------------------------
+### **TcCO~2~ throughout procedures**
 
-### Oxygen flow rate in litres per minute for each participant
 
-```{r ox-flow-chunk}
-drake::readd(oxygen_flow_plot)
+```{r}
+grid::grid.draw(drake::readd(plot_fanova_data))
 ```
 
-### Oxygen flow rate in litres per minute as a proportion of the total time of all procedures per randomization group
+>Dotted lines display the time where 50% and 75% and 90% of procedures were completed
 
-```{r ox-prop-chunk}
-drake::readd(oxygen_proportion_plot)
+
+### **Peak TcCO~2~ against baseline**
+
+```{r}
+drake::readd(plot_co2_peak)
 ```
 
-Column
------------------------------------------------------------------------
+>The average difference (95% credible intervals) in peak TcCO~2~ between groups was `r CI_co2_peak[["full"]]`.
 
-### Oxygen to air ratio for each participant randomized to high flow nasal oxygen
+### **Mean TcCO~2~ against baseline**
 
-```{r, fio2-chunk, fig.width = 16}
-drake::readd(oxygen_fio2_plot)
+```{r}
+drake::readd(plot_co2_mean)
 ```
 
-Main results {data-navmenu=Results}
-=======================================================================
+>The average difference (95% credible intervals) in mean TcCO~2~ between groups was `r CI_co2_mean[["full"]]`.
 
-Column
------------------------------------------------------------------------
-
-
-
-CO2/SPO2 data {data-navmenu=Results data-icon="fa-chart-bar"}
-=======================================================================
-
-Column
------------------------------------------------------------------------
-
-### Categories of recorded CO2 values during procedure for each participant
+### **Missing CO~2~ measurements**
 
 ```{r, co2-chunk}
 drake::readd(co2_plot)
 ```
 
-Column
------------------------------------------------------------------------
+***
 
-### Categories of recorded SPO2 values during procedure for each participant
+- For two participants, the Sentec VSign 2 sensor failed to calibrate, so these participants were not able to be included in the analyses for the TcCO~2~ outcomes.
+- For a small number of participants there was a delay in calibration of the Sentec VSign 2 sensor, resulting in a small amount missing data for a period of time at the start of procedures.
+- One participant had their procedure rescheduled to a time that the researchers were unavailable. As such, TcCo~2~ measured for this participant.
+
+
+Secondary outcomes {data-icon="fa-chart-bar" .storyboard}
+=======================================================================
+
+### **Comfort with the oxygen device**
+
+```{r}
+drake::readd(oxygencomfort_plot)
+```
+
+>The treatment effect (95% credible intervals) was `r CI_comfort[["full"]]`.
+
+### **Anesthesia Assistant rating for difficulty using the oxygen device**
+
+```{r}
+drake::readd(diffuseoxygen_plot)
+```
+
+>The treatment effect (95% credible intervals) was `r CI_diffuseoxygen[["full"]]`.
+
+
+### **Anesthesia Assistant rating for difficulty maintaining oxygenation status**
+
+```{r}
+drake::readd(diffoxygen_plot)
+```
+
+>The treatment effect (95% credible intervals) was `r CI_diffoxygen[["full"]]`.
+
+### **Iowa Satisfaction with Anesthesia Scale scores**
+
+```{r}
+drake::readd(isas_plot)
+```
+
+>The treatment effect (95% credible intervals) was `r CI_isas[["full"]]`.
+
+
+### **SpO~2~ throughout procedures**
+
+```{r}
+drake::readd(spo2_facet_plot)
+```
+
+### **Missing SpO~2~ measurements**
 
 ```{r, spo2-chunk}
 drake::readd(spo2_plot)
 ```
 
-Codebook {data-navmenu=Data data-icon="fa-book"}
+>The Sentec VSign 2 sensor location (forehead) was chosen to optimise the accuracy of TcCo~2~ measurement, as this was the primary outcome for this study. As such, the SpO~2~ measurements were unreliable for some participants. 
+
+
+Oxygen device settings {data-icon="fa-cog" .storyboard}
 =======================================================================
+
+### **Oxygen flow rate in litres per minute for each participant**
+
+```{r ox-flow-chunk}
+drake::readd(oxygen_flow_plot)
+```
+
+***
+
+- Participants randomized to the HFNO group received flow rates at 50 litres per minute or higher for the majority of the time. 
+- One participant who was randomized to receive HFNO had their procedure rescheduled to a time that the Research Assistant was not available. As such, this participant received oxygen via standard face mask.
+- Two participants who were randomized to HFNO did not receive this intervention at all during procedures at the discretion of the Anesthesia Assistant, with the rationale that the high flow of oxygen interfered with capnography monitoring. 
+- Four participants who were randomized to HFNO stopped receiving this intervention at a certain timepoint during procedures at the discretion of the Anesthesia Assistant, with the rationale that the high flow of oxygen interfered with capnography monitoring. 
+
+### **Oxygen flow rate as a proportion of the total time of all procedures**
+
+```{r ox-prop-chunk}
+drake::readd(oxygen_proportion_plot)
+```
+
+***
+
+- Participants randomized to the HFNO group received flow rates at 50 litres per minute or higher for the majority of the time. 
+
+### **Oxygen to air ratio for each participant randomized to high flow nasal oxygen**
+
+```{r, fio2-chunk, fig.width = 16}
+drake::readd(oxygen_fio2_plot)
+```
+
+***
+
+- Most participants randomized to HFNO received an oxygen to air ratio of 50% for their entire procedure.
+- The oxygen to air ratio was increased higher than 50% for only a small number of participants, at the discretion of the Anesthesia Assistant to improve oxygenation.
+- For participants who were switched to oxygen supplementation via a standard facemask, the oxygen to air ratio was assumed to be 1.0.
+
+
+Data {data-icon="fa-table" .storyboard}
+=======================================================================
+
+### <i class="fad fa-book"></i> **Codebook**
 
 ```{r}
 DT::datatable(drake::readd(codebook), extensions = "Buttons", options = list(dom = "Bfrtip", buttons = c("copy", "csv", "excel")))
 ```
 
-Clinical and demographic variables {data-navmenu=Data data-icon="fa-database"}
-=======================================================================
 
-```{r, datatable-chunk}
-DT::datatable(drake::readd(trial_datatable), extensions = "Buttons", options = list(dom = "Bfrtip", buttons = c("copy", "csv", "excel")))
-```
+>The dataset can be downloaded for secondary use. This table displays a summary of the variables collected for this study along with their types, levels (for factors) and the extent of missingness per variable. 
 
-TcCO2 {data-navmenu=Data data-icon="fa-database"}
-=======================================================================
+### <i class='fad fa-download'></i> **Download dataset**
 
 ```{r}
-drake::readd(tcco2_data) %>%
+drake::readd(trial_datatable) %>%
   downloadthis::download_this(
-    output_name = "tcc02-dataset",
+    output_name = "hfnosedrct-dataset",
     output_extension = ".csv",
-    button_label = "Download data as csv",
+    button_label = "Download clinical and demographic data as csv",
     button_type = "warning",
     has_icon = TRUE,
     icon = "fa fa-save"
@@ -178,27 +276,17 @@ drake::readd(tcco2_data) %>%
 ```{r}
 drake::readd(tcco2_data) %>%
   downloadthis::download_this(
-    output_name = "tcc02-dataset",
-    output_extension = ".xlsx",
-    button_label = "Download datasets as xlsx",
+    output_name = "hfnosedrct-tcc02-dataset",
+    output_extension = ".csv",
+    button_label = "Download Co2 data as csv",
     button_type = "warning",
     has_icon = TRUE,
     icon = "fa fa-save"
   )
 ```
 
-```{r, tcco2-chunk}
-reactable::reactable(drake::readd(tcco2_data),
-                    filterable = TRUE,
-                    searchable = TRUE,
-                    pagination = FALSE, 
-                    groupBy = "id",
-                    onClick = "expand",
-                    rowStyle = list(cursor = "pointer"))
-```
 
-Reproducibility {data-navmenu=Data data-icon="fa-repeat"}
+Reproducibility {data-icon="fa-repeat"}
 =======================================================================
 
 <iframe style="border:none" src="https://hfnosedrct-package.netlify.app" height="100%" width="100%"></iframe>
-

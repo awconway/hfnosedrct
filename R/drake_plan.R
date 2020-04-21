@@ -96,6 +96,7 @@ get_analysis_plan <- function(){
     # participants
     spo2_plot = create_spo2_plot(tcco2_data, trial_mod),
 
+
     ### Analysis
 
     # Set seed for BRMS models and choose 30 second resolution for functional data
@@ -103,6 +104,8 @@ get_analysis_plan <- function(){
     reso=30,
 
     # Peak and mean co2 analysis
+
+    co2_long = make_co2_long(tcco2_data, trial_mod),
     data_primary = process_primary(co2_data = tcco2_data, trial_data = trial_mod),
     model_co2_peak = fit_primary(data_primary, response="co2_peak"),
     model_co2_mean = fit_primary(data_primary, response="co2_mean"),
@@ -123,9 +126,12 @@ get_analysis_plan <- function(){
     data_spo2 = process_spo2(tcco2_data, trial_mod),
     model_spo2 = fit_spo2(data_spo2),
 
+    spo2_facet_plot = create_spo2_facet_plot(co2_long),
     # ISAS analysis
     data_isas = process_isas(trial_mod),
     model_isas = fit_isas(data_isas),
+    isas_plot = create_isas_plot(data_isas),
+
 
     # Patient comfort analysis
     data_comfort = process_comfort(trial_mod),

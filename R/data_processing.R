@@ -164,7 +164,7 @@ process_fanova <- function(co2_data, trial_data, reso=30){
 #' @description Iowa Satisfaction with Anesthesia Scale
 #' @export
 # *********************************
-#' @importFrom dplyr recode select
+#' @importFrom dplyr recode select rowwise summarise
 process_isas <- function(trial_data){
 
   isas_names <- grep("^isas.", names(trial_data), value = TRUE)
@@ -173,19 +173,35 @@ process_isas <- function(trial_data){
     convert_stratification_factors()
 
   ### Code all ISAS items according to their ISAS scores
-  for(isas in isas_names){
+  # for(isas in isas_names){
+  #
+  #   result[,isas] <- result[,isas] %>%
+  #     unlist() %>%
+  #     recode("Disagree very much" = -3,
+  #            "Disagree moderately" = -2,
+  #            "Disagree slightly" = -1,
+  #            "Agree slightly" = 1,
+  #            "Agree moderately" = 2,
+  #            "Agree very much" = 3)
+  # }
+  #
+  # result$isas_mean <- apply(result[,isas_names],1,mean)
+  isas <- trial_data %>%
+    select(starts_with("isas"), -ends_with("factor"))  %>%
+    rowwise() %>%
+    summarise(mean = mean(c(isasvomit,
+                                   isassameanesthetic,
+                                   isasitch,
+                                   isasrelaxed,
+                                   isaspain,
+                                   isassafe,
+                                   isastoocoldhot,
+                                   isassurgerypain,
+                                   isassatisfiedcare,
+                                   isasfeltgood,
+                                   isashurt), na.rm = TRUE))
 
-    result[,isas] <- result[,isas] %>%
-      unlist() %>%
-      recode("Disagree very much" = -3,
-             "Disagree moderately" = -2,
-             "Disagree slightly" = -1,
-             "Agree slightly" = 1,
-             "Agree moderately" = 2,
-             "Agree very much" = 3)
-  }
-
-  result$isas_mean <- apply(result[,isas_names],1,mean)
+  result$isas_mean <- isas$mean
 
   # Select only relevant variables
   result <- result %>%
