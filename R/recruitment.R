@@ -8,7 +8,7 @@
 #' @importFrom Matrix as.matrix
 #' @importFrom utils read.table
 create_consort_png <- function(screen, trial) {
-  
+
   # Participant values
   screened = nrow(screen)
   excluded = nrow(filter(screen,
@@ -38,11 +38,11 @@ create_consort_png <- function(screen, trial) {
   lost_facemask = died_facemask
   lost_hfno = died_hfno
   no_procedure = 1
-  
+
   # P084 is not included in the data, as their procedure was not performed
   analyzed_facemask = facemask - no_procedure
   analyzed_hfno = hfno
-  
+
   # Participant categories
   b = c("Enrollment", "Allocation", "Follow-up", "Analysis")
   l1 = paste("Assessed for eligibility (n=", screened, ")", sep = "")
@@ -69,7 +69,7 @@ create_consort_png <- function(screen, trial) {
   l9 = paste("Analyzed (n=", analyzed_hfno, ")", sep = "")
   labels = c(l1, l2, l3, l4, l5, l6, l7, l8, l9, b)
   n.labels = length(labels)
-  
+
   # Text boxes for categories
   frame = read.table(sep = "\t",
                      stringsAsFactors = F,
@@ -114,13 +114,13 @@ create_consort_png <- function(screen, trial) {
   #      res = 300,
   #      compression = 'lzw')
   png('plots/consort.png', width = 7.5, height = 7, units = 'in', res = 300)
-  
+
   par(mai = c(0, 0, 0, 0))
   plotmat(M, pos = pos, name = labels, lwd = 1, shadow.size = 0, curve = 0,
           box.lwd = 2, cex.txt = 1, box.size = frame$box.size,
           box.col = frame$box.col, box.type = frame$box.type,
           box.prop = frame$box.prop, txt.col = tcol)
-  
+
   # Position alignment of text inside boxes
   for (i in 1:7){
     text(x = x_coord[i] - indent[i],
@@ -128,11 +128,11 @@ create_consort_png <- function(screen, trial) {
          adj = c(0, 0.5),
          labels = indent_labels[i])
   }
-  
+
   # Arrows to connect boxes
   arrows(x0 = 0.5, x1 = 0.55, y0 = 0.82, length = 0.12)
   dev.off()
-  
+
 }
 
 
@@ -143,63 +143,63 @@ create_consort_png <- function(screen, trial) {
 #' @importFrom ggplot2 labs theme element_blank element_text
 #' @importFrom ggpubr ggdotchart theme_pubr
 create_exclusions_plot <- function(screen) {
-  
+
   # Assign variable names to all exclusion values
   noAA <- screen %>%
     filter(screenprocedure.factor == "No") %>%
     count()
-  
+
   exclusion_age <- screen %>%
     filter(screenage.factor == "Yes") %>%
     count()
-  
+
   exclusion_chronicoxygen <- screen %>%
     filter(screenchronicoxygen.factor == "Yes") %>%
     count()
-  
+
   exclusion_hypercapnia <- screen %>%
     filter(screenhypercapnia.factor == "Yes") %>%
     count()
-  
+
   exclusion_pneumothorax <- screen %>%
     filter(screenpneumothorax.factor == "Yes") %>%
     count()
-  
+
   exclusion_tee <- screen %>%
     filter(screen_tee.factor == "Yes") %>%
     count()
-  
+
   exclusion_nasalobstruction <- screen %>%
     filter(screennasalobstruction.factor == "Yes") %>%
     count()
-  
+
   exclusion_airwaysurgery <- screen %>%
     filter(screenairwaysurgery.factor == "Yes") %>%
     count()
-  
+
   exclusion_prior <- screen %>%
     filter(screenprior.factor == "Yes") %>%
     count()
-  
+
   exclusion_priorrefusal <- screen %>%
     filter(screenpriorrefusal.factor == "Yes") %>%
     count()
-  
+
   # Assign table variable names to all exclusion values
   exclusion_reasons <- c("screenage", "screenchronicoxygen",
                          "screenhypercapnia", "screenpneumothorax",
                          "screen_tee", "screennasalobstruction",
                          "screenairwaysurgery", "screenprior",
                          "screenpriorrefusal", "noAA")
-  
+
   exclusions <- rbind(exclusion_age, exclusion_chronicoxygen,
                       exclusion_hypercapnia, exclusion_pneumothorax,
                       exclusion_tee, exclusion_nasalobstruction,
                       exclusion_airwaysurgery, exclusion_prior,
                       exclusion_priorrefusal, noAA)
-  
+
   exclusions <- cbind(exclusion_reasons, exclusions)
-  
+
   # Assign label names to all exclusion values
   exclusionnames <- c("Aged below 16 years", "Chronic oxygen requirements",
                       "Hypercapnia during admission", "Pneumothorax",
@@ -207,10 +207,10 @@ create_exclusions_plot <- function(screen) {
                       "Airway surgery/skull fracture",
                       "Prior participation in the trial",
                       "Prior refusal to participate", "Sedation not planned")
-  
-  exclusionsdf <- exclusions %>% 
+
+  exclusionsdf <- exclusions %>%
     mutate(exclusion_reasons = exclusionnames)
-  
+
   # Plot of frequencies of all participant exclusion reasons
   exclusionsplot <- ggdotchart(exclusionsdf, x = "exclusion_reasons", y = "n",
                                color = "steelblue",
@@ -223,9 +223,6 @@ create_exclusions_plot <- function(screen) {
                                                  size = 9,
                                                  vjust = 0.5),
                                ggtheme = theme_pubr()) +
-    labs(caption = "Total number of exclusions displayed here is not equal to the actual total number of participants not
-    meeting the inclusion criteria (displayed in the CONSORT diagram), as some participants are
-    excluded for more than one reason, and are therefore counted multiple times here") +
     theme(
       # plot.title = element_text(size = 20,
       #                           face = "bold",
@@ -234,5 +231,5 @@ create_exclusions_plot <- function(screen) {
       axis.title.y = element_blank(),
       plot.caption = element_text(face = "italic")
     )
-  
+
 }

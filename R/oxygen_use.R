@@ -1,14 +1,14 @@
 #' @title Create a table containing variables related to measuring oxygen device settings
-#' 
-#' @description Dataframe of all columns needed from trial dataframe (participant id, all 
-#' oxygen flow rates used, all oxygen fio2 values used, and assigned 
-#' randomization of each participant), with all time intervals between 
+#'
+#' @description Dataframe of all columns needed from trial dataframe (participant id, all
+#' oxygen flow rates used, all oxygen fio2 values used, and assigned
+#' randomization of each participant), with all time intervals between
 #' changes in oxygen flow rate/oxygen fio2 value
 #' @rdname create_oxygen
 #' @export
 #' @importFrom dplyr if_else mutate
 create_oxygen <- function(trial_mod) {
-  
+
 
   oxygen <- trial_mod %>%
     mutate(oxygentimeinterval1 = if_else(
@@ -47,17 +47,17 @@ create_oxygen <- function(trial_mod) {
            oxygenchange4fio2, oxygentimeinterval1, oxygentimeinterval2,
            oxygentimeinterval3, oxygentimeinterval4, oxygentimeinterval5,
            totaltimeinterval, randomization.factor)
-  
+
 }
 
 #' @title Oxygen flow rate table in wide format
 #' @rdname create_oxygen_table
-#' @description Dataframe of all oxygen flow rate values at every minute, with assigned 
+#' @description Dataframe of all oxygen flow rate values at every minute, with assigned
 #' randomization of each participant
 #' @export
 create_oxygen_table <- function(oxygen) {
-  
-  # Replace time interval values of NA with a value of 1 (rep() function 
+
+  # Replace time interval values of NA with a value of 1 (rep() function
   # incompatible with 0, NA, and NULL values)
   oxygen_mod <- oxygen %>%
     replace_na(list(oxygentimeinterval1 = 1,
@@ -65,14 +65,14 @@ create_oxygen_table <- function(oxygen) {
                     oxygentimeinterval3 = 1,
                     oxygentimeinterval4 = 1,
                     oxygentimeinterval5 = 1))
-  
-  # Empty dataframe of all oxygen flow rate values at every minute, with 
+
+  # Empty dataframe of all oxygen flow rate values at every minute, with
   # participant id and assigned randomization of each participant
   oxygen_table <- oxygen_mod %>%
     select(id, randomization.factor)
-  
-  # Fills dataframe, where for each oxygen flow rate value used during 
-  # procedure, repeat value in consecutive time point columns for amount of 
+
+  # Fills dataframe, where for each oxygen flow rate value used during
+  # procedure, repeat value in consecutive time point columns for amount of
   # time value was used for
   for (i in seq_along(oxygen_mod$oxygentimeinterval1)) {
     oxygen_table[i, 3:(2 + oxygen_mod$oxygentimeinterval1[i])] <-
@@ -110,9 +110,9 @@ create_oxygen_table <- function(oxygen) {
                       oxygen_mod$oxygentimeinterval1[i])] <-
       as.numeric(oxygen_mod$oxygenchangeflow4)[i]
   }
-  
+
   oxygen_table
-  
+
 }
 
 
@@ -124,19 +124,19 @@ create_oxygen_table <- function(oxygen) {
 #' @importFrom dplyr group_by mutate n starts_with
 #' @importFrom tidyr pivot_longer drop_na
 create_oxygen_table_long <- function(oxygen, oxygen_table) {
-  
+
   # In each randomization, assign a separate number to each participant id
   oxygen_table <- oxygen_table %>%
     group_by(randomization.factor) %>%
     mutate(randid = 1:n())
-  
+
   # Merge all oxygen flow rate values into one column named "flowrate"
   oxygen_table %>%
     pivot_longer(names_to = "minute",
                  values_to = "flowrate",
                  cols = starts_with("...")) %>%
     drop_na()
-  
+
 }
 
 
@@ -148,8 +148,8 @@ create_oxygen_table_long <- function(oxygen, oxygen_table) {
 #' @importFrom dplyr group_by n ungroup
 #' @importFrom ggplot2 ggplot aes geom_tile facet_wrap theme_minimal theme element_blank scale_fill_brewer scale_colour_brewer labs
 create_oxygen_flow_plot <- function(oxygen_table_long) {
-  
-  # Plot of all oxygen flow rate values used in sequence during procedure for 
+
+  # Plot of all oxygen flow rate values used in sequence during procedure for
   # all participants for each randomization
   oxygen_table_long %>%
     group_by(id) %>%
@@ -173,20 +173,20 @@ create_oxygen_flow_plot <- function(oxygen_table_long) {
     scale_fill_brewer(palette = "RdYlBu") +
     scale_colour_brewer(palette = "RdYlBu") +
     labs(x = "Procedure duration (minutes)")
-  
+
 }
 
 
 #' @title Oxygen flow rate stacked plot
 #' @rdname create_oxygen_proportion_plot
-#' @description Plot of proportion of time spent during procedure using different oxygen 
+#' @description Plot of proportion of time spent during procedure using different oxygen
 #' flow rates
-#' 
+#'
 #' @export
 #' @importFrom ggplot2 ggplot aes geom_bar scale_y_continuous scale_fill_brewer theme element_line element_blank coord_flip
 create_oxygen_proportion_plot <- function(oxygen_table_long) {
-  
-  # Plot of proportion of time spent during procedure using different oxygen 
+
+  # Plot of proportion of time spent during procedure using different oxygen
   # flow rates for each randomization
   ggplot(oxygen_table_long,
          aes(x = randomization.factor, fill = factor(flowrate))) +
@@ -201,23 +201,23 @@ create_oxygen_proportion_plot <- function(oxygen_table_long) {
           plot.title.position = "plot",
           legend.title = element_blank()) +
     coord_flip()
-  
+
 }
 
 #' @title Dataframe of fio2 settings
-#' @rdname create_fio2 
-#' @description Dataframe of all columns needed from oxygen dataframe (participant id, all 
-#' oxygen fio2 values used, all time intervals between changes in oxygen fio2 
-#' value, and assigned randomization of each high flow nasal oxygen 
+#' @rdname create_fio2
+#' @description Dataframe of all columns needed from oxygen dataframe (participant id, all
+#' oxygen fio2 values used, all time intervals between changes in oxygen fio2
+#' value, and assigned randomization of each high flow nasal oxygen
 #' participant)
 
 #' @export
 #' @importFrom dplyr filter mutate select
 create_fio2 <- function(oxygen) {
-  
-  # Dataframe of all columns needed from oxygen dataframe (participant id, all 
-  # oxygen fio2 values used, all time intervals between changes in oxygen fio2 
-  # value, and assigned randomization of each high flow nasal oxygen 
+
+  # Dataframe of all columns needed from oxygen dataframe (participant id, all
+  # oxygen fio2 values used, all time intervals between changes in oxygen fio2
+  # value, and assigned randomization of each high flow nasal oxygen
   # participant)
   fio2 <- oxygen %>%
     filter(randomization.factor == "High Flow nasal oxygen") %>%
@@ -232,20 +232,20 @@ create_fio2 <- function(oxygen) {
     mutate(oxygenchange4fio2 = ifelse(
       oxygenchangeflow4 < 15, 1, oxygenchange4fio2)) %>%
     select(-2:-6)
-  
+
 }
 
 #' @title fio2 table in wide format
 #' @rdname create_fio2_table
-#' @description Wide dataframe of all oxygen fio2 values at every minute for each high flow 
+#' @description Wide dataframe of all oxygen fio2 values at every minute for each high flow
 # nasal oxygen participant
 
 #' @export
 #' @importFrom dplyr select
 #' @importFrom tidyr replace_na
 create_fio2_table <- function(fio2) {
-  
-  # Replace NA values with a value of 1 (rep() function incompatible with 0, 
+
+  # Replace NA values with a value of 1 (rep() function incompatible with 0,
   # NA, and NULL values)
   fio2_mod <- fio2 %>%
     replace_na(list(oxygentimeinterval1 = 1,
@@ -253,13 +253,13 @@ create_fio2_table <- function(fio2) {
                     oxygentimeinterval3 = 1,
                     oxygentimeinterval4 = 1,
                     oxygentimeinterval5 = 1))
-  
-  # Empty dataframe of all oxygen fio2 values at every minute, with 
+
+  # Empty dataframe of all oxygen fio2 values at every minute, with
   # participant id for each high flow nasal oxygen participant
   fio2_table <- fio2_mod %>%
     select(id)
-  
-  # For each oxygen fio2 value used during procedure, repeat value in 
+
+  # For each oxygen fio2 value used during procedure, repeat value in
   # consecutive time point columns for amount of time value was used for
   for (i in seq_along(fio2_mod$oxygentimeinterval1)) {
     fio2_table[i, 2:(1 + fio2_mod$oxygentimeinterval1[i])] <-
@@ -297,9 +297,9 @@ create_fio2_table <- function(fio2) {
                     fio2_mod$oxygentimeinterval1[i])] <-
       as.numeric(fio2_mod$oxygenchange4fio2)[i]
   }
-  
+
   fio2_table
-  
+
 }
 
 #' @title fio2 table in long format
@@ -310,18 +310,18 @@ create_fio2_table <- function(fio2) {
 #' @importFrom dplyr mutate n starts_with
 #' @importFrom tidyr pivot_longer drop_na
 create_fio2_table_long <- function(fio2, fio2_table) {
-  
+
   # Assign a separate number to each participant id
   fio2_table <- fio2_table %>%
     mutate(randid = 1:n())
-  
+
   # Merge all oxygen fio2 values into one column named "fio2"
   fio2_table %>%
     pivot_longer(names_to = "minute",
                  values_to = "fio2",
                  cols = starts_with("...")) %>%
     drop_na()
-  
+
 }
 
 #' @title fio2 table in long format
@@ -332,8 +332,8 @@ create_fio2_table_long <- function(fio2, fio2_table) {
 #' @importFrom dplyr group_by mutate n ungroup
 #' @importFrom ggplot2 ggplot aes geom_tile theme_minimal theme element_blank scale_fill_brewer scale_colour_brewer labs
 create_oxygen_fio2_plot <- function(fio2_table_long) {
-  
-  # Plot of all oxygen fio2 values used in sequence during procedure for all 
+
+  # Plot of all oxygen fio2 values used in sequence during procedure for all
   # high flow nasal oxygen participants
   fio2_table_long %>%
     group_by(id) %>%
@@ -355,5 +355,6 @@ create_oxygen_fio2_plot <- function(fio2_table_long) {
     scale_fill_brewer(palette = "RdYlBu") +
     scale_colour_brewer(palette = "RdYlBu") +
     labs(x = "Procedure duration (minutes)")
-  
+
 }
+

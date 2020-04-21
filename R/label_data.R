@@ -42,25 +42,25 @@ label_data <- function(data){
     factor(data$procedure,levels=c("1","2","3","4","5","6","7","8","9","10"))
   data$baseline_information_v1_complete.factor =
     factor(data$baseline_information_v1_complete,levels=c("0","1","2"))
-  data$cci___1.factor = factor(data$cci___1,levels=c("0","1"))
-  data$cci___2.factor = factor(data$cci___2,levels=c("0","1"))
-  data$cci___3.factor = factor(data$cci___3,levels=c("0","1"))
-  data$cci___4.factor = factor(data$cci___4,levels=c("0","1"))
-  data$cci___5.factor = factor(data$cci___5,levels=c("0","1"))
-  data$cci___6.factor = factor(data$cci___6,levels=c("0","1"))
-  data$cci___7.factor = factor(data$cci___7,levels=c("0","1"))
-  data$cci___8.factor = factor(data$cci___8,levels=c("0","1"))
-  data$cci___9.factor = factor(data$cci___9,levels=c("0","1"))
-  data$cci___10.factor = factor(data$cci___10,levels=c("0","1"))
-  data$cci___11.factor = factor(data$cci___11,levels=c("0","1"))
-  data$cci___12.factor = factor(data$cci___12,levels=c("0","1"))
-  data$cci___13.factor = factor(data$cci___13,levels=c("0","1"))
-  data$cci___14.factor = factor(data$cci___14,levels=c("0","1"))
-  data$cci___15.factor = factor(data$cci___15,levels=c("0","1"))
-  data$cci___16.factor = factor(data$cci___16,levels=c("0","1"))
-  data$cci___17.factor = factor(data$cci___17,levels=c("0","1"))
-  data$cci___18.factor = factor(data$cci___18,levels=c("0","1"))
-  data$cci___19.factor = factor(data$cci___19,levels=c("0","1"))
+  data$cci_mi.factor = factor(data$cci___1,levels=c("0","1"))
+  data$cci_chf.factor = factor(data$cci___2,levels=c("0","1"))
+  data$cci_pvd.factor = factor(data$cci___3,levels=c("0","1"))
+  data$cci_cvd.factor = factor(data$cci___4,levels=c("0","1"))
+  data$cci_dementia.factor = factor(data$cci___5,levels=c("0","1"))
+  data$cci_copd.factor = factor(data$cci___6,levels=c("0","1"))
+  data$cci_ctd.factor = factor(data$cci___7,levels=c("0","1"))
+  data$cci_ulcer.factor = factor(data$cci___8,levels=c("0","1"))
+  data$cci_mld.factor = factor(data$cci___9,levels=c("0","1"))
+  data$cci_dnc.factor = factor(data$cci___10,levels=c("0","1"))
+  data$cci_dc.factor = factor(data$cci___11,levels=c("0","1"))
+  data$cci_hemi.factor = factor(data$cci___12,levels=c("0","1"))
+  data$cci_renal.factor = factor(data$cci___13,levels=c("0","1"))
+  data$cci_tumor.factor = factor(data$cci___14,levels=c("0","1"))
+  data$cci_leukemia.factor = factor(data$cci___15,levels=c("0","1"))
+  data$cci_lymphoma.factor = factor(data$cci___16,levels=c("0","1"))
+  data$cci_liver.factor = factor(data$cci___17,levels=c("0","1"))
+  data$cci_metastatic.factor = factor(data$cci___18,levels=c("0","1"))
+  data$cci_aids.factor = factor(data$cci___19,levels=c("0","1"))
   data$cciage.factor = factor(data$cciage,levels=c("1","2","3","4","5"))
   data$charlson_comorbidity_index_v1_complete.factor =
     factor(data$charlson_comorbidity_index_v1_complete,levels=c("0","1","2"))
@@ -215,25 +215,25 @@ label_data <- function(data){
       "Wound revision","Other")
   levels(data$baseline_information_v1_complete.factor)=
     c("Incomplete","Unverified","Complete")
-  levels(data$cci___1.factor)=c("Unchecked","Checked")
-  levels(data$cci___2.factor)=c("Unchecked","Checked")
-  levels(data$cci___3.factor)=c("Unchecked","Checked")
-  levels(data$cci___4.factor)=c("Unchecked","Checked")
-  levels(data$cci___5.factor)=c("Unchecked","Checked")
-  levels(data$cci___6.factor)=c("Unchecked","Checked")
-  levels(data$cci___7.factor)=c("Unchecked","Checked")
-  levels(data$cci___8.factor)=c("Unchecked","Checked")
-  levels(data$cci___9.factor)=c("Unchecked","Checked")
-  levels(data$cci___10.factor)=c("Unchecked","Checked")
-  levels(data$cci___11.factor)=c("Unchecked","Checked")
-  levels(data$cci___12.factor)=c("Unchecked","Checked")
-  levels(data$cci___13.factor)=c("Unchecked","Checked")
-  levels(data$cci___14.factor)=c("Unchecked","Checked")
-  levels(data$cci___15.factor)=c("Unchecked","Checked")
-  levels(data$cci___16.factor)=c("Unchecked","Checked")
-  levels(data$cci___17.factor)=c("Unchecked","Checked")
-  levels(data$cci___18.factor)=c("Unchecked","Checked")
-  levels(data$cci___19.factor)=c("Unchecked","Checked")
+  levels(data$cci_mi.factor)=c("Unchecked","Checked")
+  levels(data$cci_chf.factor)=c("Unchecked","Checked")
+  levels(data$cci_pvd.factor)=c("Unchecked","Checked")
+  levels(data$cci_cvd.factor)=c("Unchecked","Checked")
+  levels(data$cci_dementia.factor)=c("Unchecked","Checked")
+  levels(data$cci_copd.factor)=c("Unchecked","Checked")
+  levels(data$cci_ctd.factor)=c("Unchecked","Checked")
+  levels(data$cci_ulcer.factor)=c("Unchecked","Checked")
+  levels(data$cci_mld.factor)=c("Unchecked","Checked")
+  levels(data$cci_dnc.factor)=c("Unchecked","Checked")
+  levels(data$cci_dc.factor)=c("Unchecked","Checked")
+  levels(data$cci_hemi.factor)=c("Unchecked","Checked")
+  levels(data$cci_renal.factor)=c("Unchecked","Checked")
+  levels(data$cci_tumor.factor)=c("Unchecked","Checked")
+  levels(data$cci_leukemia.factor)=c("Unchecked","Checked")
+  levels(data$cci_lymphoma.factor)=c("Unchecked","Checked")
+  levels(data$cci_liver.factor)=c("Unchecked","Checked")
+  levels(data$cci_metastatic.factor)=c("Unchecked","Checked")
+  levels(data$cci_aids.factor)=c("Unchecked","Checked")
   levels(data$cciage.factor)=
     c("50 - 59 (+1)","60 - 69 (+2)","70 - 79 (+3)","80 - 89 (+4)",
       "90 - 99 (+5)")
@@ -404,43 +404,43 @@ label_data <- function(data){
   attr(data$procedureother, "label")="Describe procedure if other selected"
   attr(data$comments_v2, "label")="Comments"
   attr(data$baseline_information_v1_complete, "label")="Complete?"
-  attr(data$cci___1.factor, "label")=
+  attr(data$cci_mi.factor, "label")=
     "Myocardial infarct (+1)"
-  attr(data$cci___2.factor, "label")=
+  attr(data$cci_chf.factor, "label")=
     "Congestive heart failure (+1)"
-  attr(data$cci___3.factor, "label")=
+  attr(data$cci_pvd.factor, "label")=
     "Peripheral vascular disease (+1)"
-  attr(data$cci___4.factor, "label")=
+  attr(data$cci_cvd.factor, "label")=
     "Cerebrovascular disease (except hemiplegia) (+1)"
-  attr(data$cci___5.factor, "label")=
+  attr(data$cci_dementia.factor, "label")=
     "Dementia (+1)"
-  attr(data$cci___6.factor, "label")=
+  attr(data$cci_copd.factor, "label")=
     "Chronic pulmonary disease (+1)"
-  attr(data$cci___7.factor, "label")=
+  attr(data$cci_ctd.factor, "label")=
     "Connective tissue disease (+1)"
-  attr(data$cci___8.factor, "label")=
+  attr(data$cci_ulcer.factor, "label")=
     "Ulcer disease (+1)"
-  attr(data$cci___9.factor, "label")=
+  attr(data$cci_liver.factor, "label")=
     "Mild liver disease (+1)"
-  attr(data$cci___10.factor, "label")=
+  attr(data$cci_dnc.factor, "label")=
     "Diabetes (without complications) (+1)"
-  attr(data$cci___11.factor, "label")=
+  attr(data$cci__dc.factor, "label")=
     "Diabetes with end organ damage (+2)"
-  attr(data$cci___12.factor, "label")=
+  attr(data$cci_hemi.factor, "label")=
     "Hemiplegia (+2)"
-  attr(data$cci___13.factor, "label")=
+  attr(data$cci_renal.factor, "label")=
     "Moderate or severe renal disease (+2)"
-  attr(data$cci___14.factor, "label")=
+  attr(data$cci_tumor.factor, "label")=
     "Solid tumor (non metastatic) (+2)"
-  attr(data$cci___15.factor, "label")=
+  attr(data$cci_leukemia.factor, "label")=
     "Leukemia (+2)"
-  attr(data$cci___16.factor, "label")=
+  attr(data$cci_lymphoma.factor, "label")=
     "Lymphoma, Multiple myeloma (+2)"
-  attr(data$cci___17.factor, "label")=
+  attr(data$cci_liver.factor, "label")=
     "Moderate or severe liver disease (+3)"
-  attr(data$cci___18.factor, "label")=
+  attr(data$cci_metastatic.factor, "label")=
     "Metastatic solid tumor (+6)"
-  attr(data$cci___19.factor, "label")=
+  attr(data$cci_aids.factor, "label")=
     "AIDS (+6)"
   attr(data$cciage, "label")="Age score for CCI"
   attr(data$ccitotal, "label")="Charlson Comorbidity Index Score"

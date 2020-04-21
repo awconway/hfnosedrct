@@ -73,6 +73,7 @@ make_plot_co2_mean <- function(data_primary, model){
 # ***************************
 #' @importFrom ggplot2 geom_hline
 #' @importFrom gridExtra grid.arrange
+#' @export
 make_plot_fanova_effect <- function(data_fanova, model, model_type, reso){
 
   plot_mu <- make_plot_component(data_fanova, model, reso, component_str = "mu",

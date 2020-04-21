@@ -64,6 +64,15 @@ get_analysis_plan <- function(){
     # flow rates for each randomization
     oxygen_proportion_plot = create_oxygen_proportion_plot(oxygen_table_long),
 
+    # Plots for ordinal outcomes
+
+    diffoxygen_plot = create_ordinal_outcome_plot(trial_mod, diffoxygen.factor),
+
+    diffuseoxygen_plot = create_ordinal_outcome_plot(trial_mod, diffuseoxygen.factor),
+
+    oxygencomfort_plot = create_ordinal_outcome_plot(trial_mod, oxygencomfort.factor),
+
+
     # CONSORT diagram of all participants
     consort_png = create_consort_png(screen, trial),
 
