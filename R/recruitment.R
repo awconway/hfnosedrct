@@ -33,15 +33,15 @@ create_consort_png <- function(screen, trial) {
                                 oxygenchangeflow3 >= 30 |
                                 oxygenchangeflow4 >= 30))
   received_facemask = facemask + hfno - received_hfno
-  died_facemask = 0
-  died_hfno = 0
-  lost_facemask = died_facemask
-  lost_hfno = died_hfno
+  equip_hfno = 2 #P011 & P014
+  resch_hfno = 1 #
+  lost_facemask = 0
+  lost_hfno = resch_hfno
   no_procedure = 1
 
   # P084 is not included in the data, as their procedure was not performed
   analyzed_facemask = facemask - no_procedure
-  analyzed_hfno = hfno
+  analyzed_hfno = hfno - (equip_hfno+resch_hfno)
 
   # Participant categories
   b = c("Enrollment", "Allocation", "Follow-up", "Analysis")
@@ -61,11 +61,13 @@ create_consort_png <- function(screen, trial) {
              received_hfno,
              ")",
              sep = "")
-  l6 = paste("Lost to follow-up (n=", lost_facemask, ")\n",
-             "•   Died (n=", died_facemask, ")", sep = "")
-  l7 = paste("Lost to follow-up (n=", lost_hfno, ")\n",
-             "•   Died (n=", died_hfno, ")", sep = "")
-  l8 = paste("Analyzed (n=", analyzed_facemask, ")", sep = "")
+  l6 = paste("Primary outcome not measured (n=", lost_facemask, ")\n",
+             sep = "")
+  l7 = paste("Primary outcome not measured (n=", lost_hfno, ")\n",
+             "•   Procedure rescheduled (n=", resch_hfno, ")\n",
+             "•   Equipment malfunction (n=", equip_hfno, ")", sep = "")
+  l8 = paste("Analyzed (n=", analyzed_facemask, ")\n",
+             "•   Procedure cancelled (n=", no_procedure, ")", sep = "")
   l9 = paste("Analyzed (n=", analyzed_hfno, ")", sep = "")
   labels = c(l1, l2, l3, l4, l5, l6, l7, l8, l9, b)
   n.labels = length(labels)

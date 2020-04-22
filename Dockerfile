@@ -1,5 +1,8 @@
 FROM asachet/rocker-tidymodels:latest
 
+# copy current directory into /mnt
+COPY . /hfnosedrct
+
 RUN install2.r --error \
     drake \
     diagram \

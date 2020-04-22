@@ -424,7 +424,7 @@ label_data <- function(data){
     "Mild liver disease (+1)"
   attr(data$cci_dnc.factor, "label")=
     "Diabetes (without complications) (+1)"
-  attr(data$cci__dc.factor, "label")=
+  attr(data$cci_dc.factor, "label")=
     "Diabetes with end organ damage (+2)"
   attr(data$cci_hemi.factor, "label")=
     "Hemiplegia (+2)"

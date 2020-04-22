@@ -90,11 +90,11 @@ get_analysis_plan <- function(){
 
     # Plot of all co2 value types observed in sequence during procedure for all
     # participants
-    co2_plot = create_co2_plot(tcco2_data, trial_mod),
+    co2_plot = create_co2_plot(co2_long),
 
     # Plot of all spo2 value types observed in sequence during procedure for all
     # participants
-    spo2_plot = create_spo2_plot(tcco2_data, trial_mod),
+    spo2_plot = create_spo2_plot(co2_long),
 
 
     ### Analysis
@@ -106,7 +106,7 @@ get_analysis_plan <- function(){
     # Peak and mean co2 analysis
 
     co2_long = make_co2_long(tcco2_data, trial_mod),
-    data_primary = process_primary(co2_data = tcco2_data, trial_data = trial_mod),
+    data_primary = process_primary(co2_long),
     model_co2_peak = fit_primary(data_primary, response="co2_peak"),
     model_co2_mean = fit_primary(data_primary, response="co2_mean"),
     plot_co2_peak = make_plot_co2_peak(data_primary, model_co2_peak),
@@ -125,8 +125,8 @@ get_analysis_plan <- function(){
     # SPO2 analysis
     data_spo2 = process_spo2(tcco2_data, trial_mod),
     model_spo2 = fit_spo2(data_spo2),
-
     spo2_facet_plot = create_spo2_facet_plot(co2_long),
+
     # ISAS analysis
     data_isas = process_isas(trial_mod),
     model_isas = fit_isas(data_isas),

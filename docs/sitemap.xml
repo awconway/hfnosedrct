@@ -31,6 +31,12 @@
     <loc>http://hfnosedrctpackage.netlify.com/reference/create_fio2_table_long.html</loc>
   </url>
   <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/create_isas_plot.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/create_ordinal_outcome_plot.html</loc>
+  </url>
+  <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/create_oxygen.html</loc>
   </url>
   <url>
@@ -49,6 +55,9 @@
     <loc>http://hfnosedrctpackage.netlify.com/reference/create_oxygen_table_long.html</loc>
   </url>
   <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/create_spo2_facet_plot.html</loc>
+  </url>
+  <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/create_spo2_plot.html</loc>
   </url>
   <url>
@@ -56,6 +65,9 @@
   </url>
   <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/create_trial_datatable.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/extract_CI.html</loc>
   </url>
   <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/fit_fanova.html</loc>
@@ -80,6 +92,9 @@
   </url>
   <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/label_data.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/make_brms_summary.html</loc>
   </url>
   <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/make_co2_long.html</loc>

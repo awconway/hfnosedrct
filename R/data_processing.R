@@ -1,3 +1,27 @@
+#' @title Load data from tcco2 monitor
+#' @rdname create_tcco2_data
+#' @param data Filepath to directory of csv files
+
+#' @export
+#' @importFrom dplyr mutate select everything
+#' @importFrom fs dir_ls
+#' @importFrom glue glue
+#' @importFrom stringr str_remove_all str_remove
+#' @importFrom vroom vroom
+create_tcco2_data <- function(TCCO2) {
+
+  # Dataframe of all co2, spo2, and pr values at every specific date-time
+  # point for each participant
+  files <- dir_ls(glue("data/", TCCO2), glob = "*csv")
+  files
+  vroom(files, id = "path") %>%
+    mutate(id = str_remove_all(path, glue("data/", TCCO2, "/"))) %>%
+    mutate(id = str_remove(id, ".csv")) %>%
+    select(id, everything(), -path)
+
+}
+
+
 # *********************************
 #' @title Combine co2 and trial data into a long-format dataframe
 #' @rdname make_co2_long
@@ -66,9 +90,11 @@ make_co2_long <- function(co2_data,trial_data){
     mutate(time_int = 1:n()) %>%
     mutate(time_int = time_int - 1)
 
-  # Observations with co2 == 0 are considered missing
+  # Observations with co2 == 0 or sp02==0 | pr ==0 are considered missing
   co2_data <- co2_data %>%
-    mutate(co2 = ifelse(co2==0, NA,co2))
+    mutate(co2 = ifelse(co2==0, NA,co2)) %>%
+  mutate(spo2 = ifelse((spo2<10 | pr==0 | is.na(pr)) , NA, spo2))
+
 
   # *********************
   # Combine co2_data and trial_data
@@ -97,9 +123,7 @@ make_co2_long <- function(co2_data,trial_data){
 #' @export
 # *********************************
 #' @importFrom dplyr filter group_by summarize first ungroup
-process_primary <- function(co2_data, trial_data){
-
-  co2_long <- make_co2_long(co2_data, trial_data)
+process_primary <- function(co2_long){
 
   result <- co2_long %>%
     filter(!is.na(co2)) %>%

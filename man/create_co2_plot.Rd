@@ -4,7 +4,7 @@
 \alias{create_co2_plot}
 \title{Plot to explore amount of missing co2 data per participant}
 \usage{
-create_co2_plot(tcco2_data, trial_mod)
+create_co2_plot(co2_long)
 }
 \arguments{
 \item{tcco2_data}{dataframe of co2, spo2, pulse rate}

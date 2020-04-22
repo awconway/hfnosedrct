@@ -4,7 +4,7 @@
 \alias{process_primary}
 \title{Process data for Primary analysis}
 \usage{
-process_primary(co2_data, trial_data)
+process_primary(co2_long)
 }
 \arguments{
 \item{co2_data}{dataframe of data from tcco2 monitor}
