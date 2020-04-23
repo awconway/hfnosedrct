@@ -13,7 +13,6 @@ RUN install2.r --error \
     janitor \
     labelled \
     downloadthis \
-    reactable \
     naniar \
     ggbeeswarm
 

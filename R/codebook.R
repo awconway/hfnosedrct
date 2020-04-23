@@ -13,9 +13,9 @@ na <- miss_var_summary(trial_datatable)
 
 var_label_list <- var_label(trial_datatable)
 
-class_list <- var_class(trial_datatable)
+class_list <- lapply(trial_datatable, class)
 
-var_levels_list <- var_levels(trial_datatable)
+var_levels_list <- lapply(trial_datatable, levels)
 
 tibble(variable = names(trial_datatable)) %>%
       dplyr::mutate(Label=var_label_list) %>%
@@ -25,39 +25,3 @@ tibble(variable = names(trial_datatable)) %>%
   dplyr::arrange(n_miss)
 
 }
-
-#' @export
-var_class <- function(x, unlist = FALSE) {
-  UseMethod("var_class")
-}
-#' @export
-var_class.default <- function(x, unlist = FALSE) {
-  class(x)
-}
-#' @export
-var_class.data.frame <- function(x, unlist = FALSE) {
-  r <- lapply(x, var_class)
-  if (unlist) {
-    r <- lapply(r, function(x){if (is.null(x)) "" else x})
-    base::unlist(r, use.names = TRUE)
-  } else
-    r
-}
-#' @export
-var_levels <- function(x, unlist = FALSE) {
-  UseMethod("var_levels")
-}
-#' @export
-var_levels.default <- function(x, unlist = FALSE) {
-  levels(x)
-}
-#' @export
-var_levels.data.frame <- function(x, unlist = FALSE) {
-  r <- lapply(x, var_levels)
-  if (unlist) {
-    r <- lapply(r, function(x){if (is.null(x)) "" else x})
-    base::unlist(r, use.names = TRUE)
-  } else
-    r
-}
-
