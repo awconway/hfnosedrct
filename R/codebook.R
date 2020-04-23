@@ -26,14 +26,15 @@ tibble(variable = names(trial_datatable)) %>%
 
 }
 
+#' @export
 var_class <- function(x, unlist = FALSE) {
   UseMethod("var_class")
 }
-
+#' @export
 var_class.default <- function(x, unlist = FALSE) {
   class(x)
 }
-
+#' @export
 var_class.data.frame <- function(x, unlist = FALSE) {
   r <- lapply(x, var_class)
   if (unlist) {
@@ -42,15 +43,15 @@ var_class.data.frame <- function(x, unlist = FALSE) {
   } else
     r
 }
-
+#' @export
 var_levels <- function(x, unlist = FALSE) {
   UseMethod("var_levels")
 }
-
+#' @export
 var_levels.default <- function(x, unlist = FALSE) {
   levels(x)
 }
-
+#' @export
 var_levels.data.frame <- function(x, unlist = FALSE) {
   r <- lapply(x, var_levels)
   if (unlist) {
