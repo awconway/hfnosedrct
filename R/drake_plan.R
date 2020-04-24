@@ -116,13 +116,16 @@ get_analysis_plan <- function(){
     data_fanova = process_fanova(tcco2_data, trial_mod, reso = reso),
     model_fanova = fit_fanova(data_fanova),
     plot_fanova_data = make_plot_fanova_data(data_fanova, reso = reso),
-    # fanova_effect_plot = make_fanova_effect_plot(fanova_data, fanova_model, reso),
-    # fanova_stack_plot = stack_fanova_plot(fanova_data_plot, fanova_effect_plot),
-
+    plot_fanova_effect = make_plot_component(data_fanova,
+                                             model_fanova,
+                                             reso,
+                                             component_str = "alpha",
+                                             title = "Treatment effect",
+                                             ylim=c(-40,40)),
     # Omit unless you want to do FANOVA model checking. This can take ~ 10 minutes.
     # fanova_ppred_plot = make_ppred_plot(model=model_fanova, n_sim=1000, reso=reso, seed=seed),
 
-    # SPO2 analysis
+    # SPO2 analysis (we do not model, so fit_model is just filtering valid data)
     data_spo2 = process_spo2(tcco2_data, trial_mod),
     model_spo2 = fit_spo2(data_spo2),
     spo2_facet_plot = create_spo2_facet_plot(co2_long),
@@ -146,9 +149,54 @@ get_analysis_plan <- function(){
     data_troops = process_troops(trial_mod),
     model_troops = fit_troops(data_troops),
 
+
+    ## Sensitivity analysis for Anesthesia Assistant data
+    model_diffoxygen_best = fit_bestworst(data_assist, response="diffoxygen_num", method="best"),
+    model_diffoxygen_worst = fit_bestworst(data_assist, response="diffoxygen_num", method="worst"),
+    model_diffuseoxygen_best = fit_bestworst(data_assist, response="diffuseoxygen_num", method="best"),
+    model_diffuseoxygen_worst = fit_bestworst(data_assist, response="diffuseoxygen_num", method="worst"),
+
+    # Subgroup analysis for peak tcco2
+    model_co2_peak_interact = fit_effect_modification(data_primary, response="co2_peak"),
+
+    # Make tables and summaries
+    data_list = list(
+      data_primary = data_primary,
+      data_spo2 =  data_spo2,
+      data_isas = data_isas,
+      data_assist = data_assist,
+      data_comfort = data_comfort,
+      data_troops = data_troops
+    ),
+    model_list = list(
+      model_co2_peak = model_co2_peak,
+      model_co2_mean = model_co2_mean,
+      model_spo2 =  model_spo2,
+      model_isas = model_isas,
+      model_diffoxygen = model_diffoxygen,
+      model_diffoxygen_best = model_diffoxygen_best,
+      model_diffoxygen_worst = model_diffoxygen_worst,
+      model_diffuseoxygen = model_diffuseoxygen,
+      model_diffuseoxygen_best = model_diffuseoxygen_best,
+      model_diffuseoxygen_worst = model_diffuseoxygen_worst,
+      model_comfort = model_comfort,
+      model_troops = model_troops
+    ),
+
+    table_outcome = make_table_outcomes_formatted(model_list, data_list),
+    table_subgroup = make_table_subgroup(model_obj=model_co2_peak_interact),
+
     # Codebook
 
     codebook = create_codebook(trial_datatable),
+
+    # Compile rmarkdown manuscript
+    manuscript = rmarkdown::render(
+      input = knitr_in("./manuscript/index.Rmd"),
+      output_file = "index.html",
+      output_dir = "./manuscript/",
+      quiet = TRUE
+    ),
 
     flexdashboard = callr::r(
       function(...) rmarkdown::render(...),

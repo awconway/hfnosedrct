@@ -128,9 +128,9 @@ process_primary <- function(co2_long){
   result <- co2_long %>%
     filter(!is.na(co2)) %>%
     group_by(id, id_str) %>%
-    summarize(co2_baseline = first(co2),
-              co2_mean = mean(co2),
-              co2_peak = max(co2),
+    summarize(co2_baseline = first(na.omit(co2), default=NA),
+              co2_mean = mean(co2, na.rm=TRUE),
+              co2_peak = max(co2, na.rm=TRUE),
               randomization_factor = first(randomization_factor),
               randomization_num = first(randomization_num),
               osa_factor = first(osa_factor),
@@ -168,8 +168,7 @@ process_fanova <- function(co2_data, trial_data, reso=30){
            crt_factor,
            crt_num,
            randomization_factor,
-           randomization_num) %>%
-    filter(!is.na(co2))
+           randomization_num)
 
   # Create variables for INLA model
   result <- result %>%
@@ -196,20 +195,6 @@ process_isas <- function(trial_data){
   result <- trial_data %>%
     convert_stratification_factors()
 
-  ### Code all ISAS items according to their ISAS scores
-  # for(isas in isas_names){
-  #
-  #   result[,isas] <- result[,isas] %>%
-  #     unlist() %>%
-  #     recode("Disagree very much" = -3,
-  #            "Disagree moderately" = -2,
-  #            "Disagree slightly" = -1,
-  #            "Agree slightly" = 1,
-  #            "Agree moderately" = 2,
-  #            "Agree very much" = 3)
-  # }
-  #
-  # result$isas_mean <- apply(result[,isas_names],1,mean)
   isas <- trial_data %>%
     select(starts_with("isas"), -ends_with("factor"))  %>%
     rowwise() %>%
@@ -294,9 +279,9 @@ process_assist <- function(trial_data){
     mutate(diffoxygen_num = as.numeric(diffoxygen_factor),
            diffuseoxygen_num = as.numeric(diffuseoxygen_factor)) %>%
     select(id,
-           diffoxygen.factor,
+           diffoxygen_factor,
            diffoxygen_num,
-           diffuseoxygen.factor,
+           diffuseoxygen_factor,
            diffuseoxygen_num,
            osa_factor,
            crt_factor,
@@ -314,6 +299,8 @@ process_assist <- function(trial_data){
 #' @export
 # *********************************
 #' @importFrom dplyr mutate group_by summarize
+#' @importFrom tidyr replace_na
+#'
 process_spo2 <- function(co2_data, trial_data){
 
   trial_data <- trial_data %>%
@@ -322,21 +309,40 @@ process_spo2 <- function(co2_data, trial_data){
   trial_data <- trial_data %>%
     mutate(id = ifelse(id=="P58","P058", id))
 
-  co2_data <- co2_data %>%
-    mutate(spo2 = ifelse((spo2<10 | pr==0 | is.na(pr)) , NA, spo2)) %>%
+  summary <- co2_data %>%
+    mutate(spo2 = ifelse((spo2<10  | pr==0 | is.na(pr)) , NA, spo2)) %>%
     group_by(id) %>%
-    summarize(spo2_mean = mean(spo2, na.rm=TRUE), pct_na = sum(is.na(spo2))/length(spo2),
-              spo2_min = min(spo2, na.rm=TRUE))
+    summarize(
+      desat_event = any(spo2 < 90, na.rm=TRUE),
+      spo2_mean = mean(spo2, na.rm = TRUE),
+      pct_na = sum(is.na(spo2))/length(spo2),
+      spo2_min = min(spo2, na.rm = TRUE),
+      spo2_secs_below_90 = sum(spo2 < 90, na.rm = TRUE))
 
-  result <- co2_data %>%
+  summary_auc <- co2_data %>%
+    mutate(spo2 = ifelse((spo2<10  | pr==0 | is.na(pr)) , NA, spo2)) %>%
+    filter(spo2 < 90) %>%
+    group_by(id) %>%
+    summarize(
+      spo2_auc = sum(90-spo2))
+
+  summary <- summary %>% left_join(summary_auc)
+
+  result <- summary %>%
     left_join(trial_data, by="id") %>%
-    select(id,
-           spo2_mean,
-           osa_factor,
-           crt_factor,
-           randomization_factor,
-           pct_na,
-           spo2_min)
+    select(
+      id,
+      spo2_mean,
+      osa_factor,
+      crt_factor,
+      randomization_factor,
+      pct_na,
+      spo2_min,
+      spo2_auc,
+      spo2_secs_below_90,
+      desat_event
+    ) %>%
+    mutate(spo2_auc = replace_na(spo2_auc, 0))
 
   return(result)
 }

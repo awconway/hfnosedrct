@@ -16,18 +16,20 @@ make_plot_co2_peak <- function(data_primary, model){
 
   # Plot trial data
   result <- data_primary %>%
-    ggplot2::ggplot(ggplot2::aes(x=co2_baseline, y=co2_peak)) +
-    ggplot2::geom_point(ggplot2::aes(shape=randomization_factor)) +
-    ggplot2::scale_shape_manual(values = c(1,16)) +
-    ggplot2::geom_line(ggplot2::aes(x=co2_baseline, y=estimate__), data = brms::conditional_effects(model)[[4]]) +
-    ggplot2::geom_ribbon(ggplot2::aes(x=co2_baseline, ymin=lower__, ymax=upper__), data = brms::conditional_effects(model)[[4]],alpha=0.25) +
-    ggplot2::scale_y_continuous(name = "Peak TcCO2 (mmHg)") +
-    ggplot2::scale_x_continuous(name = "Baseline TcCO2 (mmHg)") +
-    ggplot2::ggtitle("Baseline TcCO2 effect") +
-    ggplot2::theme_bw() +
-    ggplot2::theme(legend.justification = c(-0.05, 1.05), legend.position = c(0, 1),
-          legend.background = ggplot2::element_rect(colour = 'black', fill = 'white', linetype='solid')) +
-    ggplot2::labs(shape="Treatment group")
+    ggplot(aes(x=co2_baseline, y=co2_peak)) +
+    geom_point(aes(shape=randomization_factor)) +
+    scale_shape_manual(values = c(1,16)) +
+    geom_line(aes(x=co2_baseline, y=estimate__), data = conditional_effects(model)[[4]]) +
+    geom_ribbon(aes(x=co2_baseline, ymin=lower__, ymax=upper__), data = conditional_effects(model)[[4]],alpha=0.25) +
+    scale_y_continuous(name = "Peak TcCO2 (mmHg)", limits = c(25,95)) +
+    scale_x_continuous(name = "Baseline TcCO2 (mmHg)") +
+    ggtitle("Baseline TcCO2 effect") +
+    theme_bw() +
+    theme(
+          # legend.justification = c(-0.05, 1.05),
+          # legend.position = c(0, 1),
+          legend.background = element_rect(colour = 'black', fill = 'white', linetype='solid')) +
+    labs(shape="Treatment group")
 
   return(result)
 }
@@ -45,18 +47,20 @@ make_plot_co2_mean <- function(data_primary, model){
 
   # Plot trial data
   result <- data_primary %>%
-    ggplot2::ggplot(ggplot2::aes(x=co2_baseline, y=co2_mean)) +
-    ggplot2::geom_point(ggplot2::aes(shape=randomization_factor)) +
-    ggplot2::scale_shape_manual(values = c(1,16)) +
-    ggplot2::geom_line(ggplot2::aes(x=co2_baseline, y=estimate__), data = brms::conditional_effects(model)[[4]]) +
-    ggplot2::geom_ribbon(ggplot2::aes(x=co2_baseline, ymin=lower__, ymax=upper__), data = brms::conditional_effects(model)[[4]],alpha=0.25) +
-    ggplot2::scale_y_continuous(name = "Mean TcCO2 (mmHg)") +
-    ggplot2::scale_x_continuous(name = "Baseline TcCO2 (mmHg)") +
-    ggplot2::ggtitle("Baseline TcCO2 effect") +
-    ggplot2::theme_bw() +
-    ggplot2::theme(legend.justification = c(-0.05, 1.05), legend.position = c(0, 1),
-          legend.background = ggplot2::element_rect(colour = 'black', fill = 'white', linetype='solid')) +
-    ggplot2::labs(shape="Treatment group")
+    ggplot(aes(x=co2_baseline, y=co2_mean)) +
+    geom_point(aes(shape=randomization_factor)) +
+    scale_shape_manual(values = c(1,16)) +
+    geom_line(aes(x=co2_baseline, y=estimate__), data = conditional_effects(model)[[4]]) +
+    geom_ribbon(aes(x=co2_baseline, ymin=lower__, ymax=upper__), data = conditional_effects(model)[[4]],alpha=0.25) +
+    scale_y_continuous(name = "Mean TcCO2 (mmHg)", limits = c(25,95)) +
+    scale_x_continuous(name = "Baseline TcCO2 (mmHg)") +
+    ggtitle("Baseline TcCO2 effect") +
+    theme_bw() +
+    theme(
+      # legend.justification = c(-0.05, 1.05),
+      # legend.position = c(0, 1),
+          legend.background = element_rect(colour = 'black', fill = 'white', linetype='solid')) +
+    labs(shape="Treatment group")
 
   return(result)
 }
@@ -69,89 +73,7 @@ make_plot_co2_mean <- function(data_primary, model){
 # ***************************
 
 # ***************************
-# Plot AR1 model effects
-# ***************************
-#' @importFrom ggplot2 geom_hline
-#' @importFrom gridExtra grid.arrange
-#' @export
-make_plot_fanova_effect <- function(data_fanova, model, reso){
 
-  plot_mu <- make_plot_component(data_fanova, model, reso, component_str = "mu",
-                            title = "Baseline effect", ylim=c(0,80))
-  plot_alpha <- make_plot_component(data_fanova,model, reso, component_str = "alpha",
-                               title = "Treatment effect", ylim=c(-40,40)) +
-    ggplot2::geom_hline(yintercept = -4, colour="red", lty="dotted", size=0.75)
-
-  # plot_path <- paste0("./plots/fanova_plot_effect_", model_type, ".RDS")
-
-  result <- gridExtra::grid.arrange(plot_mu, plot_alpha, ncol=2,
-                         left="TcCO2 (mmHg)",
-                         bottom="Time (min)")
-  # saveRDS(result, plot_path)
-
-  return(result)
-}
-
-# ***************************
-# make_fanova_plot_effect helpers
-# ***************************
-make_plot_component <- function(data_fanova, model, reso, component_str, title, ylim=c(-40,40)){
-
-  component_data <- cbind(component_str,model$summary.random[[component_str]][,4:6])
-  names(component_data) <- c("component","lower", "med", "upper")
-
-  data_plot <- component_data %>%
-    mutate(time=1:n() - 1) %>%
-    mutate(time=time*reso)
-
-  # Create axis labels
-  x_labels <- seq(0, 360, by=60)
-  x_breaks <- x_labels*60
-
-  # Find time where 50% and 75% and 90% of participants completed
-  pct_complete <- data_fanova %>%
-    group_by(id) %>%
-    summarize(len = max(time_int)) %>%
-    pull(len) %>%
-    quantile(probs=c(.50,.75,.90))
-
-  # Completion % label postition
-  label_pos <- ifelse(component_str == "mu", 10, -30)
-
-  result <- data_plot %>%
-    filter(component==component_str) %>%
-    ggplot(aes(x=time, y=med)) +
-    geom_line() +
-    geom_ribbon(aes(x=time, ymin=lower, ymax=upper), alpha=0.25) +
-    geom_hline(yintercept = 0, lty=2) +
-    coord_cartesian(ylim=ylim) +
-    scale_x_continuous(name = "Time (min)", breaks = x_breaks, labels = x_labels) +
-    ggtitle(title) +
-    theme_bw() +
-    theme(axis.title.x = element_blank(),
-          axis.title.y = element_blank(),
-          panel.grid = element_blank()) +
-    geom_vline(aes(xintercept = pct_complete[1]),
-               lty=3,
-               col="gray75") +
-    geom_vline(aes(xintercept = pct_complete[2]),
-               lty=3,
-               col="gray75") +
-    geom_vline(aes(xintercept = pct_complete[3]),
-               lty=3,
-               col="gray75") +
-    annotate("text",
-             x=pct_complete,
-             label=c("50%\n","75%\n", "90%\n"),
-             y=label_pos,
-             angle=90,
-             col="gray75")
-
-  plot_path <- paste0("./plots/plot_fanova_", component_str, ".RDS")
-  saveRDS(result, plot_path)
-
-  return(result)
-}
 
 # ***************************
 # Plot fanova data
@@ -161,7 +83,9 @@ make_plot_component <- function(data_fanova, model, reso, component_str, title, 
 #' @param data_fanova dataframe
 #' @param reso Number of seconds resolution for functional data
 #' @importFrom dplyr ungroup group_by summarize first arrange desc slice pull mutate filter
-#' @importFrom ggplot2 ggplot aes geom_line scale_y_continuous scale_x_continuous scale_alpha_continuous scale_size_continuous theme_bw theme element_blank ggtitle geom_vline annotate
+#' @importFrom ggplot2 ggplot aes geom_line scale_y_continuous scale_x_continuous
+#' scale_alpha_continuous scale_size_continuous theme_bw theme element_blank ggtitle geom_vline annotate
+#' @importFrom gridExtra grid.arrange
 
 #' @export
 

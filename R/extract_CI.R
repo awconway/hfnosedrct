@@ -29,26 +29,3 @@ extract_CI <- function(model, unit=NULL, pars="randomization_factorHighFlownasal
 }
 
 
-#' @title Summary of brms models
-#' @rdname make_brms_summary
-#' @export
-#'
-make_brms_summary <- function(model){
-
-  # Model summaries
-  CI_randomization <- c(extract_CI(model,
-                                   pars = "randomization_factorHighFlownasaloxygen"))
-  CI_osa <- c(extract_CI(model,
-                         pars = "osa_factorYes"))
-  CI_crt <- c(extract_CI(model,
-                         pars = "crt_factorYes"))
-
-
-  CI <- c(CI_randomization$full, CI_osa$full, CI_crt$full)
-  par_names <- c("HFNO", "OSA", "CRT")
-
-  result <- data.frame(par_names, CI)
-  names(result) <- c("Covariate", "Effect mean (95% CI)")
-
-  return(result)
-}

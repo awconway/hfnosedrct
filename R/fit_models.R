@@ -7,11 +7,14 @@
 #' @importFrom brms prior prior_string brm student
 fit_primary <- function(data_primary, response){
 
+  # Explicitly remove missing data
+  # Remove IDs with all missing data
+  data_primary <- data_primary %>%
+    filter(!(id_str %in% c("P011", "P014")))
+
   # Filter only required data
   data_primary <- data_primary[,c(response, "osa_factor", "crt_factor", "randomization_factor", "co2_baseline")]
 
-  # Explicitly remove missing data
-  data_primary <- data_primary[complete.cases(data_primary),]
 
   # Define formula for 'response'
   form <- formula(paste0(response," ~ s(co2_baseline, k=20, bs='tp') + randomization_factor + crt_factor + osa_factor"))
@@ -42,6 +45,66 @@ fit_primary <- function(data_primary, response){
 
   return(result)
 }
+
+
+# **********************
+#' @title Primary outcome with effect modification for OSA and CRT
+#' @description Used for "subgroup analysis"
+#' @rdname fit_effect_modification
+#' @param data_primary dataframe
+#' @param response peak or mean
+#' @export
+# **********************
+#' @importFrom brms prior prior_string brm student
+#' @importFrom dplyr filter mutate
+fit_effect_modification <- function(data_primary, response){
+
+  # Explicitly remove missing data
+  # Remove IDs with all missing data
+  data_primary <- data_primary %>%
+    filter(!(id_str %in% c("P011", "P014")))
+
+  # Filter only required data
+  data_primary <- data_primary[,c(response, "osa_factor", "crt_factor", "randomization_factor", "co2_baseline")]
+
+
+  # Create grouping variables in order to estimate group-specific treatment effects
+  data_primary <- data_primary %>%
+    mutate(osa_treat_factor = (osa_factor=="Yes") & (randomization_factor=="High Flow nasal oxygen"),
+           crt_treat_factor = (crt_factor=="Yes") & (randomization_factor=="High Flow nasal oxygen"))
+
+  # Define formula for 'response'
+  form <- formula(paste0(response," ~ s(co2_baseline, k=20, bs='tp') + randomization_factor + crt_factor + osa_factor + osa_treat_factor + crt_treat_factor"))
+
+  # Explicitly define priors
+
+  # Mean response is used for intercept prior location
+  mean_response <- data_primary[,response] %>% unlist() %>% mean()
+
+  prior_int <- paste0("normal(", mean_response,",", 25,")")
+
+  priors <- c(prior(normal(0,25), class="b"),
+              prior_string(prior_int, class="Intercept"),
+              prior(gamma(2,0.1), class="nu"),
+              prior(student_t(3, 0, 10) , class="sigma"),
+              prior(student_t(3, 0, 10) , class="sds"))
+
+  result <- brm(formula = form,
+                data = data_primary,
+                family = student("identity"),
+                control=list(adapt_delta=0.99),
+                prior = priors
+  )
+
+  # # Save model fit
+  # fpath <- paste0("./analysis/models/", response , ".RDS")
+  # saveRDS(result, file=fpath)
+
+  return(result)
+}
+
+
+
 
 # **********************
 #' @title Functional ANOVA model
@@ -89,11 +152,15 @@ fit_fanova <- function(data_fanova){
 #' @importFrom brms prior brm student
 fit_isas <- function(data_isas){
 
+
+  # Explicitly handle missing data
+  data_isas <-   data_isas %>%
+    filter(!(id %in% c("P035","P069","P085")))
+
   # Filter only required data
   data_isas <- data_isas[,c("isas_mean", "osa_factor", "crt_factor", "randomization_factor")]
 
-  # Explicitly remove missing data
-  data_propodds <- data_isas[complete.cases(data_isas),]
+
 
   # Explicitly define priors
   priors <- c(prior(normal(0,10), class="b"),
@@ -193,33 +260,68 @@ fit_troops <- function(data_troops){
 fit_spo2 <- function(data_spo2){
 
   # Remove id P051, whose SPO2 was near 0 with 98% missing data
-  data_spo2 <- data_spo2 %>%
+  result <- data_spo2 %>%
     filter(id != "P051")
 
 
-  # Define formula for 'response'
-  form <- formula("spo2_mean ~  randomization_factor + crt_factor + osa_factor")
-
-  # Explicitly define priors
-  # Mean response is used for intercept prior location
-  mean_response <- data_spo2[,"spo2_mean"] %>% unlist() %>% mean()
-
-  prior_int <- paste0("normal(", mean_response,",", 25,")")
-
-  priors <- c(prior(normal(0,25), class="b"),
-              prior_string(prior_int, class="Intercept"),
-              prior(gamma(2,0.1), class="nu"),
-              prior(student_t(3, 0, 10) , class="sigma"))
-
-  result <- brm(formula = form,
-                data = data_spo2,
-                family = student("identity"),
-                control=list(adapt_delta=0.9),
-                prior = priors)
-
-  # Save model fit
-  # fpath <- "./analysis/models/spo2.RDS"
-  # saveRDS(result, file=fpath)
+  # # Define formula for 'response'
+  # form <- formula("spo2_mean ~  randomization_factor + crt_factor + osa_factor")
+  #
+  # # Explicitly define priors
+  # # Mean response is used for intercept prior location
+  # mean_response <- data_spo2[,"spo2_mean"] %>% unlist() %>% mean()
+  #
+  # prior_int <- paste0("normal(", mean_response,",", 25,")")
+  #
+  # priors <- c(prior(normal(0,25), class="b"),
+  #             prior_string(prior_int, class="Intercept"),
+  #             prior(gamma(2,0.1), class="nu"),
+  #             prior(student_t(3, 0, 10) , class="sigma"))
+  #
+  # result <- brm(formula = form,
+  #               data = data_spo2,
+  #               family = student("identity"),
+  #               control=list(adapt_delta=0.9),
+  #               prior = priors)
+  #
+  # # Save model fit
+  # # fpath <- "./analysis/models/spo2.RDS"
+  # # saveRDS(result, file=fpath)
 
   return(result)
+}
+
+# **********************
+#' @title best-worst sensitivity analysis
+#' @description Used for AA ratings
+#' @rdname fit_bestworst
+#' @export
+# **********************
+
+fit_bestworst <- function(data_assist, response, method){
+
+  missing_idx <- is.na(data_assist[[response]])
+  hfno_idx <- data_assist$randomization_factor == "High Flow nasal oxygen"
+
+  data_impute <- data_assist
+
+  # Impute values according to best- or worst-case scenario
+  if(method == "best"){
+    # HFNO all 6, FMO all 1
+    data_impute[(missing_idx & hfno_idx),response] <- 6
+    data_impute[(missing_idx & (!hfno_idx)),response] <- 1
+  }
+  else if(method == "worst"){
+    # HFNO all 1, FMO all 6
+    data_impute[(missing_idx & hfno_idx),response] <- 1
+    data_impute[(missing_idx & (!hfno_idx)),response] <- 6
+  }
+  else{
+    warning(paste("Invalid method type for fit_bestworst:", method))
+  }
+
+  result <- fit_propodds(data_impute, response)
+
+  return(result)
+
 }
