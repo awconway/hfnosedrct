@@ -10,15 +10,15 @@ make_table_outcomes_data <- function(model_list, data_list){
   table_descr[["co2_peak"]] <- make_summary_descr(model_list[["model_co2_peak"]]$data,
                                                   unit="mmHg",
                                                   response="co2_peak",
-                                                  response_title = "Peak TcCO2 concentration")
+                                                  response_title = "Peak TcCO<sub>2</sub> concentration")
   table_descr[["co2_mean"]] <- make_summary_descr(model_list[["model_co2_mean"]]$data,
                                                   unit="mmHg",
                                                   response="co2_mean",
-                                                  response_title = "Mean TcCO2 concentration")
+                                                  response_title = "Mean TcCO<sub>2</sub> concentration")
   table_descr[["spo2"]] <- make_summary_descr(model_list[["model_spo2"]],
                                               unit="",
                                               response="spo2_mean",
-                                              response_title = "SPO2 AUC"
+                                              response_title = "SpO<sub>2</sub> AUC"
   )
   table_descr[["isas"]] <- make_summary_descr(model_list[["model_isas"]]$data,
                                               unit="",
@@ -55,42 +55,42 @@ make_table_outcomes_data <- function(model_list, data_list){
   # Build full model summary table
   table_model[["co2_peak"]] <- make_brms_summary(model_list[["model_co2_peak"]],
                                                  unit="mmHg",
-                                                 effect_type = "absolute difference",
+                                                 effect_type = "Absolute difference",
                                                  response="co2_peak",
-                                                 response_title = "Peak TcCO2 concentration")
+                                                 response_title = "Peak TcCO<sub>2</sub> concentration")
   table_model[["co2_mean"]] <- make_brms_summary(model_list[["model_co2_mean"]],
                                                  unit="mmHg",
-                                                 effect_type = "absolute difference",
+                                                 effect_type = "Absolute difference",
                                                  response="co2_mean",
-                                                 response_title = "Mean TcCO2 concentration")
+                                                 response_title = "Mean TcCO<sub>2</sub> concentration")
   # table_model[["spo2"]] <- make_brms_summary(model_list[["model_spo2"]],
   #                                            unit="",
   #                                            effect_type = "absolute difference",
   #                                            response="spo2_mean",
-  #                                            response_title = "Mean SPO2")
+  #                                            response_title = "Mean SpO<sub>2</sub>")
   table_model[["isas"]] <- make_brms_summary(model_list[["model_isas"]],
                                              unit="",
                                              response="isas_mean",
-                                             effect_type = "absolute difference",
+                                             effect_type = "Absolute difference",
                                              response_title = "Mean ISAS score")
   table_model[["comfort"]] <- make_brms_summary(model_list[["model_comfort"]],
                                                 unit="",
-                                                effect_type = "odds ratio",
+                                                effect_type = "Odds ratio",
                                                 response="oxygencomfort_num",
                                                 response_title = "Patient comfort")
   table_model[["diffoxygen"]] <- make_brms_summary(model_list[["model_diffoxygen"]],
                                                    unit="",
-                                                   effect_type = "odds ratio",
+                                                   effect_type = "Odds ratio",
                                                    response="diffoxygen_num",
                                                    response_title = "Difficulty maintaining oxygenation status")
   table_model[["diffuseoxygen"]] <- make_brms_summary(model_list[["model_diffuseoxygen"]],
                                                       unit="",
-                                                      effect_type = "odds ratio",
+                                                      effect_type = "Odds ratio",
                                                       response="diffuseoxygen_num",
                                                       response_title = "Difficulty using oxygen delivery device")
   table_model[["troops"]] <- make_brms_summary(model_list[["model_troops"]],
                                                unit="",
-                                               effect_type = "odds ratio",
+                                               effect_type = "Odds ratio",
                                                response="troopsminairway_num",
                                                response_title = "Minor airway or breathing event")
 

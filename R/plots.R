@@ -11,7 +11,10 @@
 #' @export
 
 #' @importFrom brms conditional_effects
-#' @importFrom ggplot2 ggplot aes geom_point scale_shape_manual geom_line geom_ribbon scale_y_continuous scale_x_continuous ggtitle theme_bw theme element_rect labs
+#' @importFrom ggplot2 ggplot aes geom_point scale_shape_manual geom_line
+#' geom_ribbon scale_y_continuous scale_x_continuous ggtitle theme_bw theme
+#' element_rect labs
+
 make_plot_co2_peak <- function(data_primary, model){
 
   # Plot trial data
@@ -85,8 +88,7 @@ make_plot_co2_mean <- function(data_primary, model){
 #' @importFrom dplyr ungroup group_by summarize first arrange desc slice pull mutate filter
 #' @importFrom ggplot2 ggplot aes geom_line scale_y_continuous scale_x_continuous
 #' scale_alpha_continuous scale_size_continuous theme_bw theme element_blank ggtitle geom_vline annotate
-#' @importFrom gridExtra grid.arrange
-
+#' @importFrom patchwork plot_layout
 #' @export
 
 
@@ -191,10 +193,7 @@ make_plot_fanova_data <- function(data_fanova, reso){
              angle=90,
              col="gray75")
 
-  result <- grid.arrange(plot_fmo, plot_hfno, ncol=2)
-  # saveRDS(result, file = "./plots/plot_fanova_data.RDS")
-
-  return(result)
+  plot_fmo + plot_hfno
 }
 
 # ***************************

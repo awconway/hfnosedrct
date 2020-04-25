@@ -11,19 +11,24 @@ output:
 ```{r setup, include=FALSE}
 library(magrittr)
 library(htmltools)
-library(hfnosedrct)
 library(drake)
 devtools::load_all()
-# Values of interest pre-processing
-CI_co2_peak <- extract_CI(readd(model_co2_peak), "mmHg")
-CI_co2_mean <- extract_CI(readd(model_co2_mean), "mmHg")
-CI_spo2_mean <- extract_CI(readd(model_spo2), "%")
-CI_isas <- extract_CI(readd(model_isas))
-CI_diffoxygen <- extract_CI(readd(model_diffoxygen))
-CI_diffuseoxygen <- extract_CI(readd(model_diffuseoxygen))
-CI_troops <- extract_CI(readd(model_troops))
-CI_comfort <- extract_CI(readd(model_comfort))
 
+# Load models data via drake
+model_list <- readd(model_list)
+
+# Values of interest pre-processing
+CI_co2_peak <- extract_CI_brms(model_list$model_co2_peak, "mmHg")
+CI_co2_mean <- extract_CI_brms(model_list$model_co2_mean, "mmHg")
+CI_isas <- extract_CI_brms(model_list$model_isas)
+CI_comfort <- extract_CI_brms(model_list$model_comfort)
+CI_diffoxygen <- extract_CI_brms(model_list$model_diffoxygen)
+CI_diffoxygen_best <- extract_CI_brms(model_list$model_diffoxygen_best)
+CI_diffoxygen_worst <- extract_CI_brms(model_list$model_diffoxygen_worst)
+CI_diffuseoxygen <- extract_CI_brms(model_list$model_diffuseoxygen)
+CI_diffuseoxygen_best <- extract_CI_brms(model_list$model_diffuseoxygen_best)
+CI_diffuseoxygen_worst <- extract_CI_brms(model_list$model_diffuseoxygen_worst)
+CI_troops <- extract_CI_brms(model_list$model_troops)
 
 ```
 
@@ -121,7 +126,7 @@ TcCO~2~ {data-icon="fa-chart-bar" .storyboard}
 
 
 ```{r}
-grid::grid.draw(drake::readd(plot_fanova_data))
+drake::readd(plot_fanova_data)
 ```
 
 >Dotted lines display the time where 50% and 75% and 90% of procedures were completed
@@ -142,6 +147,22 @@ drake::readd(plot_co2_mean)
 ```
 
 >The average difference (95% credible intervals) in mean TcCO~2~ between groups was `r CI_co2_mean[["full"]]`.
+
+### **Difference in mean TcCO~2~ between groups**
+
+
+```{r}
+drake::readd(plot_fanova_effect)
+```
+
+>Dotted lines display the time where 50% and 75% and 90% of procedures were completed
+
+### **Subgroup analysis for peak TcCO~2~**
+
+```{r}
+readd(table_subgroup)
+```
+
 
 ### **Missing CO~2~ measurements**
 

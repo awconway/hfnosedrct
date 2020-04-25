@@ -3,7 +3,9 @@
 #' @export
 #'
 #' @importFrom brms fixef
-
+#' @importFrom dplyr mutate group_by summarize select n arrange desc ungroup
+#' @importFrom tidyr pivot_wider
+#' @importFrom glue glue
 make_summary_descr <- function(data_obj, unit, response, response_title, factor_levels=NULL){
 
   table_data <- data_obj
@@ -20,7 +22,7 @@ make_summary_descr <- function(data_obj, unit, response, response_title, factor_
     # Row containing means
     row2 <- table_data %>%
       mutate(model = response_title,
-             response = "mean (sd)") %>%
+             response = "Mean (sd)") %>%
       group_by(model, response, randomization_factor) %>%
       summarize(mean = mean(value), sd = sd(value)) %>%
       mutate(
@@ -74,7 +76,7 @@ make_summary_descr <- function(data_obj, unit, response, response_title, factor_
     # Row containing desaturation event summaries
     row2 <- table_data %>%
       mutate(model = response_title,
-             response = "experienced a desturation event (%)") %>%
+             response = "SpO<sub>2</sub> <90% event") %>%
       group_by(model, response, randomization_factor) %>%
       summarize(n = n(),
                 count = sum(desat_event),
@@ -90,15 +92,12 @@ make_summary_descr <- function(data_obj, unit, response, response_title, factor_
     # Row containing AUC summaries
     row3 <- table_data %>%
       mutate(model = response_title,
-             response = "mean (sd)") %>%
+             response = "Median (IQR)") %>%
       group_by(model, response, randomization_factor) %>%
-      summarize(mean = mean(ifelse(spo2_auc != 0, spo2_auc, NA), na.rm=TRUE),
-                sd = sd(ifelse(spo2_auc != 0, spo2_auc, NA), na.rm=TRUE)) %>%
-      mutate(
-        mean = mean %>% round(1) %>% format(nsmall = 1),
-        sd = sd %>% round(1) %>% format(nsmall = 1)
-      ) %>%
-      mutate(summary = paste0(mean, " ", unit, " (", sd,")")) %>%
+      summarize(median = median(ifelse(spo2_auc != 0, spo2_auc, NA), na.rm=TRUE),
+                iqr_low = quantile(ifelse(spo2_auc != 0, spo2_auc, NA), 0.25, na.rm=TRUE),
+                iqr_high = quantile(ifelse(spo2_auc != 0, spo2_auc, NA), 0.75, na.rm=TRUE)) %>%
+      mutate(summary = glue("{median} ({iqr_low}, {iqr_high})")) %>%
       ungroup() %>%
       select(model, response, randomization_factor, summary) %>%
       pivot_wider(names_from = "randomization_factor", values_from = "summary")

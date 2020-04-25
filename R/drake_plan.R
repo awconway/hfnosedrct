@@ -113,7 +113,7 @@ get_analysis_plan <- function(){
     plot_co2_mean = make_plot_co2_mean(data_primary, model_co2_mean),
 
     # Functional ANOVA analysis
-    data_fanova = process_fanova(tcco2_data, trial_mod, reso = reso),
+    data_fanova = process_fanova(co2_long, reso = reso),
     model_fanova = fit_fanova(data_fanova),
     plot_fanova_data = make_plot_fanova_data(data_fanova, reso = reso),
     plot_fanova_effect = make_plot_component(data_fanova,
@@ -126,7 +126,7 @@ get_analysis_plan <- function(){
     # fanova_ppred_plot = make_ppred_plot(model=model_fanova, n_sim=1000, reso=reso, seed=seed),
 
     # SPO2 analysis (we do not model, so fit_model is just filtering valid data)
-    data_spo2 = process_spo2(tcco2_data, trial_mod),
+    data_spo2 = process_spo2(co2_long),
     model_spo2 = fit_spo2(data_spo2),
     spo2_facet_plot = create_spo2_facet_plot(co2_long),
 

@@ -4,6 +4,7 @@
 
 #' @importFrom dplyr mutate select
 #' @importFrom gt gt fmt_missing cols_label tab_spanner vars tab_style cell_text cells_body
+#' fmt_markdown
 #'
 make_table_outcomes_formatted <- function(model_list, data_list){
   table_data <- make_table_outcomes_data(model_list, data_list)
@@ -33,6 +34,7 @@ make_table_outcomes_formatted <- function(model_list, data_list){
       estimate
     ) %>%
     gt() %>%
+    fmt_markdown(columns = TRUE) %>%
     fmt_missing(columns = c("model", "estimate","effect_type"),
                 missing_text = " "
     ) %>%
