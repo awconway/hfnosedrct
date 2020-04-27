@@ -15,7 +15,8 @@ RUN install2.r --error \
     downloadthis \
     naniar \
     ggbeeswarm \
-    patchwork
+    patchwork \
+    captioner
 
 RUN Rscript -e "install.packages('INLA', repos=c(getOption('repos'), INLA='https://inla.r-inla-download.org/R/testing'), dep=TRUE)"
 

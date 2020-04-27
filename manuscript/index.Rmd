@@ -6,6 +6,17 @@ author:
   - name: Aaron Conway 
     url: https://www.aaronconway.info
     affiliation: University of Toronto
+  - name: Peter Collins
+    affiliation: Toronto General Hospital, University Health Network
+  - name: Kristina Chang
+    affiliation: Toronto General Hospital, University Health Network
+  - name: Navpreet Kamboj
+    affiliation: Toronto General Hospital, University Health Network
+  - name: Ana Lopez-Filici
+    affiliation: Toronto General Hospital, University Health Network
+  - name: Matteo Parotto
+    affiliation: Toronto General Hospital, University Health Network
+    
 output: distill::distill_article
 bibliography: references.bib
 css: styles.css
@@ -32,6 +43,13 @@ CI_diffuseoxygen <- extract_CI_brms(model_list$model_diffuseoxygen)
 CI_diffuseoxygen_best <- extract_CI_brms(model_list$model_diffuseoxygen_best)
 CI_diffuseoxygen_worst <- extract_CI_brms(model_list$model_diffuseoxygen_worst)
 CI_troops <- extract_CI_brms(model_list$model_troops)
+
+# Table captions
+
+library(captioner)
+
+table_nums <- captioner(prefix = "Table")
+
 ```
 
 <div class="l-page-outset">
@@ -46,6 +64,8 @@ High flow nasal oxygen (HFNO) permits flows of heated, humidified gas to be deli
 A randomized controlled trial design was used with participants randomized in a 1:1 ratio to receive oxygen supplementation as through a standard facemask or to receive high flow nasal oxygen.
 
 **Results**
+
+The difference in peak TcCO~2~ between groups was estimated to be `r CI_co2_peak[["full"]]`. The estimated effect did not exceed the 4 mmHg clinical significance threshold in either direction with high probability and there was no discernable trend observed in how the effect varied with procedure time. Particpants rated their satisfaction with sedation similarly. 
 
 
 **Conclusion**
@@ -101,6 +121,11 @@ Supplemental oxygen through a facemask with the flow rate chosen by the clinicia
 >High flow nasal oxygen
 
 The Optiflow device (Fisher and Paykel Healthcare, Auckland, New Zealand), heated breathing tube and chamber, and nasal cannula was used. This system is a humidifier with an integrated flow generator, able to humidify respiratory gases and deliver them down a heated breathing tube and through the nasal cannula interface. The gas temperature was set to the 'High' setting (ranges 30-32º Celsius) and titrated downwards if the patient complained of irritation. The gas flow rate was commenced at 30 liters per minute prior to sedation administration and titrated up to 50 liters per minute as tolerated by the patient after sedative medication was administered. The fraction of oxygen in the gas was commenced at 50% but could be titrated according to patient requirements (i.e. increased if there is evidence of hypoventilation, airway obstruction or inadequate oxygenation, decreased during use of diathermy). Anesthesia Assistants at the site were provided with training in the use of this mode of oxygen delivery prior to study commencement. 
+
+>Concomittant care
+
+There were no restrictions on concomittant care. For examle, Anesthesia Assistants were permitted to use whichever devices for physiological monitoring that they deemed was required and titrate sedation according to usual practice. For ventilation monitoring, Anesthesia Assistants elected to use capnography regardless of whether supplemental oxygen was delivered via HFNO or a standard facemask. The standard facemask had an integrated CO~2~ sampling line that could be connected to the the sidestream capnography sampling port of the anesthesia machine. For participants randomized to HFNO, Anesthesia Assistants were able to use the integrated CO~2~ sampling adapter in the latest model for the HFNO nasal cannula for the majority of patients (all those recruited after September 2019). Prior to this newest model, Anesthesia Assistants used capnography to monitor ventilation by placing a facemask with an integrated CO~2~ sampling line over the HFNO nasal cannula. Oxygen supplementation was delivered through the HFNO nasal cannula and CO~2~ was sampled from the sampling line integrated into the facemask.
+
 
 ### Outcomes
 
@@ -165,9 +190,9 @@ A CONSORT flow diagram is presented in Figure 1. From August 2019 to March 2020,
 knitr::include_graphics(here::here("plots/consort.png"))
 ```
 
-A summary of demographic and clinical characteristics of the participants is presented in Table 1. The sample was mostly elder and male. Anesthesia Assistants' rated the ASA Physical Classification Status for participants as either III or IV, reflecting the underlying cardiovascular disease and multiple comorbidities. Obstructive sleep apnea was common, with 27% of participants reporting a diagnosis of this condition. About 20% of procedures were for cardiac resnchronisation therapy. 
+A summary of demographic and clinical characteristics of the participants is presented in `r table_nums(name = "table1", caption = "Participant Characteristics", display="cite")`. The sample was mostly elder and male. Anesthesia Assistants' rated the ASA Physical Classification Status for participants as either III or IV, reflecting the underlying cardiovascular disease and multiple comorbidities. Obstructive sleep apnea was common, with 27% of participants reporting a diagnosis of this condition. About 20% of procedures were for cardiac resnchronisation therapy. 
 
-##### Table 1. Participant Characteristics
+##### `r table_nums(name = "table1", caption = "Participant Characteristics")`
 
 ```{r}
 drake::readd(characteristics_table)
@@ -177,9 +202,9 @@ drake::readd(characteristics_table)
 
 #### Primary outcome
 
-Results of comparisons between HFNO and facemask oxygen are presented in Table 2. TcCO~2~ concentrations for all patients throughout procedures are displayed in Figure \@ref(fig:fanovaplot), with the longest procedure highlighted as a reference. The effect of HFNO on the peak TcCO~2~ is estimated to be `r CI_co2_peak[["full"]]` and the probability that it exceeds the 4 mmHg clinical significance threshold in either direction is extremely low. The estimates for the treatment effect in the baseline, OSA, and CRT subgroups when treatment interactions are included in the model did not exceed the clinical significance threshold in either direction with high probability. Results for subgroup analyses are available in the [online supplementary information](https://hfnosedrct-dashboard.netlify.app). 
+Results of comparisons between HFNO and facemask oxygen are presented in `r table_nums(name = "pchar", caption = "Participant Characteristics", display="cite")`. TcCO~2~ concentrations for all patients throughout procedures are displayed in Figure \@ref(fig:fanovaplot), with the longest procedure highlighted as a reference. The effect of HFNO on the peak TcCO~2~ is estimated to be `r CI_co2_peak[["full"]]` and the probability that it exceeds the 4 mmHg clinical significance threshold in either direction is extremely low. The estimates for the treatment effect in the baseline, OSA, and CRT subgroups when treatment interactions are included in the model did not exceed the clinical significance threshold in either direction with high probability. Results for subgroup analyses are available in the [online supplementary information](https://hfnosedrct-dashboard.netlify.app). 
 
-##### Table 2. Summary of results
+##### `r table_nums(name = "pchar", caption = "Participant Characteristics")`
 
 ```{r outcomestable, layout="l-page"}
 readd(table_outcome)
@@ -187,12 +212,11 @@ readd(table_outcome)
 
 #### Secondary outcomes
 
-The effect of  high flow nasal oxygen on the mean TcCO~2~ concentration of the whole procedure was estimated to be `r CI_co2_mean[["full"]]` and the probability that it exceeds the 4 mmHg clinical significance threshold is low. The effect of treatment on the mean TcCO~2~ concentration level over time is presented in Figure \@ref(fig:fanovaplot). It is observed that the estimated effect does not exceed the 4 mmHg clinical significance threshold  in either direction with high probability and there is no discernable trend observed in how the effect varies with procedure time. Note that the precision of the effect estimate decreases as procedure time increases, reflecting the shrinking number of mid-procedure participants to compare at those times.
+The effect of  high flow nasal oxygen on the mean TcCO~2~ concentration of the whole procedure was estimated to be `r CI_co2_mean[["full"]]` and the probability that it exceeds the 4 mmHg clinical significance threshold is low. Differences in TcCO~2~ concentration level between groups over time is presented in Figure \@ref(fig:fanovaplot). The estimated effect does not exceed the 4 mmHg clinical significance threshold  in either direction with high probability and there is no discernable trend observed in how the effect varies with procedure time. Precision decreases as procedure time increases, reflecting the shrinking number of participants to compare at those times.
 
 ```{r layout="l-page", fanovaplot, fig.cap="Transcutaneous carbon dioxide measurements throughout procedures"}
 p1 <- readd(plot_fanova_data)
 p2 <- readd(plot_fanova_effect)
-
 
 layout <- "
 AABB
@@ -203,11 +227,9 @@ p1 + p2 +
 ```
 
 
-#### Secondary outcomes
+The odds ratio for a minor adverse airway or breathing outcome, as measured by the TROOPS tool, for the HFNO group compared with the facemask group was estimated to be `r CI_troops[["full"]]`. This effect estimate is imprecise due to the small number of events. 
 
-Overall, there were few adverse sedation events, as measured by the TROOPS tool. As  The odds ratio for a minor adverse airway or breathing outcome for the HFNO group compared with the facemask group was estimated to be `r CI_troops[["full"]]`. 
-
-The effect of treatment on average ISAS score was estimated by the robust regression model to be `r CI_isas[["full"]]`, where the effect is measured in units of absolute difference. Average ISAS scores from three participants were not calculated due to missing responses for some of the component ISAS items.
+The effect of HFNO on average ISAS score was estimated by the robust regression model to be `r CI_isas[["full"]]`, where the effect is measured in units of absolute difference. Average ISAS scores from three participants were not calculated due to missing responses for some of the component ISAS items.
  
 The odds ratio for Anesthesia Assistant ratings of difficulty maintaining oxygenation status and difficulty using oxygen delivery equipment as estimated using a complete-case analysis are `r CI_diffoxygen[["full"]]` and `r CI_diffuseoxygen[["full"]]`, where a value less than 1 indicates a greater level of difficulty for respondents in the HFNO group. The Anesthesia Assistant ratings of difficulty using the oxygen device and difficulty maintaining oxygenation were missing 45 and 46 responses, respectively, likely due to the survey being voluntary. It is unlikely that missingness among these ratings occurred completely at random, so a best- and worst-case imputation approach was used to investigate the impact that the missing data could have on the results of the complete-case analysis in extreme cases.The best- and worst-case sensitivity analysis gave estimates ranging between `r CI_diffoxygen_worst[["full"]]` and `r CI_diffoxygen_best[["full"]]` for difficulty maintaining oxygenation status and from `r CI_diffuseoxygen_worst[["full"]]` and `r CI_diffuseoxygen_best[["full"]]` for difficulty using the oxygen delivery device. These estimates suggest the directionality of the effect could be positive or negative with high probability, so conclusions of the complete-case analysis are not robust to assumptions about the values of the missing outcome.
 
@@ -215,7 +237,7 @@ A visualization of the amount of missing data within SpO~2~ trajectories is avai
 
 #### Oxygen flow rates
 
-Participants randomized to the HFNO group received flow rates at 50 litres per minute or higher for the majority of the time (Figure \@ref(fig:oxygenplot)). 
+Participants randomized to the HFNO group received flow rates at 50 litres per minute or higher for the majority of the time (Figure \@ref(fig:oxygenplot)). Two participants who were randomized to HFNO did not receive this intervention at all during procedures at the discretion of the Anesthesia Assistant, with the rationale that the high flow of oxygen interfered with capnography monitoring. Four participants who were randomized to HFNO stopped receiving this intervention at a certain timepoint during procedures at the discretion of the Anesthesia Assistant, again with the rationale that capnography monitoring was not sufficient with the HFNO device. 
 
 ```{r oxygenplot, layout="l-page", fig.cap="Oxygen flow rate in litres per minute for each participant"}
 drake::readd(oxygen_flow_plot)
@@ -223,9 +245,21 @@ drake::readd(oxygen_flow_plot)
 
 ## Discussion
 
-We found that it is highly unlikely that using HFNO during sedation impacts ventilation by a clinically important amount, which we pre-specified to be a difference in TcCO~2~ of more than 4 mmHg. 
+We found that HFNO delivered at flow rates of 50 litres per minute to patients who received sedation neither *improves* or *worsens* ventilation during sedation by a clinically important amount. In contrast with the prior randomized trials that have reported on differences in end-tidal CO~2~ levels between patients who receive HFNO versus standard oxygen supplementation after induction of anesthesia, we measured CO~2~ continuously using a transcutaneous device. 
 
-It should be noted that this finding does not rule out the possibility that there are important benefits for HFNO related to protection against serious adverse sedation events that are too rare to be studied in the context of a randomized controlled trial. For example, evidence from the anesthesia induction context strongly suggest HFNO provides superior preoxygenation. Some patients receiving procedural sedation are more likely to experience hypoxemia due to hypoventilation during procedural sedtion than the patients included in our sample. For example, patients undergoing bronchoscopy with deep sedation... Identifying with a high degree of certainty that ventilation is not negatively impacted when HFNO is being used may provide clinicians with reassurance that  
+- Sedation dosing
+
+- Potential that different results may be observed for patients who receive higher doses of sedation or who experience more frequent or prolonged episodes of hypoventilation and apnea.
+
+
+One of the proposed physiological effects of HFNO is that it facilitates active gas exchange during times of hypoventilation due to the highly turbulent supraglottic flow vortices.[@Hermez_2019] 
+
+
+Results from our study would suggest that the mechanism of any protective effects agains transient episodes of hypoxemia would be due to superior pre-oxygenation rather than active gas exchange mediated by the turbulent air flow.
+
+Our results indicate that it is highly unlikely HFNO at flow rates of 50 litres per minute impacts ventilation by a clinically important amount in patients who receive sedation. We pre-specified that a difference in TcCO~2~ of more than 4 mmHg a the clinically important amount. 
+
+It should be noted that this finding does not rule out the possibility that there are important benefits for HFNO related to protection against serious adverse sedation events that are too rare to be feasibly studied in the setting of a randomized controlled trial for this population. For example, there is strong evidence that HFNO provides superior preoxygenation for induction of anesthesia.[@lodenius2018transnasal; @patel2015transnasal] Some patients receiving procedural sedation are more likely to experience hypoxemia due to hypoventilation during procedural sedtion than the patients included in our sample. For example, patients undergoing bronchoscopy with deep sedation. .. We identified with a high degree of certainty that ventilation is not negatively impacted when HFNO is being used. 
 
 Participants 
 

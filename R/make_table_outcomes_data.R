@@ -10,20 +10,20 @@ make_table_outcomes_data <- function(model_list, data_list){
   table_descr[["co2_peak"]] <- make_summary_descr(model_list[["model_co2_peak"]]$data,
                                                   unit="mmHg",
                                                   response="co2_peak",
-                                                  response_title = "Peak TcCO<sub>2</sub> concentration")
+                                                  response_title = "Peak TcCO<sub>2</sub>")
   table_descr[["co2_mean"]] <- make_summary_descr(model_list[["model_co2_mean"]]$data,
                                                   unit="mmHg",
                                                   response="co2_mean",
-                                                  response_title = "Mean TcCO<sub>2</sub> concentration")
+                                                  response_title = "Mean TcCO<sub>2</sub>")
   table_descr[["spo2"]] <- make_summary_descr(model_list[["model_spo2"]],
                                               unit="",
                                               response="spo2_mean",
-                                              response_title = "SpO<sub>2</sub> AUC"
+                                              response_title = "SpO<sub>2</sub>"
   )
   table_descr[["isas"]] <- make_summary_descr(model_list[["model_isas"]]$data,
                                               unit="",
                                               response="isas_mean",
-                                              response_title = "Mean ISAS score")
+                                              response_title = "ISAS score")
   table_descr[["comfort"]] <- make_summary_descr(model_list[["model_comfort"]]$data,
                                                  unit="",
                                                  response="oxygencomfort_num",
@@ -57,12 +57,12 @@ make_table_outcomes_data <- function(model_list, data_list){
                                                  unit="mmHg",
                                                  effect_type = "Absolute difference",
                                                  response="co2_peak",
-                                                 response_title = "Peak TcCO<sub>2</sub> concentration")
+                                                 response_title = "Peak TcCO<sub>2</sub>")
   table_model[["co2_mean"]] <- make_brms_summary(model_list[["model_co2_mean"]],
                                                  unit="mmHg",
                                                  effect_type = "Absolute difference",
                                                  response="co2_mean",
-                                                 response_title = "Mean TcCO<sub>2</sub> concentration")
+                                                 response_title = "Mean TcCO<sub>2</sub>")
   # table_model[["spo2"]] <- make_brms_summary(model_list[["model_spo2"]],
   #                                            unit="",
   #                                            effect_type = "absolute difference",
@@ -72,7 +72,7 @@ make_table_outcomes_data <- function(model_list, data_list){
                                              unit="",
                                              response="isas_mean",
                                              effect_type = "Absolute difference",
-                                             response_title = "Mean ISAS score")
+                                             response_title = "ISAS score")
   table_model[["comfort"]] <- make_brms_summary(model_list[["model_comfort"]],
                                                 unit="",
                                                 effect_type = "Odds ratio",

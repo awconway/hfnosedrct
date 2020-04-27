@@ -13,7 +13,6 @@ library(magrittr)
 library(htmltools)
 library(drake)
 devtools::load_all()
-
 # Load models data via drake
 model_list <- readd(model_list)
 
@@ -58,10 +57,14 @@ HTML('<div>
           </ul>
 <ul class="fa-ul">
  <li><span class="fa-li"><i class="fad fa-angle-double-right"></i></span><a href="https://www.aaronconway.info"> <em>Aaron Conway</em> </a> <p style="font-size:16px">Peter Munk Cardiac Centre, UHN &amp; Lawrence S. Bloomberg Faculty of Nursing, University of Toronto</p></li>
+
+<li><span class="fa-li"><i class="fad fa-angle-double-right"></i></span><em>Peter Collins</em>  <p style="font-size:16px">Toronto General Hospital, UHN</p></li>
   
 <li><span class="fa-li"><i class="fad fa-angle-double-right"></i></span><em>Navpreet Kamboj</em>  <p style="font-size:16px">Lawrence S. Bloomberg Faculty of Nursing, University of Toronto</p></li>
   
 <li><span class="fa-li"><i class="fad fa-angle-double-right"></i></span><em>Kristina Chang</em> <p style="font-size:16px">Toronto General Hospital, UHN</p></li>
+
+<li><span class="fa-li"><i class="fad fa-angle-double-right"></i></span><em>Ana Lopez-Filici</em>  <p style="font-size:16px">Toronto General Hospital, UHN</p></li>
   
 <li><span class="fa-li"><i class="fad fa-angle-double-right"></i></span><em>Matteo Parotto</em>  <p style="font-size:16px">Toronto General Hospital, UHN</p></li>
 </ul>

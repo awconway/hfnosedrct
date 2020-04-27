@@ -92,7 +92,7 @@ make_summary_descr <- function(data_obj, unit, response, response_title, factor_
     # Row containing AUC summaries
     row3 <- table_data %>%
       mutate(model = response_title,
-             response = "Median (IQR)") %>%
+             response = "Median (IQR) Area under SpO<sub>2</sub> desaturation curve") %>%
       group_by(model, response, randomization_factor) %>%
       summarize(median = median(ifelse(spo2_auc != 0, spo2_auc, NA), na.rm=TRUE),
                 iqr_low = quantile(ifelse(spo2_auc != 0, spo2_auc, NA), 0.25, na.rm=TRUE),

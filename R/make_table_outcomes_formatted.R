@@ -4,7 +4,7 @@
 
 #' @importFrom dplyr mutate select
 #' @importFrom gt gt fmt_missing cols_label tab_spanner vars tab_style cell_text cells_body
-#' fmt_markdown
+#' fmt_markdown tab_source_note
 #'
 make_table_outcomes_formatted <- function(model_list, data_list){
   table_data <- make_table_outcomes_data(model_list, data_list)
@@ -47,7 +47,7 @@ make_table_outcomes_formatted <- function(model_list, data_list){
       response = "Summary value",
       `Face mask oxygen` = "Face mask oxygen",
       `High Flow nasal oxygen` = "High flow nasal oxygen",
-      estimate = "Estimated treatment effect",
+      estimate = "Estimated treatment effect (95% CI)",
       effect_type = "Effect type"
     ) %>%
     tab_spanner(
@@ -58,6 +58,18 @@ make_table_outcomes_formatted <- function(model_list, data_list){
     tab_style(style = list(
       cell_text(weight = "bold")),
       locations = cells_body(columns = "model")
+    ) %>%
+    tab_source_note(
+      source_note = md("TcCO<sub>2</sub> = Transcutaneous carbon dioxide concentration")
+    ) %>%
+    tab_source_note(
+      source_note = md("SpO<sub>2</sub> = Percentage of hemoglobin saturate with oxygen")
+    ) %>%
+    tab_source_note(
+      source_note = md("ISAS = Iowa Satisfaction with Anesthesia Scale")
+    ) %>%
+    tab_source_note(
+      source_note = md("95% CI = 95% credible intervals")
     )
 
 }
