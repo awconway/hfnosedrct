@@ -7,21 +7,24 @@ author:
     url: https://www.aaronconway.info
     affiliation: University of Toronto
   - name: Peter Collins
-    affiliation: Toronto General Hospital, University Health Network
+    affiliation: Toronto General Hospital
   - name: Kristina Chang
-    affiliation: Toronto General Hospital, University Health Network
+    affiliation: Toronto General Hospital
   - name: Navpreet Kamboj
-    affiliation: Toronto General Hospital, University Health Network
+    affiliation: Toronto General Hospital
   - name: Ana Lopez-Filici
-    affiliation: Toronto General Hospital, University Health Network
+    affiliation: Toronto General Hospital
   - name: Matteo Parotto
-    affiliation: Toronto General Hospital, University Health Network
+    affiliation: Toronto General Hospital
     
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+
 bibliography: references.bib
 css: styles.css
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -65,7 +68,7 @@ A randomized controlled trial design was used with participants randomized in a 
 
 **Results**
 
-The difference in peak TcCO~2~ between groups was estimated to be `r CI_co2_peak[["full"]]`. The estimated effect did not exceed the 4 mmHg clinical significance threshold in either direction with high probability and there was no discernable trend observed in how the effect varied with procedure time. Particpants rated their satisfaction with sedation similarly. 
+The difference in peak TcCO~2~ between groups was estimated to be `r CI_co2_peak[["full"]]`. The estimated effect did not exceed the 4 mmHg clinical significance threshold in either direction with high probability and there was no discernable trend observed in how the effect varied with procedure time. Particpants rated their satisfaction with sedation similarly between groups. 
 
 
 **Conclusion**
@@ -78,13 +81,8 @@ The difference in peak TcCO~2~ between groups was estimated to be `r CI_co2_peak
 
 ## Introduction
 
-High flow nasal oxygen (HFNO) is increasingly regarded as a promising technology for oxygen delivery in critical care and anesthesia.[@drakeHighFlowNasalCannula2018]  It permits flows of heated, humidified gas to be delivered to the lungs via nasal prongs at up to 70 liters per minute. Delivering oxygen at such high flow rates into the lungs has multiple physiological effects that may better support the vulnerable breathing state of patients during procedural sedation. It is therefore important to evaluate the effects of this new technology in each of the diverse contexts in which procedural sedation is used. Oxygen desaturation is not a common event when oxygen supplementation at flow rates between 6-10 liters per minute through a face mask during procedures performed with sedation in the cardiac catheterisation laboratory.[@conway2013risk; @conway2014trends]  Results from trials of HFNO during sedation conducted in other clinical settings, such as bronchoscopy and gastrointestinal endoscopy, where desaturation occurs more often, can therefore not be directly generalised to the cardiology context.
+Cardiac implantable electronic device (CIED) procedures are commonly performed with procedural sedation.[@conway2014trends] Prophylactic oxygen supplementation is usually administered to reduce risk of hypoxemia arising from sedation-induced hypoventilation.[@Conway_2019; @conway2013risk] High flow nasal oxygen (HFNO) is a promising device for oxygen supplementation in critical care and anesthesia.[@drakeHighFlowNasalCannula2018]  HFNO devices allow for heated, humidified gas with a titratable oxygen:air ratio to be administered via nasal prongs at up to 70 liters per minute. Delivering oxygen supplementation at such high flow rates has multiple physiological effects that may better support the vulnerable breathing state of patients during procedural sedation compared with the standard approach, which is typically a facemask or nasal cannula. Recent guidelines from the American Society of Anesthesiology have stated that there is insufficient evidence regarding which methods of supplemental oxygen administration (e.g., nasal cannula, face mask, or specialized devices such as HFNO) are more effective.[@apfelbaum2018practice] The objective of this study was to investigate the effects of HFNO in comparison to standard facemask oxygen during cardiac implantable electronic device procedures performed with procedural sedation.
 
-It is also essential that all of the potentially beneficial effects of HFNO on respiratory function during sedation are comprehensively evaluated. Although oxygen desaturation is not common during cardiology procedures, patients commonly have raised arterial carbon dioxide levels, indicating that hypoventilation does occur. One of the proposed physiological effects of HFNO is that it facilitates active gas exchange during times of hypoventilation due to the highly turbulent supraglottic flow vortices.[@Hermez_2019] 
-
-The effects of the potential disadvantages of using HFNO during sedation should also be evaluated. It is possible that potential gains arising from delivering oxygen supplementation through the HFNO device may be offset by reduced ability to monitor ventilation from capnography waveforms when it is being used. Capnography waveforms have not been validated for accuracy during HFNO therapy due to exhaled carbon dioxide being "washed out" by the high flows of gas.
-
-Although promising, further high-quality studies examining the effects of using HFNO during procedural sedation are required to inform decision-making regarding implementation of this new technology into practice. Guidelines from the American Society of Anesthesiology stated that there is insufficient evidence regarding which methods of supplemental oxygen administration (e.g., nasal cannula, face mask, or specialized devices such as HFNO) are more effective. The objective of this study was to determine the effects of HFNO on ventilation during cardiac implantable electronic device procedures performed with sedation.
 ## Methods
 
 ### Design
@@ -231,7 +229,7 @@ The odds ratio for a minor adverse airway or breathing outcome, as measured by t
 
 The effect of HFNO on average ISAS score was estimated by the robust regression model to be `r CI_isas[["full"]]`, where the effect is measured in units of absolute difference. Average ISAS scores from three participants were not calculated due to missing responses for some of the component ISAS items.
  
-The odds ratio for Anesthesia Assistant ratings of difficulty maintaining oxygenation status and difficulty using oxygen delivery equipment as estimated using a complete-case analysis are `r CI_diffoxygen[["full"]]` and `r CI_diffuseoxygen[["full"]]`, where a value less than 1 indicates a greater level of difficulty for respondents in the HFNO group. The Anesthesia Assistant ratings of difficulty using the oxygen device and difficulty maintaining oxygenation were missing 45 and 46 responses, respectively, likely due to the survey being voluntary. It is unlikely that missingness among these ratings occurred completely at random, so a best- and worst-case imputation approach was used to investigate the impact that the missing data could have on the results of the complete-case analysis in extreme cases.The best- and worst-case sensitivity analysis gave estimates ranging between `r CI_diffoxygen_worst[["full"]]` and `r CI_diffoxygen_best[["full"]]` for difficulty maintaining oxygenation status and from `r CI_diffuseoxygen_worst[["full"]]` and `r CI_diffuseoxygen_best[["full"]]` for difficulty using the oxygen delivery device. These estimates suggest the directionality of the effect could be positive or negative with high probability, so conclusions of the complete-case analysis are not robust to assumptions about the values of the missing outcome.
+The odds ratio for Anesthesia Assistant ratings of difficulty maintaining oxygenation status and difficulty using the oxygen delivery device as estimated using a complete-case analysis are `r CI_diffoxygen[["full"]]` and `r CI_diffuseoxygen[["full"]]`, where a value less than 1 indicates a greater level of difficulty for respondents in the HFNO group. The Anesthesia Assistant ratings of difficulty using the oxygen device and difficulty maintaining oxygenation were missing 45 and 46 responses, respectively, likely due to the survey being voluntary. It is unlikely that missingness among these ratings occurred completely at random, so a best- and worst-case imputation approach was used to investigate the impact that the missing data could have on the results of the complete-case analysis in extreme cases.The best- and worst-case sensitivity analysis gave estimates ranging between `r CI_diffoxygen_worst[["full"]]` and `r CI_diffoxygen_best[["full"]]` for difficulty maintaining oxygenation status and from `r CI_diffuseoxygen_worst[["full"]]` and `r CI_diffuseoxygen_best[["full"]]` for difficulty using the oxygen delivery device. These estimates suggest the directionality of the effect could be positive or negative with high probability, so conclusions of the complete-case analysis are not robust to assumptions about the values of the missing outcome.
 
 A visualization of the amount of missing data within SpO~2~ trajectories is available in the [online supplementary information](https://hfnosedrct-dashboard.netlify.app). Due to the considerable amount of missing data observed in the SpO~2~ data, comparisons of the SpO~2~ AUC between groups was not performed.
 
@@ -245,23 +243,24 @@ drake::readd(oxygen_flow_plot)
 
 ## Discussion
 
-We found that HFNO delivered at flow rates of 50 litres per minute to patients who received sedation neither *improves* or *worsens* ventilation during sedation by a clinically important amount. In contrast with the prior randomized trials that have reported on differences in end-tidal CO~2~ levels between patients who receive HFNO versus standard oxygen supplementation after induction of anesthesia, we measured CO~2~ continuously using a transcutaneous device. 
+We found that HFNO delivered at flow rates of 50 litres per minute to patients undergoing CIED procedures with sedation neither *improved* or *worsened* ventilation by a clinically important amount. Likewise, participants rated their overall satisfaction with anesthesia similarly between groups. There is a reasonably high probability that participants are more likely to rate comfort with the oxygen supplementation device higher with HFNO compared to the facemask (68%). We can infer with a high degree of certainty that anesthesia assistants rate the HFNO device as more difficult to use than the standard facemask. There is a high probability (84%) that minor adverse sedation events related to airway and breathing are more likely to occur when HFNO is used.
+
+Our finding that ventilation was not improved with HFNO is consistent with prior research in different settings. For example, there was no important difference in PaCO~2~ observed between HFNO (5.81 kPa; sd=1.1) and standard facemask oxygen (5.6 kPa; sd=1.0) from a randomized trial of 20 patients who were receiving pre-oxygenation for induction of anesthesia prior to emergency surgery (p=0.631).[@mir2017randomised] Likewise, in a larger trial of pre-oxygenation with 80 patients, the end-tidal CO~2~ in the first breath after intubation did not differ between HFNO (5.0 kPa; sd=0.8) and standard facemask (5.3 kPa sd=1.0) oxygen supplementation (p=0.18).[@lodenius2018transnasal]
 
 - Sedation dosing
 
 - Potential that different results may be observed for patients who receive higher doses of sedation or who experience more frequent or prolonged episodes of hypoventilation and apnea.
 
 
-One of the proposed physiological effects of HFNO is that it facilitates active gas exchange during times of hypoventilation due to the highly turbulent supraglottic flow vortices.[@Hermez_2019] 
+HFNO is not likely to prevent potential adverse sedation events precipitated by hypercarbia. 
 
+Results from our study would suggest that the mechanism of any protective effects agains transient episodes of hypoxemia would be more likely due to superior pre-oxygenation rather than active gas exchange during time of hypoventilation.
 
-Results from our study would suggest that the mechanism of any protective effects agains transient episodes of hypoxemia would be due to superior pre-oxygenation rather than active gas exchange mediated by the turbulent air flow.
-
-Our results indicate that it is highly unlikely HFNO at flow rates of 50 litres per minute impacts ventilation by a clinically important amount in patients who receive sedation. We pre-specified that a difference in TcCO~2~ of more than 4 mmHg a the clinically important amount. 
+Our results indicate that it is highly unlikely HFNO at flow rates of 50 litres per minute impacts ventilation by a clinically important amount in patients who receive sedation. 
 
 It should be noted that this finding does not rule out the possibility that there are important benefits for HFNO related to protection against serious adverse sedation events that are too rare to be feasibly studied in the setting of a randomized controlled trial for this population. For example, there is strong evidence that HFNO provides superior preoxygenation for induction of anesthesia.[@lodenius2018transnasal; @patel2015transnasal] Some patients receiving procedural sedation are more likely to experience hypoxemia due to hypoventilation during procedural sedtion than the patients included in our sample. For example, patients undergoing bronchoscopy with deep sedation. .. We identified with a high degree of certainty that ventilation is not negatively impacted when HFNO is being used. 
 
-Participants 
+Participant characteristics - elective patients 
 
 Anesthesia Assistants rated the HFNO device as more difficult to use than the standard facemask. However, it should be noted that none rated the HFNO as 'difficult' to use. Likewise, Anesthesia Assistants rated the difficulty maintaining oxygenation status when using HFNO.
 
@@ -269,7 +268,6 @@ If considering switching to HFNO for sedation should consider that there may be 
 
 The effects of the potential disadvantages of using HFNO during sedation should also be evaluated. It is possible that potential gains arising from delivering oxygen supplementation through the HFNO device may be offset by reduced ability to monitor ventilation from capnography waveforms when it is being used. Capnography waveforms have not been validated for accuracy during HFNO therapy due to exhaled carbon dioxide being "washed out" by the high flows of gas.
 
-The primary result for this trial was that using HFNO did not reduce peak TcCO~2~ concentration, indicating that ventilation was not improved.
 
 There is heightened interest in investigating the effects of HFNO therapy for procedural sedation. Three small randomized controlled trials of HFNO during procedural sedation have been published in the last year, with a further 5 trials registered at clinicaltrials.gov. One study randomized 60 participants undergoing bronchoscopy to receive HFNO at 50 liters per minute with 100% oxygen or to receive oxygen at 10-15 liters per minute through a facemask.[@douglasRandomisedControlledTrial2018]  There was no difference observed between the treatment groups for the primary outcome, which was the proportion of patients who experienced oxygen desaturation (defined as SpO~2~ 90%). Another study randomized 59 morbidly obese patients undergoing endoscopy to receive a fraction of inspired oxygen concentration of 0.36 either via HFNO at a flow rate of 60 liters per minute or via nasal cannula at 4 liters per minute.[@riccio2019high]  Again, there was no difference in the primary outcome of oxygen desaturation (SpO~2~ 90%). The third study randomized 30 participants undergoing dental sedation into three groups to receive a fraction of inspired oxygen concentration of 0.4 either via HFNO at a flow rate of 50 liters per minute, via HFNO at a flow rate of 30 liters per minute or via nasal cannula at 5 liters per minute.[@sago2015nasal]  Participants randomized to the HFNO groups had higher nadir blood oxygen levels recorded than the low flow oxygen group.
 
@@ -277,8 +275,11 @@ Intervention fidelity. Participants randomized to HFNO received oxygen at flows 
 
 This trial provides strong evidence that indicated HFNO neither improves *or worsens* ventilation during sedation to a significant degree. It seems the mechanism of any protective effects agains transient episodes of hypoxemia is due to superior pre-oxygenation rather than active gas exchange mediated by the turbulent air flow.
 
+Oxygen desaturation is not a common event when oxygen supplementation at flow rates between 6-10 liters per minute through a face mask during procedures performed with sedation in the cardiac catheterisation laboratory.[@conway2013risk; @conway2014trends]  Results from trials of HFNO during sedation conducted in other clinical settings, such as bronchoscopy and gastrointestinal endoscopy, where desaturation occurs more often, can therefore not be directly generalised to the cardiology context.
+
 ### Limitations
 
+- TcCO~2~
 
 ### Conclusion
 
