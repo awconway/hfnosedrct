@@ -35,7 +35,8 @@ make_plot_component <- function(data_fanova, model, reso, component_str, title, 
     geom_ribbon(aes(x=time, ymin=lower, ymax=upper), alpha=0.25) +
     geom_hline(yintercept = 0, lty=2) +
     coord_cartesian(ylim=ylim) +
-    scale_x_continuous(name = "Time (min)", breaks = x_breaks, labels = x_labels) +
+    scale_x_continuous(name = "Time (min)", breaks = x_breaks, labels = x_labels,
+                       expand = c(0,0)) +
     scale_y_continuous(name = "TcCO2 (mmHg)") +
     ggtitle(title) +
     theme_bw() +

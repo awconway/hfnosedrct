@@ -5,7 +5,7 @@
 #' @importFrom brms posterior_samples
 extract_CI_subgroup <- function(model_obj, unit = NULL, pars){
 
-  result <- extract_CI_brms(model_obj=model_obj, unit=unit, pars=pars)
+  result <- extract_CI_brms(model_obj=model_obj, unit=unit, pars=pars, effect_type = "absolute difference")
 
   # Compute probability statements
   post_samp <- posterior_samples(model_obj, pars=pars)

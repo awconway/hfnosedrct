@@ -7,7 +7,8 @@ make_brms_summary <- function(model_obj, unit, effect_type, response, response_t
   # Treatment effect estimate
   CI_randomization <- c(extract_CI_brms(model_obj,
                                         pars = "randomization_factorHighFlownasaloxygen",
-                                        unit = unit))
+                                        unit = unit,
+                                        effect_type = effect_type))
 
   estimate <- c(CI_randomization$full)
 

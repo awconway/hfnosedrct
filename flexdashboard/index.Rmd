@@ -9,6 +9,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+
 library(magrittr)
 library(htmltools)
 library(drake)
@@ -17,17 +18,18 @@ devtools::load_all()
 model_list <- readd(model_list)
 
 # Values of interest pre-processing
-CI_co2_peak <- extract_CI_brms(model_list$model_co2_peak, "mmHg")
-CI_co2_mean <- extract_CI_brms(model_list$model_co2_mean, "mmHg")
-CI_isas <- extract_CI_brms(model_list$model_isas)
-CI_comfort <- extract_CI_brms(model_list$model_comfort)
-CI_diffoxygen <- extract_CI_brms(model_list$model_diffoxygen)
-CI_diffoxygen_best <- extract_CI_brms(model_list$model_diffoxygen_best)
-CI_diffoxygen_worst <- extract_CI_brms(model_list$model_diffoxygen_worst)
-CI_diffuseoxygen <- extract_CI_brms(model_list$model_diffuseoxygen)
-CI_diffuseoxygen_best <- extract_CI_brms(model_list$model_diffuseoxygen_best)
-CI_diffuseoxygen_worst <- extract_CI_brms(model_list$model_diffuseoxygen_worst)
-CI_troops <- extract_CI_brms(model_list$model_troops)
+CI_co2_peak <- extract_CI_brms(model_list$model_co2_peak, "mmHg", effect_type="Absolute_difference")
+CI_co2_mean <- extract_CI_brms(model_list$model_co2_mean, "mmHg", effect_type="Absolute_difference")
+CI_isas <- extract_CI_brms(model_list$model_isas, effect_type="Absolute_difference")
+CI_diffoxygen <- extract_CI_brms(model_list$model_diffoxygen, effect_type="Odds ratio")
+CI_diffoxygen_best <- extract_CI_brms(model_list$model_diffoxygen_best, effect_type="Odds ratio")
+CI_diffoxygen_worst <- extract_CI_brms(model_list$model_diffoxygen_worst, effect_type="Odds ratio")
+CI_diffuseoxygen <- extract_CI_brms(model_list$model_diffuseoxygen, effect_type="Odds ratio")
+CI_diffuseoxygen_best <- extract_CI_brms(model_list$model_diffuseoxygen_best, effect_type="Odds ratio")
+CI_diffuseoxygen_worst <- extract_CI_brms(model_list$model_diffuseoxygen_worst, effect_type="Odds ratio")
+CI_troops <- extract_CI_brms(model_list$model_troops,  effect_type="Odds ratio")
+CI_comfort <- extract_CI_brms(model_list$model_comfort,  effect_type="Odds ratio")
+
 
 ```
 

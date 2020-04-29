@@ -60,6 +60,11 @@ make_table_outcomes_formatted <- function(model_list, data_list){
       locations = cells_body(columns = "model")
     ) %>%
     tab_source_note(
+      source_note = "Odd ratios are interpreted as the odds of the event
+      occuring in the HFNO group compared with the odds of the event occuring
+      in the facemask group."
+  ) %>%
+  tab_source_note(
       source_note = md("TcCO<sub>2</sub> = Transcutaneous carbon dioxide concentration")
     ) %>%
     tab_source_note(

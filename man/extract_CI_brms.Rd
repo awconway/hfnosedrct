@@ -7,7 +7,8 @@
 extract_CI_brms(
   model_obj,
   unit = NULL,
-  pars = "randomization_factorHighFlownasaloxygen"
+  pars = "randomization_factorHighFlownasaloxygen",
+  effect_type
 )
 }
 \description{
