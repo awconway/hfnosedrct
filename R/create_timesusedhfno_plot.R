@@ -9,6 +9,7 @@
 create_timesusedhfno_plot <- function(trial_mod){
 readd(trial_mod) %>%
   select(id, randomization.factor, contains("used")) %>%
+  filter(randomization.factor=="High Flow nasal oxygen") %>%
   drop_na(timesusedhfno.factor) %>%
   ggplot() +
   geom_bar(aes(y=timesusedhfno.factor, fill=timesusedhfno.factor))+
