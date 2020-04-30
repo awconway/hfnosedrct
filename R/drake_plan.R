@@ -72,6 +72,7 @@ get_analysis_plan <- function(){
 
     oxygencomfort_plot = create_ordinal_outcome_plot(trial_mod, oxygencomfort.factor),
 
+    timesusedhfno_plot = create_timesusedhfno_plot(trial_mod),
 
     # CONSORT diagram of all participants
     consort_png = create_consort_png(screen, trial),

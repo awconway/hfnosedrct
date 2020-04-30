@@ -2,8 +2,8 @@
 title: "High flow nasal oxygen during sedation in the cardiac catheterisation laboratory"
 description: |
   A randomized controlled trial
-
 author:
+    
   - name: Aaron Conway 
     url: https://www.aaronconway.info
     affiliation: University of Toronto
@@ -17,14 +17,15 @@ author:
     affiliation: Toronto General Hospital
   - name: Matteo Parotto
     affiliation: Toronto General Hospital
-    
 output: 
   distill::distill_article:
+    
     toc: true
     toc_depth: 3
-    
 bibliography: references.bib
 css: styles.css
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -184,7 +185,7 @@ In the case of missing outcome data, we first assumed the data to be missing com
 
 ### Participants
 
-A CONSORT flow diagram is presented in Figure 1. From August 2019 to March 2020, we screened 270 patients undergoing CIED procedures. A total of 130 participants were randomized. Although we initially planned (as outlined in the protocol) to recruit up to 150 patients, the decision was made to complete recruitment due to the onset of clinical research restrictions at the institution in response to COVID-19. One participant was subsequently excluded from the study because their procedure was cancelled after the randomization was performed. One further participant, who was randomized to the HFNO group, had their procedure rescheduled to a time that the Research Assistant was not available. As such, this participant received oxygen via standard face mask and TcCO~2~ data were not collected. For two participants, the TcCO~2~ sensor failed to callibrate prior to commencement of the procedure, so they were not able to be included in the analyses for the TcCO~2~ outcomes. 
+A CONSORT flow diagram is presented in Figure 1. From August 2019 to March 2020, we screened 270 patients undergoing CIED procedures. A total of 130 participants were randomized. Although we initially planned (as outlined in the protocol) to recruit up to 150 patients, the decision was made to complete recruitment due to the onset of clinical research restrictions at the institution in response to COVID-19. One participant was subsequently excluded from the study because their procedure was cancelled after the randomization was performed. One further participant, who was randomized to the HFNO group, had their procedure rescheduled to a time that the Research Assistant was not available. As such, this participant received oxygen via standard face mask and TcCO~2~ data were not collected. For two participants, the TcCO~2~ sensor failed to callibrate prior to commencement of the procedure, so they were not able to be included in the analyses for the TcCO~2~ outcomes. Fourteen of the Anesthesia Assistants reported that it was the first time they had used HFNO. Most (n=29; 45%) reported having used HFNO between 2 and 5 times with only one reporting using the device more than 10 times.
 
 ```{r fig.cap="CONSORT flow diagram"}
 knitr::include_graphics(here::here("plots/consort.png"))
@@ -233,7 +234,7 @@ The effect of HFNO on average ISAS score was estimated to be `r CI_isas[["full"]
  
 The odds ratio for Anesthesia Assistant ratings of difficulty maintaining oxygenation status and difficulty using the oxygen delivery device as estimated using a complete-case analysis are `r CI_diffoxygen[["full"]]` and `r CI_diffuseoxygen[["full"]]`, where a value less than 1 indicates a greater level of difficulty for respondents in the HFNO group. The Anesthesia Assistant ratings of difficulty using the oxygen device and difficulty maintaining oxygenation were missing 45 and 46 responses, respectively, likely due to the survey being voluntary. It is unlikely that missingness among these ratings occurred completely at random, so a best- and worst-case imputation approach was used to investigate the impact that the missing data could have on the results of the complete-case analysis in extreme cases.The best- and worst-case sensitivity analysis gave estimates ranging between `r CI_diffoxygen_worst[["full"]]` and `r CI_diffoxygen_best[["full"]]` for difficulty maintaining oxygenation status and from `r CI_diffuseoxygen_worst[["full"]]` and `r CI_diffuseoxygen_best[["full"]]` for difficulty using the oxygen delivery device. These estimates suggest the directionality of the effect could be positive or negative with high probability, so conclusions of the complete-case analysis are not robust to assumptions about the values of the missing outcome.
 
-The odds of Anesthesia Assistants being more likely to rate the use of the oxygen supplementation device as easy to use in the facemask group was estimatd at 3 times [i.e., 1/0.33] that of the HFNO group (`r CI_diffuseoxygen[["full"]]`). The odds of Anesthesia Assistants being more likely to rate their ability to maintain oxygen saturations as easy in the facemask group was 10 times [i.e., 1/0.1] that of the HFNO group (`r CI_diffoxygen[["full"]]`). 
+The odds of Anesthesia Assistants being more likely to rate the use of the oxygen supplementation device as more easy to use in the facemask group was estimatd at 3 times [i.e., 1/0.33] that of the HFNO group (`r CI_diffuseoxygen[["full"]]`). The odds of Anesthesia Assistants being more likely to rate their ability to maintain oxygen saturations as easy in the facemask group was 10 times [i.e., 1/0.1] that of the HFNO group (`r CI_diffoxygen[["full"]]`). 
 
 A visualization of the amount of missing data within SpO~2~ trajectories is available in the [online supplementary information](https://hfnosedrct-dashboard.netlify.app). Due to the considerable amount of missing data observed in the SpO~2~ data, comparisons of the SpO~2~ AUC between groups was not performed.
 
@@ -247,7 +248,7 @@ drake::readd(oxygen_flow_plot)
 
 ## Discussion
 
-The primary result of this trial is that HFNO delivered at flow rates of 50 litres per minute to patients undergoing CIED procedures with sedation is highly unlikely to *improve* or *worsen* ventilation by a clinically important amount. Likewise, patient satisfaction with anesthesia is very likely to be similar regardless of the type of oxygen supplementation device used. However, there is a reasonably high probability that patients are more likely to rate comfort with the oxygen supplementation device higher with HFNO compared to the facemask (68%). We can infer with a high degree of certainty that the HFNO device is more difficult for Anesthesia Assistants to use than the standard facemask. However, no Anesthesia Assistants rated the HFNO device as "difficult". There is also a high probability (84%) that minor adverse sedation events related to airway and breathing are more likely to occur when HFNO is used.
+The primary result of this trial is that HFNO delivered at flow rates of 50 litres per minute to patients undergoing CIED procedures with sedation is highly unlikely to either improve or worsen ventilation by a clinically important amount. Likewise, overall patient satisfaction with sedation is very likely to be similar regardless of the type of oxygen supplementation device used. However, there is a reasonably high probability that patients are more likely to rate comfort with the oxygen supplementation device higher with HFNO compared to the facemask (68%). There is a high degree of certainty that the HFNO device is more difficult for Anesthesia Assistants to use compared with the standard facemask. However, it should be noted that none of the Anesthesia Assistants rated the HFNO device as "difficult" to use. There is also a high probability (84%) that minor adverse sedation events related to airway and breathing are more likely to occur when HFNO is used.
 
 There is heightened interest at present in investigating the effects of HFNO therapy for procedural sedation. One large[@lin2019high] and three small randomized controlled trials of HFNO during procedural sedation have been published in the last year, with several more on-going trials registered.[@eugene2020high] All the trials to data have focused on investigating the imapact of HFNO on oxygenation and results have been inconsistent. One of the small trials randomized 60 participants undergoing bronchoscopy to receive HFNO at 50 liters per minute with 100% oxygen or to receive oxygen at 10-15 liters per minute through a facemask.[@douglasRandomisedControlledTrial2018]  There was no difference observed between the treatment groups for the primary outcome, which was the proportion of patients who experienced oxygen desaturation (defined as SpO~2~ 90%). Another trial randomized 59 morbidly obese patients undergoing endoscopy to receive a fraction of inspired oxygen concentration of 0.36 either via HFNO at a flow rate of 60 liters per minute or via nasal cannula at 4 liters per minute.[@riccio2019high]  Again, there was no difference in the primary outcome of oxygen desaturation (SpO~2~ 90%). The third study randomized 30 participants undergoing dental sedation into three groups to receive a fraction of inspired oxygen concentration of 0.4 either via HFNO at a flow rate of 50 liters per minute, via HFNO at a flow rate of 30 liters per minute or via nasal cannula at 5 liters per minute.[@sago2015nasal]  Participants randomized to the HFNO groups had higher nadir blood oxygen levels recorded than the low flow oxygen group. In contrast, a large trial of 1994 participants undergoing gastroscopy with propofol sedation reported a large reduction in risk of hypoxemia (8.4% in the control group and 0% in the HFNO group).[@lin2019high] This resuslt is likely explained by the large difference in FiO~2~ that was delivered between the two groups. In the HFNO group participants received 60 liters of 100% oxygen per minute and in the control group participants received just 2 liters of oxygen per minute.  
 

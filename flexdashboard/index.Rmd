@@ -272,6 +272,12 @@ drake::readd(oxygen_fio2_plot)
 - The oxygen to air ratio was increased higher than 50% for only a small number of participants, at the discretion of the Anesthesia Assistant to improve oxygenation.
 - For participants who were switched to oxygen supplementation via a standard facemask, the oxygen to air ratio was assumed to be 1.0.
 
+### **Number of times Anesthesia Assistants reported haing used high flow nasal oxygen**
+
+```{r }
+drake::readd(timesusedhfno_plot)
+```
+
 
 Data {data-icon="fa-table" .storyboard}
 =======================================================================
