@@ -4,12 +4,10 @@
 \alias{make_plot_fanova_data}
 \title{Plot fanova data}
 \usage{
-make_plot_fanova_data(data_fanova, reso)
+make_plot_fanova_data(data_fanova)
 }
 \arguments{
 \item{data_fanova}{dataframe}
-
-\item{reso}{Number of seconds resolution for functional data}
 }
 \description{
 Plot fanova data

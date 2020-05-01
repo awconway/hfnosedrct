@@ -4,7 +4,6 @@
 #' @title Plot fanova data
 #' @rdname make_plot_fanova_data
 #' @param data_fanova dataframe
-#' @param reso Number of seconds resolution for functional data
 #' @importFrom dplyr ungroup group_by summarize first arrange desc slice pull mutate filter
 #' @importFrom ggplot2 ggplot aes geom_line scale_y_continuous scale_x_continuous
 #' scale_alpha_continuous scale_size_continuous theme_bw theme element_blank ggtitle geom_vline annotate
@@ -12,7 +11,7 @@
 #' @export
 
 
-make_plot_fanova_data <- function(data_fanova, reso){
+make_plot_fanova_data <- function(data_fanova){
 
   data_plot <- data_fanova
 
@@ -52,7 +51,7 @@ make_plot_fanova_data <- function(data_fanova, reso){
   plot_fmo <- data_plot %>%
     filter(randomization_num == 0) %>%
     ggplot(aes(x=time_int, y=co2, group=id,alpha=highlight, size=highlight)) +
-    geom_line() +
+    geom_line(colour="#4475b4") +
     scale_y_continuous(name = "TcCO2 (mmHg)",
                        limits=c(0,100)) +
     scale_x_continuous(name = "Time (min)",
@@ -61,7 +60,7 @@ make_plot_fanova_data <- function(data_fanova, reso){
                        limits = x_limits) +
     scale_alpha_continuous(range=c(0.20,1)) +
     scale_size_continuous(range=c(.25,.75)) +
-    theme_bw()  +
+    theme_minimal()  +
     theme(legend.position = "none",
           panel.grid = element_blank()) +
     ggtitle("Face mask oxygen") +
@@ -84,7 +83,7 @@ make_plot_fanova_data <- function(data_fanova, reso){
   plot_hfno <- data_plot %>%
     filter(randomization_num == 1) %>%
     ggplot(aes(x=time_int, y=co2, group=id,alpha=highlight, size=highlight)) +
-    geom_line() +
+    geom_line(colour = "#fc8d59") +
     scale_y_continuous(name = "TcCO2 (mmHg)",
                        limits=c(0,100)) +
     scale_x_continuous(name = "Time (min)",
@@ -93,9 +92,10 @@ make_plot_fanova_data <- function(data_fanova, reso){
                        limits = x_limits) +
     scale_alpha_continuous(range=c(0.20,1)) +
     scale_size_continuous(range=c(.25,.75)) +
-    theme_bw() +
+    theme_minimal() +
     theme(legend.position = "none",
-          panel.grid = element_blank()) +
+          panel.grid = element_blank(),
+          axis.title.y = element_blank()) +
     ggtitle("High flow nasal oxygen") +
     geom_vline(aes(xintercept = pct_complete[1]),
                lty=3,

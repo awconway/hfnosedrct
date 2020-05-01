@@ -116,7 +116,7 @@ get_analysis_plan <- function(){
     # Functional ANOVA analysis
     data_fanova = process_fanova(co2_long, reso = reso),
     model_fanova = fit_fanova(data_fanova),
-    plot_fanova_data = make_plot_fanova_data(data_fanova, reso = reso),
+    plot_fanova_data = make_plot_fanova_data(data_fanova),
     plot_fanova_effect = make_plot_component(data_fanova,
                                              model_fanova,
                                              reso,

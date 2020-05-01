@@ -67,7 +67,8 @@ create_spo2_plot <- function(co2_long) {
 create_spo2_facet_plot <- function(co2_long){
   co2_long %>%
   ggplot()+
-  geom_line(aes(y=spo2, x=time_int, group=id, colour = randomization_factor), alpha=0.2)+
+  geom_line(aes(y=spo2, x=time_int, group=id, colour = randomization_factor), alpha=0.2,
+            size=1)+
   facet_wrap(~ randomization_factor)+
   theme_minimal()+
   scale_color_manual(values = c("#4475b4", "#fc8d59")) +
