@@ -186,24 +186,25 @@ get_analysis_plan <- function(){
 
     table_outcome = make_table_outcomes_formatted(model_list, data_list),
     table_subgroup = make_table_subgroup(model_obj=model_co2_peak_interact),
+    flextable_outcome = make_flextable_outcomes_formatted(model_list, data_list),
 
     # Codebook
 
     codebook = create_codebook(trial_datatable),
 
     # Compile rmarkdown manuscript
-    manuscript = rmarkdown::render(
-      input = knitr_in("./manuscript/index.Rmd"),
-      output_file = "index.html",
-      output_dir = "./manuscript/",
-      quiet = TRUE
-    ),
+    # manuscript = rmarkdown::render(
+    #   input = knitr_in("./manuscript/index.Rmd"),
+    #   output_file = "index.html",
+    #   output_dir = "./manuscript/",
+    #   quiet = TRUE
+    # ),
 
-    flexdashboard = callr::r(
-      function(...) rmarkdown::render(...),
-      args = list(
-        input = drake::knitr_in(here::here("flexdashboard/index.Rmd")),
-        output_file = "index.html")
-    )
+    # flexdashboard = callr::r(
+    #   function(...) rmarkdown::render(...),
+    #   args = list(
+    #     input = drake::knitr_in(here::here("flexdashboard/index.Rmd")),
+    #     output_file = "index.html")
+    # )
   )
 }
