@@ -67,12 +67,17 @@ get_analysis_plan <- function(){
     # Plots for ordinal outcomes
 
     diffoxygen_plot = create_ordinal_outcome_plot(trial_mod, diffoxygen.factor),
+    diffoxygen_plot_tile = tile_plot(trial_mod, diffoxygen.factor),
 
     diffuseoxygen_plot = create_ordinal_outcome_plot(trial_mod, diffuseoxygen.factor),
+    diffuseoxygen_plot_tile = tile_plot(trial_mod, diffuseoxygen.factor),
 
     oxygencomfort_plot = create_ordinal_outcome_plot(trial_mod, oxygencomfort.factor),
+    oxygencomfort_plot_tile = tile_plot(trial_mod, oxygencomfort.factor),
 
     timesusedhfno_plot = create_timesusedhfno_plot(trial_mod),
+
+
 
     # CONSORT diagram of all participants
     consort_png = create_consort_png(screen, trial),
