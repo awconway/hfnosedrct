@@ -1,66 +1,66 @@
 ---
-# title: "High flow nasal oxygen during sedation in the cardiac catheterisation laboratory"
-# description: |
-#   A randomized controlled trial
-# author:
-#   - name: Aaron Conway 
-#     url: https://www.aaronconway.info
-#     affiliation: University of Toronto
-#   - name: Peter Collins
-#     affiliation: Toronto General Hospital
-#   - name: Kristina Chang
-#     affiliation: Toronto General Hospital
-#   - name: Navpreet Kamboj
-#     affiliation: Toronto General Hospital
-#   - name: Ana Lopez-Filici
-#     affiliation: Toronto General Hospital
-#   - name: Matteo Parotto
-#     affiliation: Toronto General Hospital
-# output: 
-#   distill::distill_article:
-#     toc: true
-#     toc_depth: 3
+title: "High flow nasal oxygen during sedation in the cardiac catheterisation laboratory"
+description: |
+  A randomized controlled trial
+author:
+  - name: Aaron Conway
+    url: https://www.aaronconway.info
+    affiliation: University of Toronto
+  - name: Peter Collins
+    affiliation: Toronto General Hospital
+  - name: Kristina Chang
+    affiliation: Toronto General Hospital
+  - name: Navpreet Kamboj
+    affiliation: Toronto General Hospital
+  - name: Ana Lopez-Filici
+    affiliation: Toronto General Hospital
+  - name: Matteo Parotto
+    affiliation: Toronto General Hospital
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
 bibliography: Extras/references.bib
 csl: Extras/anesthesia-and-analgesia.csl
 css: Extras/styles.css
-title: "High flow nasal oxygen during sedation in the cardiac catheterisation laboratory: A randomized controlled trial"
-author:
-  - Aaron Conway PhD:
-      email: aaron.conway@utoronto.ca
-      phone: +1 416 946 7112
-      address: 585 University Ave | Toronto, ON  M5G 2N2
-      institute: [PMCC, LBFON, QUT]
-      correspondence: true
-  - Peter Collins MStats:
-      institute: [PMCC]
-      correspondence: false
-  - Kristina Chang MScN:
-      institute: [PMCC]
-      correspondence: false
-  - Navpreet Kamboj BScN:
-      institute: [LBFON]
-      correspondence: false
-  - Ana Lopez-Filici, RT:
-      institute: [TGH]
-      correspondence: false
-  - Matteo Parotto MD, PhD:
-      institute: [TGH, UoT]
-      correspondence: false
-institute:
-  - PMCC: Peter Munk Cardiac Centre, University Health Network, Toronto, Canada
-  - LBFON: Lawrence S. Bloomberg Faculty of Nursing, University of Toronto, Toronto, Canada
-  - QUT: School of Nursing, Queensland University of Technology (QUT), Brisbane, Australia
-  - TGH: Department of Anesthesia and Pain Management, Toronto General Hospital, UHN, Toronto, Canada
-  - UoT: Department of Anesthesia and Interdepartmental Division of Critical Care Medicine, University of Toronto, Toronto, Canada
-output:
-  officedown::rdocx_document:
-    reference_docx: Extras/manuscript_template.docx
-    pandoc_args:
-      - --lua-filter=Extras/scholarly-metadata.lua
-      - --lua-filter=Extras/author-info-blocks.lua
+# title: "High flow nasal oxygen during sedation in the cardiac catheterisation laboratory: A randomized controlled trial"
+# author:
+#   - Aaron Conway PhD:
+#       email: aaron.conway@utoronto.ca
+#       phone: +1 416 946 7112
+#       address: 585 University Ave | Toronto, ON  M5G 2N2
+#       institute: [PMCC, LBFON, QUT]
+#       correspondence: true
+#   - Peter Collins MStats:
+#       institute: [PMCC]
+#       correspondence: false
+#   - Kristina Chang MScN:
+#       institute: [PMCC]
+#       correspondence: false
+#   - Navpreet Kamboj BScN:
+#       institute: [LBFON]
+#       correspondence: false
+#   - Ana Lopez-Filici, RT:
+#       institute: [TGH]
+#       correspondence: false
+#   - Matteo Parotto MD, PhD:
+#       institute: [TGH, UoT]
+#       correspondence: false
+# institute:
+#   - PMCC: Peter Munk Cardiac Centre, University Health Network, Toronto, Canada
+#   - LBFON: Lawrence S. Bloomberg Faculty of Nursing, University of Toronto, Toronto, Canada
+#   - QUT: School of Nursing, Queensland University of Technology (QUT), Brisbane, Australia
+#   - TGH: Department of Anesthesia and Pain Management, Toronto General Hospital, UHN, Toronto, Canada
+#   - UoT: Department of Anesthesia and Interdepartmental Division of Critical Care Medicine, University of Toronto, Toronto, Canada
+# output:
+#   officedown::rdocx_document:
+#     reference_docx: Extras/manuscript_template.docx
+#     pandoc_args:
+#       - --lua-filter=Extras/scholarly-metadata.lua
+#       - --lua-filter=Extras/author-info-blocks.lua
 params:
-  word: true
-  distill: false
+  word: false
+  distill: true
 ---
 
 ```{r setup, include=FALSE}
@@ -85,12 +85,6 @@ CI_diffuseoxygen_best <- extract_CI_brms(model_list$model_diffuseoxygen_best, ef
 CI_diffuseoxygen_worst <- extract_CI_brms(model_list$model_diffuseoxygen_worst, effect_type="Odds ratio")
 CI_troops <- extract_CI_brms(model_list$model_troops,  effect_type="Odds ratio")
 
-# Table captions
-
-library(captioner)
-
-table_nums <- captioner(prefix = "Table")
-
 ```
 
 \pagebreak
@@ -108,8 +102,7 @@ A randomized controlled trial design was used with participants randomized in a 
 
 **Results**
 
-The difference in peak TcCO~2~ between groups was estimated to be `r CI_co2_peak[["full"]]`. The estimated effect did not exceed the clinical significance threshold in either direction with high probability and there was no discernable trend observed in how the effect varied with procedure time. Particpants rated their satisfaction with sedation similarly between groups (`r CI_isas[["full"]]`). The probability that patients are more likely to rate comfort with the oxygen supplementation device higher with HFNO compared to the facemask is 68%. The odds of Anesthesia Assistants being more likely to rate the use of the oxygen supplementation device as more easy to use in the facemask group was estimated to be 3 times that of the HFNO group (`r CI_diffuseoxygen[["full"]]`). The odds of Anesthesia Assistants being more likely to rate their ability to maintain oxygen saturations as easy in the facemask group was 10 times that of the HFNO group (`r CI_diffoxygen[["full"]]`). Minor adverse sedation events related to airway and breathing were more frequent in the HFNO group. 
-
+The difference in peak TcCO~2~ between groups was estimated to be `r CI_co2_peak[["fullCI"]]`. The estimated effect did not exceed the clinical significance threshold in either direction with high probability and there was no discernable trend observed in how the effect varied with procedure time. Particpants rated their satisfaction with sedation similarly between groups `r CI_isas[["fullCIbrackets"]]`. The probability that patients are more likely to rate comfort with the oxygen supplementation device higher with HFNO compared to the facemask is 68%. The odds of Anesthesia Assistants being more likely to rate the use of the oxygen supplementation device as more easy to use in the facemask group was estimated to be `r round(1/CI_diffuseoxygen[["effect"]], 0)` times that of the HFNO group (95% CI = `r round(1/CI_diffuseoxygen[["upper"]], 0)` to `r round(1/CI_diffuseoxygen[["lower"]], 0)` times). The odds of Anesthesia Assistants being more likely to rate their ability to maintain oxygen saturations as easy in the facemask group was `r round(1/CI_diffoxygen[["effect"]], 0)` times that of the HFNO group (95% CI = `r round(1/CI_diffoxygen[["upper"]], 0)` to `r round(1/CI_diffoxygen[["lower"]], 0)` times). Minor adverse sedation events related to airway and breathing were `r CI_troops[["effect"]]` times more likely to occur in the HFNO group, but this estimate is imprecise (`r round(CI_troops[["lower"]], 1)` times to `r round(CI_troops[["upper"]],0)` times more likely).
 
 **Conclusion**
 
@@ -128,7 +121,7 @@ Cardiac implantable electronic device (CIED) procedures are commonly performed w
 
 ### Design
 
-A randomized controlled design was used with participants randomized in a 1:1 ratio to the following treatment conditions:
+A randomized controlled trial design was used with participants randomized in a 1:1 ratio to the following treatment conditions:
 
 - Oxygen supplementation through a standard facemask; or
 - High flow nasal oxygen.
@@ -174,7 +167,7 @@ The primary outcome was peak transcutaneous carbon dioxide ( TcCO~2~) concentrat
 
 1. Mean transcutaneous carbon dioxide concentration measured throughout the whole procedure using the VSign 2 sensor.
 2. Trajectory of transcutaneous carbon dioxide concentration as a function of time throughout the whole procedure using the VSign 2 sensor.
-3. Area under the curve of oxygen desaturation: This is a composite measure comprising the incidence, depth, and duration of oxygen desaturation events. It is calculated as the difference between the threshold (90%) and actual oxygen saturation (SpO~2~) summed every second during which oxygen saturation was below threshold).
+3. Area under the curve of oxygen desaturation: This is a composite measure comprising the incidence, depth, and duration of oxygen desaturation events. It is calculated as the difference between the threshold (90%) and actual oxygen saturation (SpO~2~) summed every minute during which oxygen saturation was below threshold).
 4. Adverse sedation events: measured using the Tracking and reporting outcomes of procedural sedation (TROOPS) tool at the end of procedures.
 5. Patient satisfaction with sedation: The Iowa Satisfaction with Anesthesia Scale (ISAS) will be used to measure patient satisfaction with the anesthetic used during the procedure performed.
 7. Patient comfort of oxygen delivery: Participants will be asked to rate at the end of procedures their perceived overall comfort with the oxygen delivery device used during the procedure using a 6-level ratings scale.
@@ -188,7 +181,7 @@ The primary outcome was peak transcutaneous carbon dioxide ( TcCO~2~) concentrat
 
 Transcutaneous carbon dioxide concentrations were measured continuously using the Sentec Digital Monitoring system with VSign 2 sensor. TcCO~2~ monitoring provides continuous, accurate (mean bias -0.1 mmHg) and precise (95% limits of agreement within 6 mmHg) estimates of arterial CO~2~ (PaCO~2~) when the sensor is placed on the earlobe.[@conway2019accuracy] TcCO~2~ monitoring may provide even more precise estimates of changes in PaCO~2~ (mean bias 0.03 mmHg, 95% limits of agreement -0.44 to 0.38 mmHg).[@Fingleton2017] The RA attached the Sentec VSign 2 sensor to the participant's forehead using a multi-site attachment ring. Once the Sentec Digital Monitoring System displayed a stabilized TcCO~2~ level, the monitor was covered with a drape so that it was not visible to research staff or clinicians. The monitor was not used by the clinicians to guide treatment. Data were downloaded after procedures for analysis.
 
-Percentage of hemoglobin saturated with oxygen (SpO~2~) was measured continuously using the Sentec Digital Monitoring system with VSign 2 sensor. We filtered SpO~2~ measurements if a pulse rate was not detectable.
+Percentage of hemoglobin saturated with oxygen (SpO~2~) was collected as part of routine practice. The recorded SpO~2~ was extracted from the Drug Reconciliation and Electronic Monitoring System at a frequency of one measurement per minute throughout procedures.
 
 Adverse sedation events were measured using the tracking and reporting outcomes of procedural sedation (TROOPS) tool.[@Roback2018] Completion of the tool requires identification and description of the adverse event, the intervention, the outcome and the overall severity of the adverse event. The Anaesthesia Assistant completed this tool at the end of procedures.
 
@@ -208,11 +201,11 @@ We estimated based on data from our prior work[@Conway_2019]  that the peak TcCO
 
 All outcomes were analysed using Bayesian statistical models. Results from Bayesian models including 95% credible intervals are far easier to interpret than frequentist confidence intervals and p-values. Data and code required to reproduce the analyses is available to access in the [online supplementary information](https://hfnosedrct-dashboard.netlify.app).  A detailed summary of the statistical models, including their prior specifications, is presented in the Appendix. Prior distributions were chosen to be weakly informative in the absence of information concerning the likely values of model parameters [@gelman2008weakly]. 
 
-The primary outcome, peak TcCO~2~, was compared between groups using a robust regression model. Covariate adjustments for the stratification variables obstructive sleep apnea (OSA) status and whteher or not the procedure was a cardiac resynchronization therapy (CRT) device implant were made in all models. Baseline TcCO~2~ concentration is included as a covariate in the TcCO~2~ models, as is recommended for this type of design[@Egbewale2014], and it is modelled using splines. A subgroup analysis was performed by expanding the model to include treatment interactions with the covariates OSA and CRT. The results of the subgroup analysis were compared to those from the primary analysis with only main effects to investigate the robustness of the conclusions to model specification.
+The primary outcome, peak TcCO~2~, was compared between groups using a robust regression model. Covariate adjustments for the stratification variables obstructive sleep apnea (OSA) status and whteher or not the procedure was a cardiac resynchronization therapy (CRT) device implant were made in all models. Baseline TcCO~2~ concentration is included as a covariate in the TcCO~2~ models, as is recommended for this type of design, and it is modelled using splines.[@Egbewale2014] A subgroup analysis was performed by expanding the model to include treatment interactions with the covariates OSA and CRT. The results of the subgroup analysis were compared to those from the primary analysis with only main effects to investigate the robustness of the conclusions to model specification.
 
 The secondary outcome mean TcCO~2~ concentration was analysed using the same model used to analyze peak TcCO~2~. A functional analysis of variance (ANOVA) model was used to further investigate how mean TcCO~2~ concentration levels differ between groups as a function of procedure time.[@yue2019]   The remaining continuous outcomes, average ISAS score and SpO~2~ AUC, were analyzed using the same model without a covariate adjustment for Baseline TcCO~2~. 
 
-A logistic regression model was used for adverse sedation events measured using the TROOPS tool. A proportional-odds model was used for ordinal outcomes including participant ratings of comfort with the supplemental oxygen device, and Anesthesia Assistant ratings for difficulty maintaining oxygenation status and their rating of difficulty using supplemental oxygen device. The secondary outcome of mean TcCO~2~ was compared between the intervention and control groups using a Bayesian one-way functional analysis of variance (ANOVA) model .
+A logistic regression model was used for adverse sedation events measured using the TROOPS toonl. A proportional-odds model was used for ordinal outcomes including participant ratings of comfort with the supplemental oxygen device, and Anesthesia Assistant ratings for difficulty maintaining oxygenation status and their rating of difficulty using supplemental oxygen device. The secondary outcome of mean TcCO~2~ was compared between the intervention and control groups using a Bayesian one-way functional analysis of variance (ANOVA) model .
 
 Posterior inference for all models except the functional ANOVA model was performed using Hamiltonian Monte Carlo through the brms package [@bruckner2017], version `r packageVersion("brms")`. For this set of models, 2000 posterior samples were obtained from 4 independent chains of 2000 samples, where the first 1000 warm-up samples were discarded. Posterior inference for the functional ANOVA model was performed using the Integrated Nested Laplacian Approximation [@rue2009] through the INLA package, version `r packageVersion("INLA")`. The marginal posterior distribution of parameters were summarized by their mean and a 95% credible interval defined by the interval spanning the 2.5% and 97.5% percentiles of their distributions. The clinical significance of treatment effects relating to TcCO~2~ concentration were evaluated by computing the posterior probability that an effect exceeds 4 mmHg in either direction.
 
@@ -229,9 +222,9 @@ A CONSORT flow diagram is presented in Figure 1. From August 2019 to March 2020,
 knitr::include_graphics(here::here("plots/consort.png"))
 ```
 
-A summary of demographic and clinical characteristics of the participants is presented in `r table_nums(name = "table1", caption = "Participant Characteristics", display="cite")`. The sample was mostly elder and male. Anesthesia Assistants' rated the ASA Physical Classification Status for participants as either III or IV, reflecting the underlying cardiovascular disease and multiple comorbidities. Obstructive sleep apnea was common, with 27% of participants reporting a diagnosis of this condition. About 20% of procedures were for cardiac resnchronisation therapy. 
+A summary of demographic and clinical characteristics of the participants is presented in Table 1. The sample was mostly elder and male. Anesthesia Assistants' rated the ASA Physical Classification Status for participants as either III or IV, reflecting the underlying cardiovascular disease and multiple comorbidities. Obstructive sleep apnea was common, with 27% of participants reporting a diagnosis of this condition. About 20% of procedures were for cardiac resnchronisation therapy. 
 
-##### `r table_nums(name = "table1", caption = "Participant Characteristics")`
+##### Table 1. Participant Characteristics
 
 ```{r include=params$distill, eval=params$distill}
 drake::readd(characteristics_table)
@@ -241,10 +234,10 @@ drake::readd(characteristics_table)
 
 #### Primary outcome
 
-Results of comparisons between HFNO and facemask oxygen are presented in `r table_nums(name = "pchar",  display="cite")`. TcCO~2~ concentrations for all patients throughout procedures are displayed in Figure 2, with the longest procedure highlighted as a reference. The effect of HFNO on the peak TcCO~2~ was estimated to be `r CI_co2_peak[["full"]]` and the probability that it exceeds the 4 mmHg clinical significance threshold in either direction is extremely low. The estimates for the treatment effect in the baseline, OSA, and CRT subgroups when treatment interactions were included in the model did not exceed the clinical significance threshold in either direction with high probability. Results for subgroup analyses are available in the [online supplementary information](https://hfnosedrct-dashboard.netlify.app). 
+Results of comparisons between HFNO and facemask oxygen are presented in Table 2. TcCO~2~ concentrations for all patients throughout procedures are displayed in Figure 2, with the longest procedure highlighted as a reference. The effect of HFNO on the peak TcCO~2~ was estimated to be `r CI_co2_peak[["fullCI"]]` and the probability that it exceeds the 4 mmHg clinical significance threshold in either direction is extremely low. The estimates for the treatment effect in the baseline, OSA, and CRT subgroups when treatment interactions were included in the model did not exceed the clinical significance threshold in either direction with high probability. Results for subgroup analyses are available in the [online supplementary information](https://hfnosedrct-dashboard.netlify.app). 
 
 
-##### `r table_nums(name = "pchar",caption = "Results of intention-to-treat analyses")`
+##### Table 2. Results of intention-to-treat analyses
 
 ```{r outcomestable, layout="l-page", include=params$distill, eval=params$distill}
 readd(table_outcome)
@@ -268,13 +261,13 @@ p1 + p2 +
 ```
 
 
-The odds ratio for a minor adverse airway or breathing outcome, as measured by the TROOPS tool, for the HFNO group compared with the facemask group was estimated to be `r CI_troops[["full"]]`. This effect estimate is very imprecise due to the small number of events. 
+The odds ratio for a minor adverse airway or breathing outcome, as measured by the TROOPS tool, for the HFNO group compared with the facemask group was estimated to be `r CI_troops[["effect"]]`. This effect estimate is very imprecise due to the small number of events (95% CI `r round(CI_troops[["lower"]], 1)` to `r round(CI_troops[["upper"]],0)`). 
 
-The effect of HFNO on average ISAS score was estimated to be `r CI_isas[["full"]]`, where the effect is measured in units of absolute difference. Average ISAS scores from two participants were not calculated due to missing responses for at least one of the component ISAS items.
+The effect of HFNO on average ISAS score was estimated to be `r CI_isas[["fullCI"]]`, where the effect is measured in units of absolute difference. Average ISAS scores from two participants were not calculated due to missing responses for at least one of the component ISAS items.
  
-The odds ratio for Anesthesia Assistant ratings of difficulty maintaining oxygenation status and difficulty using the oxygen delivery device as estimated using a complete-case analysis are `r CI_diffoxygen[["full"]]` and `r CI_diffuseoxygen[["full"]]`, where a value less than 1 indicates a greater level of difficulty for respondents in the HFNO group. It may be simpleter for interpretation to reverse the terms. For example, the odds of Anesthesia Assistants being more likely to rate the use of the oxygen supplementation device as more easy to use (i.e., "extremely" or "very easy" versus "easy") in the facemask group was estimated to be 3 times [i.e., 1/0.33] that of the HFNO group (`r CI_diffuseoxygen[["full"]]`). The odds of Anesthesia Assistants being more likely to rate their ability to maintain oxygen saturations as easy in the facemask group was 10 times [i.e., 1/0.1] that of the HFNO group (`r CI_diffoxygen[["full"]]`). It should be noted, however, that the Anesthesia Assistant ratings of difficulty using the oxygen device and difficulty maintaining oxygenation were missing 45 and 46 responses, respectively, likely due to the survey being voluntary. It is unlikely that missingness among these ratings occurred completely at random, so a best- and worst-case imputation approach was used to investigate the impact that the missing data could have on the results in extreme cases. The best- and worst-case sensitivity analysis gave estimates ranging between `r CI_diffoxygen_worst[["full"]]` and `r CI_diffoxygen_best[["full"]]` for difficulty maintaining oxygenation status and from `r CI_diffuseoxygen_worst[["full"]]` and `r CI_diffuseoxygen_best[["full"]]` for difficulty using the oxygen delivery device. These estimates suggest the directionality of the effect could be positive or negative with high probability, so conclusions of the complete-case analysis are not robust to assumptions about the values for the missing data.
+The odds ratio for Anesthesia Assistant ratings of difficulty maintaining oxygenation status and difficulty using the oxygen delivery device as estimated using a complete-case analysis are `r CI_diffoxygen[["fullCI"]]` and `r CI_diffuseoxygen[["fullCI"]]`, where a value less than 1 indicates a greater level of difficulty for respondents in the HFNO group. It may be simpler for interpretation to reverse the terms. For example, the odds of Anesthesia Assistants being more likely to rate the use of the oxygen supplementation device as more easy to use (i.e., "extremely" or "very easy" versus "easy") in the facemask group was estimated to be 3 times [i.e., 1/0.33] that of the HFNO group. The odds of Anesthesia Assistants being more likely to rate their ability to maintain oxygen saturations as easy in the facemask group was 10 times [i.e., 1/0.1] that of the HFNO group. It should be noted, however, that the Anesthesia Assistant ratings of difficulty using the oxygen device and difficulty maintaining oxygenation were missing 45 and 46 responses, respectively, likely due to the survey being voluntary. It is unlikely that missingness among these ratings occurred completely at random, so a best- and worst-case imputation approach was used to investigate the impact that the missing data could have on the results in extreme cases. The best- and worst-case sensitivity analysis gave estimates ranging between `r CI_diffoxygen_worst[["fullCI"]]` and `r CI_diffoxygen_best[["fullCI"]]` for difficulty maintaining oxygenation status and from `r CI_diffuseoxygen_worst[["fullCI"]]` and `r CI_diffuseoxygen_best[["fullCI"]]` for difficulty using the oxygen delivery device. These estimates suggest the directionality of the effect could be positive or negative with high probability, so conclusions of the complete-case analysis are not robust to assumptions about the values for the missing data.
 
-A visualization of the amount of missing data within SpO~2~ trajectories is available in the [online supplementary information](https://hfnosedrct-dashboard.netlify.app). Due to the considerable amount of missing data observed in the SpO~2~ data, comparisons of the SpO~2~ AUC between groups was not performed.
+A visualization of the SpO~2~ trajectories is available in the [online supplementary information](https://hfnosedrct-dashboard.netlify.app). A similar number of participants in the high flow nasal oxygen group (n=8; 12%) experienced a desaturation event in comparison with the facemask oxygen group (n=7; 11%), which was defined as a measurement below 90%. 
 
 #### Oxygen flow rates
 
@@ -314,7 +307,10 @@ We identified no clear advantage for using HFNO in place of facemask oxygen duri
 
 \pagebreak
 
-# References
+```{r results='asis', include=params$word, eval=params$word}
+cat("# References")
+```
+
 
 <div id="refs"></div>
 

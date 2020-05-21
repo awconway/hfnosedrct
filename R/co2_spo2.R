@@ -53,7 +53,7 @@ create_spo2_plot <- function(co2_long) {
           panel.grid = element_blank(),
           legend.position = "bottom",
           legend.title = element_blank()) +
-    labs(x = "Procedure duration (seconds)")
+    labs(x = "Procedure duration (minutes)")
 
 }
 
@@ -74,19 +74,11 @@ create_spo2_facet_plot <- function(spo2_trial){
     pull()
 
 
-  spo2_trial <- spo2_trial %>%
-    mutate(highlight = ifelse(id %in% id_highlight,1,0))
-
-
   spo2_trial %>%
+    filter(id %in% id_highlight) %>%
     ggplot()+
-    geom_line(aes(y=spo2, x=time_int, group=id, colour = id_str,
-                  alpha=highlight, size=highlight))+
+    geom_line(aes(y=spo2, x=time_int,  colour = id_str), alpha=0.5)+
     facet_wrap(~ randomization_factor, nrow = 2)+
-    # theme_minimal()+
-    # scale_color_manual(values = c("#4475b4", "#fc8d59")) +
-    scale_alpha_continuous(range=c(0.5,0.6)) +
-    scale_size_continuous(range=c(.25,.75)) +
     theme(
       legend.position = "none"
     ) +

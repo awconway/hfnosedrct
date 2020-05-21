@@ -18,7 +18,8 @@ RUN install2.r --error \
     patchwork \
     captioner \
     flextable \
-    officer
+    officer \
+    plotly
 
 RUN Rscript -e "install.packages('INLA', repos=c(getOption('repos'), INLA='https://inla.r-inla-download.org/R/testing'), dep=TRUE)"
 

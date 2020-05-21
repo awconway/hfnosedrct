@@ -258,31 +258,31 @@ fit_troops <- function(data_troops){
 #' @importFrom brms prior prior_string brm student
 #' @importFrom dplyr filter
 fit_spo2 <- function(data_spo2){
-
+  result <- data_spo2
   # Remove id P051, whose SPO2 was near 0 with 98% missing data
-  result <- data_spo2 %>%
-    filter(id != "P051")
+  # result <- data_spo2 %>%
+  #   filter(id != "P051")
 
-
-  # # Define formula for 'response'
-  # form <- formula("spo2_mean ~  randomization_factor + crt_factor + osa_factor")
-  #
-  # # Explicitly define priors
-  # # Mean response is used for intercept prior location
-  # mean_response <- data_spo2[,"spo2_mean"] %>% unlist() %>% mean()
-  #
-  # prior_int <- paste0("normal(", mean_response,",", 25,")")
-  #
-  # priors <- c(prior(normal(0,25), class="b"),
-  #             prior_string(prior_int, class="Intercept"),
-  #             prior(gamma(2,0.1), class="nu"),
-  #             prior(student_t(3, 0, 10) , class="sigma"))
-  #
-  # result <- brm(formula = form,
-  #               data = data_spo2,
-  #               family = student("identity"),
-  #               control=list(adapt_delta=0.9),
-  #               prior = priors)
+#
+#   # Define formula for 'response'
+#   form <- formula("spo2_auc ~  randomization_factor + crt_factor + osa_factor")
+#
+#   # Explicitly define priors
+#   # Mean response is used for intercept prior location
+#   mean_response <- data_spo2[,"spo2_mean"] %>% unlist() %>% mean()
+#
+#   prior_int <- paste0("normal(", mean_response,",", 25,")")
+#
+#   priors <- c(prior(normal(0,25), class="b"),
+#               prior_string(prior_int, class="Intercept"),
+#               prior(gamma(2,0.1), class="nu"),
+#               prior(student_t(3, 0, 10) , class="sigma"))
+#
+#   result <- brm(formula = form,
+#                 data = data_spo2,
+#                 family = student("identity"),
+#                 control=list(adapt_delta=0.9),
+#                 prior = priors)
   #
   # # Save model fit
   # # fpath <- "./analysis/models/spo2.RDS"

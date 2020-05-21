@@ -13,6 +13,7 @@ output:
 library(magrittr)
 library(htmltools)
 library(drake)
+library(plotly)
 devtools::load_all()
 # Load models data via drake
 model_list <- readd(model_list)
@@ -181,6 +182,64 @@ drake::readd(co2_plot)
 - For a small number of participants there was a delay in calibration of the Sentec VSign 2 sensor, resulting in a small amount missing data for a period of time at the start of procedures.
 - One participant had their procedure rescheduled to a time that the researchers were unavailable. As such, TcCo~2~ measured for this participant.
 
+SpO~2~ {data-icon="fa-chart-bar" .storyboard}
+=======================================================================
+
+### **High flow nasal oxygen**
+
+**Data shown here are for who experienced an oxygen desaturation event (defined as SpO~2~ <90%). Hover over a line to highlight a particular sequence.**
+
+```{r}
+
+id_highlight <- readd(spo2_trial) %>%
+  filter(spo2 < 90) %>%
+  distinct(id) %>%
+  pull()
+
+x <- list(
+  title = "Procedure duration (minutes)",
+  titlefont = f
+)
+y <- list(
+  title = "SpO2",
+  titlefont = f
+)
+
+readd(spo2_trial) %>%
+  filter(id %in% id_highlight) %>%
+  filter(randomization_factor=="High Flow nasal oxygen") %>% 
+  highlight_key(~id_str) %>%
+  plot_ly(x=~time_int, y=~spo2, color=~id_str, type="scatter", mode="lines") %>% 
+  highlight(on = "plotly_hover")%>% 
+  layout(xaxis = x, yaxis = y)
+
+```
+
+### **Facemask oxygen**
+
+**Data shown here are for who experienced an oxygen desaturation event (defined as SpO~2~ <90%). Hover over a line to highlight a particular sequence.**
+
+```{r}
+readd(spo2_trial) %>%
+  filter(id %in% id_highlight) %>%
+  filter(randomization_factor=="Face mask oxygen") %>% 
+  highlight_key(~id_str) %>%
+  plot_ly(x=~time_int, y=~spo2, color=~id_str, type="scatter", mode="lines") %>% 
+  highlight(on = "plotly_hover") %>% 
+  layout(xaxis = x, yaxis = y)
+
+```
+
+### **Missing SpO~2~ measurements**
+
+```{r, spo2-chunk}
+drake::readd(spo2_plot)
+```
+
+***
+
+Routinely collected SpO~2~ data were extracted from the Drug Reconciliation and Electronic Monitoring system for this outcome. Missing values at the beginning of these trajectories reflect the time prior to commencement of procedures when patients are getting prepared.
+
 
 Secondary outcomes {data-icon="fa-chart-bar" .storyboard}
 =======================================================================
@@ -218,20 +277,6 @@ drake::readd(isas_plot)
 
 >The treatment effect (95% credible intervals) was `r CI_isas[["full"]]`.
 
-
-### **SpO~2~ throughout procedures**
-
-```{r}
-drake::readd(spo2_facet_plot)
-```
-
-### **Missing SpO~2~ measurements**
-
-```{r, spo2-chunk}
-drake::readd(spo2_plot)
-```
-
->The Sentec VSign 2 sensor location (forehead) was chosen to optimise the accuracy of TcCo~2~ measurement, as this was the primary outcome for this study. As such, the SpO~2~ measurements were unreliable for some participants. 
 
 
 Oxygen device settings {data-icon="fa-cog" .storyboard}

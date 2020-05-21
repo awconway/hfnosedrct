@@ -2,12 +2,16 @@
 #' @rdname get_analysis_plan
 #' @description Targets and functions for analyses
 #' @export
-#'
+#' @importFrom readr col_double cols read_csv
+#' @importFrom here here
+#' @importFrom dplyr filter select starts_with everything
+#' @importFrom stringr str_detect
+#' @importFrom drake drake_plan knitr_in
 #'
 get_analysis_plan <- function(){
-  drake::drake_plan(
-    original_data = readr::read_csv(
-      here::here("data/HighFlowNasalOxygenT_DATA_2020-05-21_1511.csv")),
+ drake_plan(
+    original_data = read_csv(
+      here("data/HighFlowNasalOxygenT_DATA_2020-05-21_1511.csv")),
 
     # Label original data
     data_labelled = label_data(original_data),
@@ -15,17 +19,17 @@ get_analysis_plan <- function(){
     # Dataframe of screening data
 
     screen = data_labelled %>%
-      dplyr::filter(stringr::str_detect(id, 'S')) %>%
-      dplyr::select(id, dplyr::starts_with("screen")),
+      filter(str_detect(id, 'S')) %>%
+      select(id, starts_with("screen")),
 
     # Dataframe of only participants
     trial = data_labelled %>%
-      dplyr::filter(stringr::str_detect(id, "P")) %>%
-      dplyr::select(dplyr::everything(), -dplyr::starts_with("screen")),
+      filter(str_detect(id, "P")) %>%
+      select(everything(), -starts_with("screen")),
 
     # P084 removed (procedure was not performed)
     trial_mod = trial %>%
-      dplyr::filter(id != "P084"),
+      filter(id != "P084"),
 
     # Dataframe of all columns needed from trial dataframe (participant id, all
     # oxygen flow rates used, all oxygen fio2 values used, and assigned
@@ -68,13 +72,10 @@ get_analysis_plan <- function(){
     # Plots for ordinal outcomes
 
     diffoxygen_plot = create_ordinal_outcome_plot(trial_mod, diffoxygen.factor),
-    diffoxygen_plot_tile = tile_plot(trial_mod, diffoxygen.factor),
 
     diffuseoxygen_plot = create_ordinal_outcome_plot(trial_mod, diffuseoxygen.factor),
-    diffuseoxygen_plot_tile = tile_plot(trial_mod, diffuseoxygen.factor),
 
     oxygencomfort_plot = create_ordinal_outcome_plot(trial_mod, oxygencomfort.factor),
-    oxygencomfort_plot_tile = tile_plot(trial_mod, oxygencomfort.factor),
 
     timesusedhfno_plot = create_timesusedhfno_plot(trial_mod),
 
@@ -100,13 +101,13 @@ get_analysis_plan <- function(){
     co2_plot = create_co2_plot(co2_long),
 
     # SpO2 data from DREAM
-    spo2_dream <- readr::read_csv("data/CATH_SpO2.csv", na = "-",
+    spo2_dream = read_csv("data/CATH_SpO2.csv", na = "-",
                                   col_types = cols(spo2 = col_double(),
                                                    index = col_double())),
 
     # Combine spo2 data with trial data
 
-    spo2_trial <- make_spo2_long(spo2_dream, trial_mod),
+    spo2_trial = make_spo2_long(spo2_dream, trial_mod),
 
     # Plot of all spo2 value types observed in sequence during procedure for all
     # participants
@@ -145,9 +146,8 @@ get_analysis_plan <- function(){
     # fanova_ppred_plot = make_ppred_plot(model=model_fanova, n_sim=1000, reso=reso, seed=seed),
 
     # SPO2 analysis (we do not model, so fit_model is just filtering valid data)
-    data_spo2 = process_spo2(co2_long),
+    data_spo2 = process_spo2(spo2_trial),
     model_spo2 = fit_spo2(data_spo2),
-    spo2_facet_plot = create_spo2_facet_plot(co2_long),
 
     # ISAS analysis
     data_isas = process_isas(trial_mod),
@@ -215,18 +215,18 @@ get_analysis_plan <- function(){
     codebook = create_codebook(trial_datatable),
 
     # Compile rmarkdown manuscript
-    # manuscript = rmarkdown::render(
-    #   input = knitr_in("./manuscript/index.Rmd"),
-    #   output_file = "index.html",
-    #   output_dir = "./manuscript/",
-    #   quiet = TRUE
-    # ),
+    manuscript = rmarkdown::render(
+      input = knitr_in("./manuscript/index.Rmd"),
+      output_file = "index.docx",
+      output_dir = "./manuscript/",
+      quiet = TRUE
+    ),
 
-    # flexdashboard = callr::r(
-    #   function(...) rmarkdown::render(...),
-    #   args = list(
-    #     input = drake::knitr_in(here::here("flexdashboard/index.Rmd")),
-    #     output_file = "index.html")
-    # )
+    flexdashboard = callr::r(
+      function(...) rmarkdown::render(...),
+      args = list(
+        input = knitr_in(here("flexdashboard/index.Rmd")),
+        output_file = "index.html")
+    )
   )
 }

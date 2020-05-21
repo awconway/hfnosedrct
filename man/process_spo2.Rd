@@ -4,12 +4,11 @@
 \alias{process_spo2}
 \title{Process data for SPO2 analysis}
 \usage{
-process_spo2(co2_long)
+process_spo2(spo2_trial)
 }
 \arguments{
-\item{trial_data}{dataframe of other variables}
-
-\item{co2_data}{dataframe of data from tcco2 monitor}
+\item{spo2_trial}{long dataframe of data from anesthesia monitor
+and trial data}
 }
 \description{
 Outcome to assess oxygenation

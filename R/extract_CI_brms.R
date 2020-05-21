@@ -2,6 +2,7 @@
 #' @rdname extract_CI_brms
 #' @export
 #' @importFrom brms fixef
+#' @importFrom glue glue
 #'
 extract_CI_brms <- function(model_obj, unit=NULL, pars="randomization_factorHighFlownasaloxygen", effect_type){
 
@@ -30,18 +31,28 @@ extract_CI_brms <- function(model_obj, unit=NULL, pars="randomization_factorHigh
     format(nsmall = 1)
 
   lower <- lower %>%
-    round(1) %>%
+    round(2) %>%
     format(nsmall = 1)
 
   upper <- upper %>%
-    round(1) %>%
+    round(2) %>%
     format(nsmall = 1)
 
   result[["mean"]] <- paste0(mu, " " ,unit)
 
   result[["interval"]] <- paste0("(", lower, ", ",upper ,")")
 
+
+
+  result[["fullCIbrackets"]] <-  paste0("(", mu, unit, "; 95% CI = ", lower, " to ", upper, ")")
+
+  result[["fullCI"]] <- paste0(mu, unit, " (95% CI = ", lower, " to ", upper, ")")
+
   result[["full"]] <- paste0(result[["mean"]], " ", result[["interval"]])
+
+  result[["effect"]] <- as.numeric(mu)
+  result[["lower"]] <- as.numeric(lower)
+  result[["upper"]] <- as.numeric(upper)
 
   return(result)
 }
