@@ -4,7 +4,7 @@
 \alias{create_spo2_facet_plot}
 \title{spo2 facet plot}
 \usage{
-create_spo2_facet_plot(co2_long)
+create_spo2_facet_plot(spo2_trial)
 }
 \description{
 spo2 facet plot

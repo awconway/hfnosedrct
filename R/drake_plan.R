@@ -6,7 +6,8 @@
 #'
 get_analysis_plan <- function(){
   drake::drake_plan(
-    original_data = readr::read_csv(here::here("data/HighFlowNasalOxygenT_DATA_2020-04-14_1453.csv")),
+    original_data = readr::read_csv(
+      here::here("data/HighFlowNasalOxygenT_DATA_2020-05-21_1511.csv")),
 
     # Label original data
     data_labelled = label_data(original_data),
@@ -98,10 +99,22 @@ get_analysis_plan <- function(){
     # participants
     co2_plot = create_co2_plot(co2_long),
 
+    # SpO2 data from DREAM
+    spo2_dream <- readr::read_csv("data/CATH_SpO2.csv", na = "-",
+                                  col_types = cols(spo2 = col_double(),
+                                                   index = col_double())),
+
+    # Combine spo2 data with trial data
+
+    spo2_trial <- make_spo2_long(spo2_dream, trial_mod),
+
     # Plot of all spo2 value types observed in sequence during procedure for all
     # participants
-    spo2_plot = create_spo2_plot(co2_long),
+    spo2_plot = create_spo2_plot(spo2_trial),
 
+    # Facet plot highlighting patients who had desat event
+
+    spo2_facet_plot = create_spo2_facet_plot(spo2_trial),
 
     ### Analysis
 
@@ -157,10 +170,14 @@ get_analysis_plan <- function(){
 
 
     ## Sensitivity analysis for Anesthesia Assistant data
-    model_diffoxygen_best = fit_bestworst(data_assist, response="diffoxygen_num", method="best"),
-    model_diffoxygen_worst = fit_bestworst(data_assist, response="diffoxygen_num", method="worst"),
-    model_diffuseoxygen_best = fit_bestworst(data_assist, response="diffuseoxygen_num", method="best"),
-    model_diffuseoxygen_worst = fit_bestworst(data_assist, response="diffuseoxygen_num", method="worst"),
+    model_diffoxygen_best = fit_bestworst(data_assist,
+                                          response="diffoxygen_num", method="best"),
+    model_diffoxygen_worst = fit_bestworst(data_assist,
+                                           response="diffoxygen_num", method="worst"),
+    model_diffuseoxygen_best = fit_bestworst(data_assist,
+                                             response="diffuseoxygen_num", method="best"),
+    model_diffuseoxygen_worst = fit_bestworst(data_assist,
+                                              response="diffuseoxygen_num", method="worst"),
 
     # Subgroup analysis for peak tcco2
     model_co2_peak_interact = fit_effect_modification(data_primary, response="co2_peak"),

@@ -39,7 +39,7 @@ create_co2_plot <- function(co2_long) {
 create_spo2_plot <- function(co2_long) {
 
   co2_long %>%
-    select(id_str, spo2, randomization_factor, time_int, id, pr) %>%
+    select(id_str, spo2, randomization_factor, time_int, id) %>%
     mutate(value_type = if_else(is.na(spo2),
                                 "Missing (no value recorded)",
                                 "Measurable value (above 0)")) %>%
@@ -61,20 +61,35 @@ create_spo2_plot <- function(co2_long) {
 #' @title spo2 facet plot
 #' @rdname create_spo2_facet_plot
 #' @export
-#' @importFrom dplyr group_by mutate n
-#' @importFrom ggplot2 ggplot geom_line aes facet_wrap theme_minimal theme geom_hline labs scale_color_manual
+#' @importFrom dplyr group_by mutate n filter distinct
+#' @importFrom ggplot2 ggplot geom_line aes facet_wrap
+#' theme_minimal theme geom_hline labs scale_color_manual scale_alpha_continuous
+#' scale_size_continuous
 #'
-create_spo2_facet_plot <- function(co2_long){
-  co2_long %>%
-  ggplot()+
-  geom_line(aes(y=spo2, x=time_int, group=id, colour = randomization_factor), alpha=0.2,
-            size=1)+
-  facet_wrap(~ randomization_factor)+
-  theme_minimal()+
-  scale_color_manual(values = c("#4475b4", "#fc8d59")) +
-  theme(
-    legend.position = "none"
-  ) +
-  geom_hline(yintercept = 90, color="red", linetype="dashed")+
-  labs(x = "Procedure duration (secs)")
+create_spo2_facet_plot <- function(spo2_trial){
+
+  id_highlight <- spo2_trial %>%
+    filter(spo2 < 90) %>%
+    distinct(id) %>%
+    pull()
+
+
+  spo2_trial <- spo2_trial %>%
+    mutate(highlight = ifelse(id %in% id_highlight,1,0))
+
+
+  spo2_trial %>%
+    ggplot()+
+    geom_line(aes(y=spo2, x=time_int, group=id, colour = id_str,
+                  alpha=highlight, size=highlight))+
+    facet_wrap(~ randomization_factor, nrow = 2)+
+    # theme_minimal()+
+    # scale_color_manual(values = c("#4475b4", "#fc8d59")) +
+    scale_alpha_continuous(range=c(0.5,0.6)) +
+    scale_size_continuous(range=c(.25,.75)) +
+    theme(
+      legend.position = "none"
+    ) +
+    geom_hline(yintercept = 90, color="red", linetype="dashed")+
+    labs(x = "Procedure duration (minutes)")
 }
