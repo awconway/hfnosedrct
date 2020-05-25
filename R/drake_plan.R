@@ -214,19 +214,22 @@ get_analysis_plan <- function(){
 
     codebook = create_codebook(trial_datatable),
 
-    # Compile rmarkdown manuscript
-    manuscript = rmarkdown::render(
-      input = knitr_in("./manuscript/index.Rmd"),
-      output_file = "index.docx",
-      output_dir = "./manuscript/",
+   # Compile rmarkdown manuscript
+    manuscript = callr::r(
+      function(...) rmarkdown::render(...),
+      args= list(
+      input = knitr_in(here("manuscript/index.Rmd")),
+      output_file = "index.html",
       quiet = TRUE
+    )
     ),
 
     flexdashboard = callr::r(
       function(...) rmarkdown::render(...),
       args = list(
         input = knitr_in(here("flexdashboard/index.Rmd")),
-        output_file = "index.html")
+        output_file = "index.html",
+      quiet = TRUE)
     )
   )
 }
