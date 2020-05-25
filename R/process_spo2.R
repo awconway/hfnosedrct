@@ -16,7 +16,7 @@ process_spo2 <- function(spo2_trial){
     group_by(id, id_str) %>%
     summarize(
       desat_event = any(spo2 < 90, na.rm=TRUE),
-      spo2_auc = sum(ifelse(spo2 < 90, spo2, 0), na.rm=TRUE),
+      spo2_auc = sum(ifelse(spo2 < 90, 90 - spo2, 0), na.rm=TRUE),
       spo2_mean = mean(spo2, na.rm = TRUE),
       pct_na = sum(is.na(spo2))/length(spo2),
       spo2_min = min(spo2, na.rm = TRUE),
