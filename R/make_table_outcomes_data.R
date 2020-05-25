@@ -15,11 +15,10 @@ make_table_outcomes_data <- function(model_list, data_list){
                                                   unit="mmHg",
                                                   response="co2_mean",
                                                   response_title = "Mean TcCO<sub>2</sub>")
-  table_descr[["spo2"]] <- make_summary_descr(model_list[["model_spo2"]],
+  table_descr[["spo2"]] <- make_summary_descr(data_list[["data_spo2"]],
                                               unit="",
                                               response="spo2_mean",
-                                              response_title = "SpO<sub>2</sub>"
-  )
+                                              response_title = "SpO<sub>2</sub>")
   table_descr[["isas"]] <- make_summary_descr(model_list[["model_isas"]]$data,
                                               unit="",
                                               response="isas_mean",
@@ -63,11 +62,11 @@ make_table_outcomes_data <- function(model_list, data_list){
                                                  effect_type = "Absolute difference",
                                                  response="co2_mean",
                                                  response_title = "Mean TcCO<sub>2</sub>")
-  # table_model[["spo2"]] <- make_brms_summary(model_list[["model_spo2"]],
-  #                                            unit="",
-  #                                            effect_type = "absolute difference",
-  #                                            response="spo2_mean",
-  #                                            response_title = "Mean SpO<sub>2</sub>")
+  table_model[["spo2"]] <- make_brms_summary(model_list[["model_spo2"]],
+                                             unit="",
+                                             effect_type = "Odds ratio",
+                                             response="desat_event",
+                                             response_title = "SpO<sub>2</sub>")
   table_model[["isas"]] <- make_brms_summary(model_list[["model_isas"]],
                                              unit="",
                                              response="isas_mean",

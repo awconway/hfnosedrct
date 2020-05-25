@@ -240,7 +240,7 @@ Results of comparisons between HFNO and facemask oxygen are presented in Table 2
 ##### Table 2. Results of intention-to-treat analyses
 
 ```{r outcomestable, layout="l-page", include=params$distill, eval=params$distill}
-readd(table_outcome)
+# readd(table_outcome)
 ```
 
 

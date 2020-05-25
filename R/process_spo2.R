@@ -12,10 +12,11 @@
 #'
 process_spo2 <- function(spo2_trial){
 
-  summary <- spo2_trial %>%
+  result <- spo2_trial %>%
     group_by(id, id_str) %>%
     summarize(
       desat_event = any(spo2 < 90, na.rm=TRUE),
+      spo2_auc = sum(ifelse(spo2 < 90, spo2, 0), na.rm=TRUE),
       spo2_mean = mean(spo2, na.rm = TRUE),
       pct_na = sum(is.na(spo2))/length(spo2),
       spo2_min = min(spo2, na.rm = TRUE),
@@ -27,16 +28,6 @@ process_spo2 <- function(spo2_trial){
       crt_factor = first(crt_factor),
       crt_num = first(crt_num)) %>%
     ungroup()
-
-  summary_auc <- co2_long %>%
-    filter(spo2 < 90) %>%
-    group_by(id, id_str) %>%
-    summarize(
-      spo2_auc = sum(90-spo2, na.rm = TRUE)) %>%
-    ungroup()
-
-  result <- summary %>% left_join(summary_auc) %>%
-    mutate(spo2_auc = replace_na(spo2_auc, 0))
 
   return(result)
 }
