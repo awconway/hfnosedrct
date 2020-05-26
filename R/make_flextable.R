@@ -18,12 +18,12 @@ make_flextable_outcomes_formatted <- function(model_list, data_list){
       model = ifelse(row==1, model, NA)
     )
 
-  # Change 'estimate' and 'effect_type' column to only have entry in 2nd row
-  table_data <- table_data %>%
-    mutate(
-      estimate = ifelse(row==2, estimate, NA),
-      effect_type = ifelse(row==2, effect_type, NA)
-    )
+  # # Change 'estimate' and 'effect_type' column to only have entry in 2nd row
+  # table_data <- table_data %>%
+  #   mutate(
+  #     estimate = ifelse(row==2, estimate, NA),
+  #     effect_type = ifelse(row==2, effect_type, NA)
+  #   )
 
   # Arrange columns
 

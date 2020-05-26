@@ -279,6 +279,50 @@ fit_spo2 <- function(data_spo2){
   return(result)
 }
 
+#' @title Fit model for spo2 AUC
+#' @rdname fit_spo2_auc
+#' @param data_spo2 dataframe
+#' @description Outcome for oxygenation AUC
+#' @export
+
+#' @importFrom brms prior prior_string brm student
+#' @importFrom dplyr filter
+fit_spo2_auc <- function(data_spo2){
+
+  # Filter non-zero auc
+  data_spo2 <- data_spo2 %>% filter(spo2_auc > 0)
+
+  # Create log response
+  data_spo2$log_spo2_auc <- log(data_spo2$spo2_auc)
+
+
+  # Define formula for 'response'
+  form <- formula("log_spo2_auc ~  randomization_factor + crt_factor + osa_factor")
+
+  # Mean response is used for intercept prior location
+  mean_response <- data_spo2$log_spo2_auc %>% mean()
+
+  prior_int <- paste0("normal(", mean_response,",", 25,")")
+
+  priors <- c(prior(normal(0,25), class="b"),
+              prior_string(prior_int, class="Intercept"),
+              prior(gamma(2,0.1), class="nu"),
+              prior(student_t(3, 0, 10) , class="sigma"))
+
+  result <- brm(formula = form,
+                data = data_spo2,
+                family = student("identity"),
+                control=list(adapt_delta=0.99),
+                prior = priors
+  )
+  #
+  # # Save model fit
+  # # fpath <- "./analysis/models/spo2.RDS"
+  # # saveRDS(result, file=fpath)
+
+  return(result)
+}
+
 # **********************
 #' @title best-worst sensitivity analysis
 #' @description Used for AA ratings

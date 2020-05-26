@@ -56,47 +56,62 @@ make_table_outcomes_data <- function(model_list, data_list){
                                                  unit="mmHg",
                                                  effect_type = "Absolute difference",
                                                  response="co2_peak",
-                                                 response_title = "Peak TcCO<sub>2</sub>")
+                                                 row = 2,
+                                                 model_title = "Peak TcCO<sub>2</sub>")
   table_model[["co2_mean"]] <- make_brms_summary(model_list[["model_co2_mean"]],
                                                  unit="mmHg",
                                                  effect_type = "Absolute difference",
                                                  response="co2_mean",
-                                                 response_title = "Mean TcCO<sub>2</sub>")
+                                                 row = 2,
+                                                 model_title = "Mean TcCO<sub>2</sub>")
   table_model[["spo2"]] <- make_brms_summary(model_list[["model_spo2"]],
                                              unit="",
                                              effect_type = "Odds ratio",
                                              response="desat_event",
-                                             response_title = "SpO<sub>2</sub>")
+                                             row = 2,
+                                             model_title = "SpO<sub>2</sub>")
+  table_model[["spo2_auc"]] <- make_brms_summary(model_list[["model_spo2_auc"]],
+                                             unit="% minute",
+                                             effect_type = "Absolute difference",
+                                             response="spo2_auc",
+                                             row = 3,
+                                             model_title = "SpO<sub>2</sub>",
+                                             logarithm = TRUE)
   table_model[["isas"]] <- make_brms_summary(model_list[["model_isas"]],
                                              unit="",
                                              response="isas_mean",
                                              effect_type = "Absolute difference",
-                                             response_title = "ISAS score")
+                                             row = 2,
+                                             model_title = "ISAS score")
   table_model[["comfort"]] <- make_brms_summary(model_list[["model_comfort"]],
                                                 unit="",
                                                 effect_type = "Odds ratio",
+                                                row = 2,
                                                 response="oxygencomfort_num",
-                                                response_title = "Patient comfort")
+                                                model_title = "Patient comfort")
   table_model[["diffoxygen"]] <- make_brms_summary(model_list[["model_diffoxygen"]],
                                                    unit="",
                                                    effect_type = "Odds ratio",
+                                                   row = 2,
                                                    response="diffoxygen_num",
-                                                   response_title = "Difficulty maintaining oxygenation status")
+                                                   model_title = "Difficulty maintaining oxygenation status")
   table_model[["diffuseoxygen"]] <- make_brms_summary(model_list[["model_diffuseoxygen"]],
                                                       unit="",
                                                       effect_type = "Odds ratio",
+                                                      row = 2,
                                                       response="diffuseoxygen_num",
-                                                      response_title = "Difficulty using oxygen delivery device")
+                                                      model_title = "Difficulty using oxygen delivery device")
   table_model[["troops"]] <- make_brms_summary(model_list[["model_troops"]],
                                                unit="",
                                                effect_type = "Odds ratio",
+                                               row = 2,
                                                response="troopsminairway_num",
-                                               response_title = "Minor airway or breathing event")
+                                               model_title = "Minor airway or breathing event")
 
   table_model <- table_model %>%
     bind_rows()
 
-  result <- left_join(table_descr, table_model, by=c("model"))
+  result <- left_join(table_descr, table_model, by=c("model", "row"))
 
   return(result)
 }

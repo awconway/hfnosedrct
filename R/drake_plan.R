@@ -148,6 +148,7 @@ get_analysis_plan <- function(){
     # SPO2 analysis (we do not model, so fit_model is just filtering valid data)
     data_spo2 = process_spo2(spo2_trial),
     model_spo2 = fit_spo2(data_spo2),
+    model_spo2_auc = fit_spo2_auc(data_spo2),
 
     # ISAS analysis
     data_isas = process_isas(trial_mod),
@@ -195,6 +196,7 @@ get_analysis_plan <- function(){
       model_co2_peak = model_co2_peak,
       model_co2_mean = model_co2_mean,
       model_spo2 =  model_spo2,
+      model_spo2_auc = model_spo2_auc,
       model_isas = model_isas,
       model_diffoxygen = model_diffoxygen,
       model_diffoxygen_best = model_diffoxygen_best,
@@ -214,22 +216,22 @@ get_analysis_plan <- function(){
 
     codebook = create_codebook(trial_datatable),
 
-   # Compile rmarkdown manuscript
-    manuscript = callr::r(
-      function(...) rmarkdown::render(...),
-      args= list(
-      input = knitr_in(here("manuscript/index.Rmd")),
-      output_file = "index.html",
-      quiet = TRUE
-    )
-    ),
-
-    flexdashboard = callr::r(
-      function(...) rmarkdown::render(...),
-      args = list(
-        input = knitr_in(here("flexdashboard/index.Rmd")),
-        output_file = "index.html",
-      quiet = TRUE)
-    )
+   # # Compile rmarkdown manuscript
+   #  manuscript = callr::r(
+   #    function(...) rmarkdown::render(...),
+   #    args= list(
+   #    input = knitr_in(here("manuscript/index.Rmd")),
+   #    output_file = "index.html",
+   #    quiet = TRUE
+   #  )
+   #  ),
+   #
+   #  flexdashboard = callr::r(
+   #    function(...) rmarkdown::render(...),
+   #    args = list(
+   #      input = knitr_in(here("flexdashboard/index.Rmd")),
+   #      output_file = "index.html",
+   #    quiet = TRUE)
+   #  )
   )
 }

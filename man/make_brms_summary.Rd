@@ -4,7 +4,15 @@
 \alias{make_brms_summary}
 \title{Summary of brms models}
 \usage{
-make_brms_summary(model_obj, unit, effect_type, response, response_title)
+make_brms_summary(
+  model_obj,
+  unit,
+  effect_type,
+  response,
+  model_title,
+  row,
+  logarithm = FALSE
+)
 }
 \description{
 Summary of brms models
