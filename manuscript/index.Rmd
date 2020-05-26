@@ -234,7 +234,7 @@ drake::readd(characteristics_table)
 
 #### Primary outcome
 
-Results of comparisons between HFNO and facemask oxygen are presented in Table 2. TcCO~2~ concentrations for all patients throughout procedures are displayed in Figure 2, with the longest procedure highlighted as a reference. The effect of HFNO on the peak TcCO~2~ was estimated to be `r CI_co2_peak[["fullCI"]]` and the probability that it exceeds the 4 mmHg clinical significance threshold in either direction is extremely low. The estimates for the treatment effect in the baseline, OSA, and CRT subgroups when treatment interactions were included in the model did not exceed the clinical significance threshold in either direction with high probability. Results for subgroup analyses are available in the [online supplementary information](https://hfnosedrct-dashboard.netlify.app). 
+Results of comparisons between HFNO and facemask oxygen are presented in Table 2. TcCO~2~ concentrations for all patients throughout procedures are displayed in Figure 2, with the longest procedure highlighted as a reference. The effect of HFNO on the peak TcCO~2~ was estimated to be `r CI_co2_peak[["fullCI"]]`. The probability that it exceeds the 4 mmHg clinical significance threshold of 4mmHg in either direction is 0. The estimates for the treatment effect in the baseline, OSA, and CRT subgroups when treatment interactions were included in the model did not exceed the clinical significance threshold in either direction with probability greater than 95%. Results for subgroup analyses are available in the [online supplementary information](https://hfnosedrct-dashboard.netlify.app). 
 
 
 ##### Table 2. Results of intention-to-treat analyses
@@ -246,7 +246,7 @@ readd(table_outcome)
 
 #### Secondary outcomes
 
-The effect of  high flow nasal oxygen on the mean TcCO~2~ concentration of the whole procedure was estimated to be `r CI_co2_mean[["full"]]` and the probability that it exceeds the 4 mmHg clinical significance threshold is again low. Differences in TcCO~2~ concentration level between groups over time is presented in Figure 2. The estimated effect did not exceed the 4 mmHg clinical significance threshold  in either direction with high probability and there is no discernable trend observed in how the effect varies with procedure time. Precision decreases as procedure time increases, reflecting the shrinking number of participants to compare at those times.
+The effect of  high flow nasal oxygen on the mean TcCO~2~ concentration of the whole procedure was estimated to be `r CI_co2_mean[["full"]]`. The probability that it exceeds the 4 mmHg clinical significance threshold is again 0 in either direction. Differences in TcCO~2~ concentration level between groups over time is presented in Figure 2. The estimated effect did not exceed the 4 mmHg clinical significance threshold  in either direction with probability greater than 0.95 and there is no discernable trend observed in how the effect varies with procedure time. Precision decreases as procedure time increases, reflecting the shrinking number of participants to compare at those times.
 
 ```{r fanovaplot, fig.cap="Transcutaneous carbon dioxide measurements throughout procedures",include=params$distill, eval=params$distill}
 p1 <- readd(plot_fanova_data)
@@ -259,7 +259,6 @@ AABB
 p1 + p2 +
   plot_layout(design = layout)
 ```
-
 
 The odds ratio for a minor adverse airway or breathing outcome, as measured by the TROOPS tool, for the HFNO group compared with the facemask group was estimated to be `r CI_troops[["effect"]]`. This effect estimate is very imprecise due to the small number of events (95% CI `r round(CI_troops[["lower"]], 1)` to `r round(CI_troops[["upper"]],0)`). 
 
