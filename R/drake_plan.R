@@ -229,7 +229,7 @@ get_analysis_plan <- function(){
     flexdashboard = target(
       command = {
         rmarkdown::render(knitr_in("flexdashboard/index.Rmd"))
-        file_out("flexdashboard/index.docx")
+        file_out("flexdashboard/index.html")
       }
     )
   )
