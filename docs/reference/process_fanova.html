@@ -117,11 +117,15 @@
     <p>Process data for FANOVA analysis</p>
     </div>
 
-    <pre class="usage"><span class='fu'>process_fanova</span>(<span class='no'>co2_data</span>, <span class='no'>trial_data</span>, <span class='kw'>reso</span> <span class='kw'>=</span> <span class='fl'>30</span>)</pre>
+    <pre class="usage"><span class='fu'>process_fanova</span>(<span class='no'>co2_long</span>, <span class='kw'>reso</span> <span class='kw'>=</span> <span class='fl'>30</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>reso</th>
+      <td><p>Number of seconds resolution for functional data</p></td>
+    </tr>
     <tr>
       <th>co2_data</th>
       <td><p>dataframe of data from tcco2 monitor</p></td>
@@ -129,10 +133,6 @@
     <tr>
       <th>trial_data</th>
       <td><p>dataframe of other variables</p></td>
-    </tr>
-    <tr>
-      <th>reso</th>
-      <td><p>Number of seconds resolution for functional data</p></td>
     </tr>
     </table>
 

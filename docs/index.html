@@ -109,8 +109,14 @@
 <ul>
 <li><p>Create the droplet.</p></li>
 <li><p>Wait a few minutes for the docker image to load into the server then open a web browser and type in the ip address of the droplet you just created followed by the port 8787 (e.g. ipaddress:8787).</p></li>
-<li><p>Follow the instructions for cloning the repository and running the analyses as outlined above.</p></li>
-<li><p><em>Destroy the DigitalOcean droplet when finished inspecting the analyses.</em></p></li>
+<li><p>Enter your username and password to enter an RStudio session.</p></li>
+<li><p>Create a new project from version control (File &gt; New project &gt; Version Control &gt; Git &gt; <a href="https://github.com/awconway/hfnosedrct.git" class="uri">https://github.com/awconway/hfnosedrct.git</a> )</p></li>
+<li><p>Run this line of code in the console to reproduce the analysis:</p></li>
+</ul>
+<!-- end list --><div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">drake<span class="op">::</span><span class="kw">r_make</span>()</a></code></pre></div>
+<p>You will see the targets being built by <code>drake</code>, and the final manuscript should be compiled at the end as <code>index.docx</code> in the <code>manuscript</code> directory (a pop-up window will ask if you want to download the file when it is completed). It may take about 20-30 minutes for all the models to be fit and output produced.</p>
+<ul>
+<li><em>Destroy the DigitalOcean droplet when finished inspecting the analyses.</em></li>
 </ul>
 </div>
 </div>

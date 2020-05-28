@@ -22,6 +22,12 @@
     <loc>http://hfnosedrctpackage.netlify.com/reference/create_exclusions_plot.html</loc>
   </url>
   <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/create_fig2.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/create_fig3.html</loc>
+  </url>
+  <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/create_fio2.html</loc>
   </url>
   <url>
@@ -64,10 +70,28 @@
     <loc>http://hfnosedrctpackage.netlify.com/reference/create_tcco2_data.html</loc>
   </url>
   <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/create_timesusedhfno_plot.html</loc>
+  </url>
+  <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/create_trial_datatable.html</loc>
   </url>
   <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/extract_CI.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/extract_CI_brms.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/extract_CI_subgroup.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/extract_inla_CI.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/fit_bestworst.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/fit_effect_modification.html</loc>
   </url>
   <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/fit_fanova.html</loc>
@@ -85,6 +109,9 @@
     <loc>http://hfnosedrctpackage.netlify.com/reference/fit_spo2.html</loc>
   </url>
   <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/fit_spo2_auc.html</loc>
+  </url>
+  <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/fit_troops.html</loc>
   </url>
   <url>
@@ -100,16 +127,52 @@
     <loc>http://hfnosedrctpackage.netlify.com/reference/make_co2_long.html</loc>
   </url>
   <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/make_flextable.html</loc>
+  </url>
+  <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/make_plot_co2_mean.html</loc>
   </url>
   <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/make_plot_co2_peak.html</loc>
   </url>
   <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/make_plot_component.html</loc>
+  </url>
+  <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/make_plot_fanova_data.html</loc>
   </url>
   <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/make_row_count.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/make_spo2_long.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/make_subgroup.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/make_summary_descr.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/make_table_co2_mean.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/make_table_outcomes_data.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/make_table_outcomes_formatted.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/make_table_subgroup.html</loc>
+  </url>
+  <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/posterior_prob_summary.html</loc>
+  </url>
+  <url>
+    <loc>http://hfnosedrctpackage.netlify.com/reference/prob_threshold.html</loc>
   </url>
   <url>
     <loc>http://hfnosedrctpackage.netlify.com/reference/process_assist.html</loc>

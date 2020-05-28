@@ -73,6 +73,12 @@ make_flextable_outcomes_formatted <- function(model_list, data_list){
       as_sub("2"),
       " desaturation curve"
     ) ) %>%
+    footnote(i =1, j = ~estimate,
+             value = as_paragraph(
+               "Adjusted for covariates"
+             ),
+             ref_symbols = "*",
+             part = "header") %>%
       footnote(i =2, j = 1,
                value = as_paragraph(
                 "Odds ratios are interpreted as the odds of the event occuring in the HFNO group compared with the odds of the event occuring in the facemask group"

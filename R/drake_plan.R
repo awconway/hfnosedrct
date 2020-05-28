@@ -208,9 +208,36 @@ get_analysis_plan <- function(){
       model_troops = model_troops
     ),
 
+
+    # Results for manuscript
+
+    CI_co2_peak = extract_CI_brms(model_list$model_co2_peak, "mmHg", effect_type="Absolute_difference"),
+    CI_co2_mean = extract_CI_brms(model_list$model_co2_mean, "mmHg", effect_type="Absolute_difference"),
+    CI_isas = extract_CI_brms(model_list$model_isas, effect_type="Absolute_difference"),
+    CI_diffoxygen = extract_CI_brms(model_list$model_diffoxygen, effect_type="Odds ratio"),
+    CI_diffoxygen_best = extract_CI_brms(model_list$model_diffoxygen_best, effect_type="Odds ratio"),
+    CI_diffoxygen_worst = extract_CI_brms(model_list$model_diffoxygen_worst, effect_type="Odds ratio"),
+    CI_diffuseoxygen = extract_CI_brms(model_list$model_diffuseoxygen, effect_type="Odds ratio"),
+    CI_diffuseoxygen_best = extract_CI_brms(model_list$model_diffuseoxygen_best, effect_type="Odds ratio"),
+    CI_diffuseoxygen_worst = extract_CI_brms(model_list$model_diffuseoxygen_worst, effect_type="Odds ratio"),
+    CI_troops = extract_CI_brms(model_list$model_troops,  effect_type="Odds ratio"),
+    CI_spo2 = extract_CI_brms(model_list$model_spo2,  effect_type="Odds ratio"),
+
+    comfortprob = prob_threshold(model_obj = readd(model_comfort)),
+    aucprob = prob_threshold(model_obj = readd(model_spo2_auc)),
+    desatprob = prob_threshold(model_obj = readd(model_spo2)),
+    troopsprob = prob_threshold(model_obj = readd(model_troops)),
+
+    # Table of results for manuscript
     table_outcome = make_table_outcomes_formatted(model_list, data_list),
     table_subgroup = make_table_subgroup(model_obj=model_co2_peak_interact),
     flextable_outcome = make_flextable_outcomes_formatted(model_list, data_list),
+
+    # Save plots for manuscript
+
+    fig2 = create_fig2(plot_fanova_data, plot_fanova_effect),
+
+     fig3 = create_fig3(oxygen_flow_plot),
 
     # Codebook
 
@@ -221,7 +248,7 @@ get_analysis_plan <- function(){
       trigger = trigger(condition=is.null(table_outcome)|is.null(flextable_outcome)),
       command = {
         rmarkdown::render(knitr_in("manuscript/index.Rmd"))
-        file_out("manuscript/index.html")
+        file_out("manuscript/index.docx")
 
       }
     ),

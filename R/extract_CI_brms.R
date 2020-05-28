@@ -64,6 +64,7 @@ extract_CI_brms <- function(model_obj,
 
   result[["interval"]] <- paste0("(", lower, ", ",upper ,")")
 
+  result[["CIbrackets"]] <-  paste0("(95% CI = ", lower, " to ", upper, ")")
 
 
   result[["fullCIbrackets"]] <-  paste0("(", mu, unit, "; 95% CI = ", lower, " to ", upper, ")")

@@ -51,7 +51,9 @@ make_plot_fanova_data <- function(data_fanova){
   plot_fmo <- data_plot %>%
     filter(randomization_num == 0) %>%
     ggplot(aes(x=time_int, y=co2, group=id,alpha=highlight, size=highlight)) +
-    geom_line(colour="#4475b4") +
+    geom_line(
+      # colour="#4475b4"
+      ) +
     scale_y_continuous(name = "TcCO2 (mmHg)",
                        limits=c(0,100)) +
     scale_x_continuous(name = "Time (min)",
@@ -83,7 +85,9 @@ make_plot_fanova_data <- function(data_fanova){
   plot_hfno <- data_plot %>%
     filter(randomization_num == 1) %>%
     ggplot(aes(x=time_int, y=co2, group=id,alpha=highlight, size=highlight)) +
-    geom_line(colour = "#fc8d59") +
+    geom_line(
+      # colour = "#fc8d59"
+      ) +
     scale_y_continuous(name = "TcCO2 (mmHg)",
                        limits=c(0,100)) +
     scale_x_continuous(name = "Time (min)",

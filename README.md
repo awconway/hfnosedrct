@@ -75,8 +75,22 @@ to run this project on a Digital Ocean droplet:
     open a web browser and type in the ip address of the droplet you
     just created followed by the port 8787 (e.g. ipaddress:8787).
 
-  - Follow the instructions for cloning the repository and running the
-    analyses as outlined above.
+  - Enter your username and password to enter an RStudio session.
+
+  - Create a new project from version control (File \> New project \>
+    Version Control \> Git \>
+    <https://github.com/awconway/hfnosedrct.git> )
+
+  - Run this line of code in the console to reproduce the analysis:
+
+<!-- end list -->
+
+    drake::r_make()
+
+You will see the targets being built by `drake`, and the final
+manuscript should be compiled at the end as `index.docx` in the
+`manuscript` folder It may take about 20-30 minutes for all the models
+to be fit and output produced.
 
   - *Destroy the DigitalOcean droplet when finished inspecting the
     analyses.*

@@ -1,15 +1,16 @@
 #' @title Table of participant characteristics
 
 #' @param trial_mod dataframe of all variables collected
-#' 
+#'
 #' @export
 
 #' @importFrom dplyr select
 #' @importFrom gtsummary tbl_summary all_continuous italicize_labels
+#' as_flextable
 create_characteristics_table <- function(trial_mod) {
-  
+
   # Dataframe of all participant characteristics
-  trial_mod %>% 
+  trial_mod %>%
     select(randomization.factor,
            age, sex.factor,
            smoke.factor,
@@ -22,7 +23,7 @@ create_characteristics_table <- function(trial_mod) {
            midazolam,
            propofol,
            fentanyl
-    ) %>% 
+    ) %>%
     tbl_summary(by = randomization.factor,
                 label = list(sex.factor ~ "Gender",
                              smoke.factor ~ "Smoking history",
@@ -39,6 +40,7 @@ create_characteristics_table <- function(trial_mod) {
                             fentanyl ~ "continuous"),
                 missing = "no"
     ) %>%
-    italicize_labels()
-  
+    italicize_labels() %>%
+    as_flextable()
+
 }
