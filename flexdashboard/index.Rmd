@@ -1,5 +1,5 @@
 ---
-title: 'High flow nasal oxygen during sedation in the cardiac catheterisation laboratory'
+title: 'High flow nasal oxygen during sedation for cardiac implantable electronic device procedures: A randomized controlled trial'
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
@@ -83,6 +83,13 @@ Protocol {data-icon="fa-tools"}
 =======================================================================
 
 <iframe style="border:none" src="https://www.aaronconway.info/HFNO/Protocol.html" height="100%" width="100%"></iframe>
+
+
+Statistical appendix {data-icon="fa-tools"}
+=======================================================================
+
+<iframe style="border:none" src="https://hfnosedrct.netlify.app/appendix" height="100%" width="100%"></iframe>
+
 
 Participants {data-icon="fa-users" .storyboard}
 =======================================================================

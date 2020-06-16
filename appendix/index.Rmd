@@ -1,0 +1,79 @@
+---
+title: "High flow nasal oxygen during sedation for cardiac implantable electronic device procedures: A randomized controlled trial"
+description: |
+  Statistical appendix
+output: distill::distill_article
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+## Robust regression 
+
+A robust regression model is used for the analysis of continuous outcomes peak TcCO2, mean TcCO2, log SPO2 AUC, and average ISAS score. Let $y_i$ be the value of the continuous response for the $i$th patient, $x_{Baseline,i}$ be a baseline covariate, and $x_{HFNO,i}$ be an indicator variables which is nonzero if the patient belonged to the HFNO treatment group. Associated with each patient are additional stratification indicator variables for OSA status $x_{OSA,i}$ and CRT status $x_{CRT,i}$. We supress the patient index $i$ on patient covariates to simplify the notation.
+
+The likelihood of the robust regression model is
+\begin{equation}
+y_i | \nu, \mu_i, \sigma \sim \text{Student-t}\left(\nu, \mu_i, \sigma\right),
+\end{equation}
+where $y_i$ is the response value of the $i$th patient, $\text{Student-t}\left(\nu, \mu, \sigma\right)$ is a generalized Student's t-distribution with degrees of freedom $\nu$, location parameter $\mu$ and scale parameter $\sigma$. The location parameter for the $i$th patient is assumed to depend on their covariates as
+
+\begin{equation}
+\mu_i = f(x_{\text{Baseline}}) + \beta_0 + \beta_1 x_{HFNO} + \beta_2x_{OSA} + \beta_3x_{CRT},
+(\#eq:robust_link)
+\end{equation}
+
+where $f$ is a non-linear continuous function of a continuous covariate $x_{Baseline}$ and $\beta_j, j=0,1,2,3$, are regression coeficients. For peak and mean TcCO~2~, $x_{Baseline}$ is taken as the first recorded value of TcCO~2~ of the patient during their procedure. For average SPO$_2$ and average ISAS score there is no corresponding baseline covariate and so $f$ is omitted.
+Prior distributions of model parameters are chosen to be diffuse in the absence of information about their likely values. In the following list of prior specifications, $\text{Normal}(\mu,\sigma)$ denotes a normal distribution with mean $\mu$ and standard deviation $\sigma$.
+
+* $f$: The function are estimated using a thin-plate spline basis and the random-effect formulation used in brms [cite]. The spline basis dimension is 20 and the standard deviation parameter governing the random-effect distribution is given a $\text{Student-t}\left(3, 0, 10\right)$ prior.
+* $\beta_0$: intercept coefficient is given a $\text{Normal}(\mu,25)$ prior, where the location parameter $\mu$ is set equal to the mean value of the response.
+* $\beta_1, \beta_2, \beta_3$: coefficients of indicator variables are given a $\text{Normal}(0,25)$ prior.
+* $\nu$: degrees of freedom parameter is given a $\text{Gamma(2,0.1)}$ prior proposed for such parameters in the absence of any information (cite).
+* $\sigma$: scale parameter is given a $\text{Student-t}\left(3, 0, 10\right)$ prior.
+
+## Logistic and proportional odds regression
+
+A logistic regression models are used for both the adverse affect "patient experienced at least one minor respiratory event" and the event "patient experienced at least one desaturation event". A proportional-odds model with logit link is used for ordinal outcomes patient comfort of oxygen delivery, and Anesthesia Assistant rating of difficulty maintaining oxygenation status and rating of difficulty using oxygen delivery device. The link function in each model is written as a function of covariates in the same way as in the robust regression case (). The coeficients $\beta_0, ... \beta_3$ are given a $\text{Normal}(0,10)$ prior distributions in the absence of information about their likely values.
+
+## Functional analysis of variance
+
+The functional observations $\mathbf{y}_{ij}$ are taken to be the vector of TcCO~2~ measurements of the $i$th patient belonging to randomization group $j$ measured at 1 second intervals from the procedure's start until the procedure's end. The group variable $j=1$ indicates membership to the face mask oxygen group and $j=2$ indicates membership to the HFNO group. Associated with each patient are stratification indicator variables for their OSA status $x_{OSA}$ and CRT status $x_{CRT}$. All functional observations are aligned to have time $t=0$ occur at the start of each procedure. The time resolution of observations is reduced to measurements every 30 seconds to reduce the computational burden of model fitting.
+
+The one-way functional ANOVA model assumes that the TcCO~2~ measurments $\mathbf{y}_{ij}$ for the $i$th patient has the likelihood function
+\begin{equation}
+  y_{ij} | \boldsymbol{\eta}_{ij},\Sigma_i \sim \text{Normal}\left(\boldsymbol{\eta}_{ij}, \Sigma_i\right),
+\end{equation}
+where $\boldsymbol \eta_{ij}$ is the mean vector and $\Sigma_i$ is a covariance matrix. The mean vector is assumed to have the form
+\begin{equation}
+  \boldsymbol\eta_{ij} = \boldsymbol\mu + \boldsymbol\alpha_j + \beta_1x_{OSA} + \beta_2x_{CRT} + b_i,
+\end{equation}
+where $\boldsymbol\mu$ is the baseline functional effect common to all patients, $\boldsymbol\alpha_j$ is the $j$th treatment group functional effect,$\beta_1$ and $\beta_2$ are effects for OSA status and CRT status, respectively. A normally-distributed random intercept $b_i \sim N(0,\sigma_b^2)$ is included to account for different average levels in TcCO~2~ observed between patients. The baseline constraint parameterization of $\alpha_1 = 0$ is used to ensure that the model is identifiable. Under this parameterization, $\boldsymbol\mu$ is the mean level of TcCO~2~ of the face mask oxygen group and $\boldsymbol\mu + \boldsymbol\alpha_2$ is the mean level of TcCO~2~ of the HFNO group.
+
+The set of TcCO~2~ measurements from a patient form a time-series that is inadequately modelled by assuming independent and identically distributed normal errors in (3). Mis-specification of the covariance structure can lead to credible intervals for the treatment effect that are artificially narrow. To better model the error structure of the data, the covariance matrix $\Sigma_i$ is assumed to have the form of an autoregressive process of order 1 with the same set of correlation and variance parameters for every patient, denoted $\rho$ and $\sigma^2_{AR1}$, respectively.
+
+The model is scaled to have generalized variance of 1 to aid in prior specification [@sorbye2014]. The prior distrbutions of model parameters are chosen to be diffuse in the absence of information about their likely values. They are as follows:
+
+* $\boldsymbol\mu, \boldsymbol\alpha$: functional effects are estimated using a smoothing spline approach by specifying a random-walk prior of order 2 on the 2nd-order differences of the vector components [BRINLA]. The standard deviation parameter hyper-parameter of the random walk processeses is given a $\text{Inv-Gamma}(1, 5\times10^{-5})$ prior distribution.
+
+* $\beta_1$, $\beta_2$: regression coeficients are given a $\text{N}(0, 25)$ prior distribution.
+
+* $\sigma_b:$ standard deviation of the random intercept is given a $\text{Inv-Gamma}(1, 5\times10^{-5})$ prior distribution.  
+
+* $\rho, \sigma_{AR}:$ prior distributions for the parameters of the covariance matrix are specified according to their internal parameterization in INLA:
+\begin{equation*}
+  \begin{aligned}
+  \text{log} \left(\frac{1+ \rho}{1 - \rho} \right) &\sim\text{Normal}(0, 5),\\
+  \frac{\sigma_{AR}^2}{1-\rho^2}  &\sim \text{Inv-Gamma}(1, 5\times10^{-5}).
+  \end{aligned}
+\end{equation*}
+
+
+
+
+
+
