@@ -33,6 +33,7 @@ institute:
   - UoT: Department of Anesthesia and Interdepartmental Division of Critical Care Medicine, University of Toronto, Toronto, Canada
 bibliography: Extras/references.bib
 csl: Extras/anesthesia-and-analgesia.csl
+date: All authors take responsibility for all aspects of the reliability and freedom from bias of the data presented and their discussed interpretation.
 output:
   officedown::rdocx_document:
     reference_docx: Extras/manuscript_template.docx
@@ -66,6 +67,13 @@ loadd(desatprob)
 loadd(troopsprob)
 ```
 
+
+**Acknowedgements:** This study was funded by a Connaught New Researcher Award (University of Toronto). MP is supported by an Early Investigator Merit Award from the Department of Anesthesia, University of Toronto and Toronto General Hospital.
+
+**Conflicts of interest:** The authors declare no competing interests.
+
+**Keywords:** Anesthesia, oxygen supplementation, deep sedation, conscious sedation, cardiology.
+
 \pagebreak
 
 
@@ -89,6 +97,7 @@ We investigated the effects of using HFNO with oxygen to air ratio settings esti
 **Trial registration number:** NCT03858257
 
 
+
 \pagebreak
 
 ## Introduction
@@ -108,7 +117,7 @@ Informed consent was obtained. The study protocol conforms to the 1975 Declarati
 
 ### Participants
 
-Adults undergoing an elective CIED procedure with sedation administered by an Anesthesia Assistant were included.
+Adults undergoing an elective CIED procedure with sedation administered by an Anesthesia Assistant at one large academic teaching hospital in Canada were included.
 
 *Exclusion criteria*
 
@@ -161,6 +170,11 @@ TcCO~2~ was measured continuously using the Sentec Digital Monitoring system wit
 ### Sample size calculation
 
 We estimated based on our prior work[@Conway_2019] that the peak TcCO~2~ level in the control group would be 47 mmHg and standard deviation would be 7 mmHg. Assuming a type I error rate of 5%, a sample of 130 participants would achieve 90% power to detect a reduction in mean TcCO~2~ levels of 4 mmHg in the intervention period. A difference in TcCO~2~ levels of 4 mmHg was selected for this sample size calculation because it was deemed of potential clinical relevance and was used to power previous trials.[@perrin2011randomised; @Wijesinghe2012]  Differences in CO~2~ levels of a similar magnitude have been detected in previous trials evaluating the efficacy of interventions to improve sedation safety.[@Baulig2015; @Carmi2011; @deoliveirajrDetectionHypoventilationDeep2010; @deoliveirajrEffectKetamineHypoventilation2014; @Smith2015] 
+
+### Random sequence generation and concealment
+
+A stratified (by diagnosis of obstructive sleep apnea and type of procedure – cardiac resynchronization therapy device implant), block randomized sequence was generated using the redcapAPI package in R.[@redcapAPI] The RA retrieved the allocation for each consecutive participant in REDCap^TM^ prior to the procedure.
+
 
 ### Statistical analyses
 
@@ -233,32 +247,9 @@ Fig. 1 CONSORT Flow Diagram
 
 Fig. 2 Transcutaneous carbon dioxide measurements throughout procedures
 
+Fig. 3 Oxygen flow-rates
 
 \pagebreak
-
-```{r fig.cap="CONSORT flow diagram"}
-knitr::include_graphics(here::here("plots/consort.png"))
-```
-
-<!---BLOCK_MULTICOL_START--->
-
-
-<!---BLOCK_STOP--->
-
-
-<!--BLOCK_LANDSCAPE_START--->
-
-
-```{r fig.cap="Transcutaneous carbon dioxide measurements throughout procedures"}
-knitr::include_graphics(here::here("plots/fig-2.png"))
-```
-
-\pagebreak
-
-```{r fig.cap="Oxygen flow-rates"}
-knitr::include_graphics(here::here("plots/fig-3.png"))
-```
-<!---BLOCK_LANDSCAPE_STOP--->
 
 
 ## Table 1. Participant characteristics

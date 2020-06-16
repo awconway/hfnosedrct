@@ -1,0 +1,22 @@
+---
+author: "High flow nasal oxygen during sedation for cardiac implantable electronic device procedures: A randomized controlled trial"
+title: "CRediT author statement"
+output:
+  officedown::rdocx_document:
+    reference_docx: Extras/manuscript_template.docx
+---
+
+
+Aaron Conway: Conceptualization, Visualization, Writing - Original Draft, Supervision, Funding acquisition
+
+Peter Collins: Methodology, Visualization, Formal analysis, Writing - Review & Editing
+
+Kristina Chang: Investigation, Project administration, Project administration, Writing - Review & Editing
+
+Navpreet Kamboj: Writing - Review & Editing
+
+Ana Lopez-Filici: Methodology, Resources, Writing - Review & Editing
+
+Phoebe Lam: Conceptualization, Methodology, Resources, Writing - Review & Editing
+
+Matteo Parotto: Conceptualization, Methodology, Resources, Writing - Review & Editing

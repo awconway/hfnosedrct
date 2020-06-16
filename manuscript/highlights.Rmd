@@ -1,0 +1,15 @@
+---
+author: "High flow nasal oxygen during sedation for cardiac implantable electronic device procedures: A randomized controlled trial"
+title: "Highlights"
+output:
+  officedown::rdocx_document:
+    reference_docx: Extras/manuscript_template.docx
+---
+
+- High flow nasal oxygen at 50L/min for patients undergoing elective CIED procedures with sedation is highly unlikely to *decrease* or *increase* peak TcCO~2~ concentration by a clinically important amount.
+
+- There was no discernable trend observed in how the difference in peak TcCO~2~ varied with procedure time.
+
+- Satisfaction with sedation is very likely to be similar between high flow nasal oxygen and facemask oxygen.
+
+- The high flow nasal oxygen device was rated as more difficult for Anesthesia Assistants to use, although none rated the HFNO device as *difficult*.

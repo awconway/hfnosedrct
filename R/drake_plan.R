@@ -84,6 +84,9 @@ get_analysis_plan <- function(){
     # CONSORT diagram of all participants
     consort_png = create_consort_png(screen, trial),
 
+    consort_tiff = create_consort_tiff(screen, trial),
+
+
     # Plot of frequencies of all participant exclusion reasons
     exclusions_plot = create_exclusions_plot(screen),
 
@@ -236,8 +239,10 @@ get_analysis_plan <- function(){
     # Save plots for manuscript
 
     fig2 = create_fig2(plot_fanova_data, plot_fanova_effect),
+    fig2_tiff = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
 
      fig3 = create_fig3(oxygen_flow_plot),
+    fig3_tiff = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
 
     # Codebook
 
