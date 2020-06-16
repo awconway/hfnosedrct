@@ -68,10 +68,14 @@ create_fig2_pdf <- function(plot_fanova_data,
 
   layout <- "
 AABB
-#CC#
+CCCC
 "
   combined <- p1 + p2 +
-    plot_layout(design = layout)
+    plot_layout(design = layout)+
+    plot_annotation(
+      caption = 'Longest procedures highlighted as a reference in A and B',
+      tag_levels = 'A'
+    )
 
   ggsave(combined, device = "pdf", filename = "plots/fig-2.pdf",
          width = 174, units = "mm")

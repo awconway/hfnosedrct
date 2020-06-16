@@ -84,7 +84,7 @@ get_analysis_plan <- function(){
     # CONSORT diagram of all participants
     consort_png = create_consort_png(screen, trial),
 
-    consort_tiff = create_consort_tiff(screen, trial),
+    # consort_tiff = create_consort_tiff(screen, trial),
 
     # consort_pdf = create_consort_pdf(screen, trial),
 
@@ -240,12 +240,12 @@ get_analysis_plan <- function(){
     # Save plots for manuscript
 
     fig2 = create_fig2(plot_fanova_data, plot_fanova_effect),
-    fig2_tiff = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
-    fig2_pdf = create_fig2_pdf(plot_fanova_data, plot_fanova_effect),
+    # fig2_tiff = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
+    # fig2_pdf = create_fig2_pdf(plot_fanova_data, plot_fanova_effect),
 
      fig3 = create_fig3(oxygen_flow_plot),
-    fig3_tiff = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
-    fig3_pdf = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
+    # fig3_tiff = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
+    # fig3_pdf = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
 
     # Codebook
 
