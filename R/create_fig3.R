@@ -30,3 +30,19 @@ create_fig3_tiff <- function(oxygen_flow_plot){
 
 }
 
+
+#' @title Figure 3 for manuscript
+#' @name create_fig3_pdf
+#' @description Plot of oxygen use
+#' @export
+#' @importFrom ggplot2 ggsave
+
+
+create_fig3_pdf <- function(oxygen_flow_plot){
+
+  plot <- oxygen_flow_plot
+
+  ggsave(plot, device = "pdf", filename = "plots/fig-3.pdf",
+         width = 174, units = "mm")
+
+}
