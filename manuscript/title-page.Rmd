@@ -1,0 +1,50 @@
+---
+title: "High flow nasal oxygen during sedation for cardiac implantable electronic device procedures: A randomized controlled trial"
+author:
+  - Aaron Conway BN(Hons), PhD:
+      email: aaron.conway@utoronto.ca
+      phone: +1 416 946 7112
+      address: 585 University Ave | Toronto, ON  M5G 2N2
+      institute: [PMCC, LBFON, QUT]
+      correspondence: true
+  - Peter Collins MStats:
+      institute: [PMCC]
+      correspondence: false
+  - Kristina Chang BScN, MScN:
+      institute: [PMCC]
+      correspondence: false
+  - Navpreet Kamboj BScN, MScN:
+      institute: [LBFON]
+      correspondence: false
+  - Ana Lopez-Filici MHSc(HA), HBSc, CCAA, RRT:
+      institute: [TGH]
+      correspondence: false
+  - Phoebe Lam M.Ed, H.BSc, RRT, CCAA, FCSRT:
+      institute: [TGH]
+      correspondence: false
+  - Matteo Parotto MD, PhD:
+      institute: [TGH, UoT]
+      correspondence: false
+institute:
+  - PMCC: Peter Munk Cardiac Centre, University Health Network, Toronto, Canada
+  - LBFON: Lawrence S. Bloomberg Faculty of Nursing, University of Toronto, Toronto, Canada
+  - QUT: School of Nursing, Queensland University of Technology (QUT), Brisbane, Australia
+  - TGH: Department of Anesthesia and Pain Management, Toronto General Hospital, UHN, Toronto, Canada
+  - UoT: Department of Anesthesia and Interdepartmental Division of Critical Care Medicine, University of Toronto, Toronto, Canada
+bibliography: Extras/references.bib
+csl: Extras/anesthesia-and-analgesia.csl
+date: All authors take responsibility for all aspects of the reliability and freedom from bias of the data presented and their discussed interpretation.
+output:
+  officedown::rdocx_document:
+    reference_docx: Extras/manuscript_template.docx
+    pandoc_args:
+      - --lua-filter=Extras/scholarly-metadata.lua
+      - --lua-filter=Extras/author-info-blocks.lua
+---
+
+
+**Acknowedgements:** This study was funded by a Connaught New Researcher Award (University of Toronto). MP is supported by an Early Investigator Merit Award from the Department of Anesthesia, University of Toronto and Toronto General Hospital.
+
+**Conflicts of interest:** The authors declare no competing interests.
+
+**Keywords:** Anesthesia, oxygen supplementation, deep sedation, conscious sedation, cardiology.

@@ -1,0 +1,49 @@
+---
+output:
+  officedown::rdocx_document:
+    reference_docx: Extras/manuscript_template.docx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(magrittr)
+library(patchwork)
+library(drake)
+
+# Values of interest
+loadd(CI_co2_peak)
+loadd(CI_co2_mean)
+loadd(CI_isas)
+loadd(CI_diffoxygen)
+loadd(CI_diffoxygen_best)
+loadd(CI_diffoxygen_worst)
+loadd(CI_diffuseoxygen)
+loadd(CI_diffuseoxygen_best)
+loadd(CI_diffuseoxygen_worst)
+loadd(CI_troops)
+loadd(CI_spo2)
+
+loadd(comfortprob)
+loadd(aucprob)
+loadd(desatprob)
+loadd(troopsprob)
+```
+### Abstract
+
+**Introduction**
+
+High flow nasal oxygen (HFNO) may better support the vulnerable breathing state of patients during procedural sedation. The objective of this study was to investigate the effects of HFNO in comparison to facemask oxygen during cardiac implantable electronic device (CIED) procedures performed with procedural sedation.
+
+**Methods**
+A randomized controlled trial was conducted. Participants were 1:1 randomized to facemask (≥ 8L/min) or HFNO (50L/min with a 50:50 oxygen to air ratio) during procedural sedation administered by Anesthesia Assistants (supervised by an Anesthesiologist). The primary outcome was peak transcutaneous carbon dioxide (TcCO~2~). Outcomes were analysed using Bayesian statistical models.
+
+**Results**
+
+The 129 participants who were randomized and received a CIED with sedation were included. The difference in peak TcCO~2~ was `r CI_co2_peak[["fullCI"]]`. Minor adverse sedation events were `r CI_troops[["effect"]]` times more likely to occur in the HFNO group. This estimate is imprecise `r CI_troops[["CIbrackets"]]`. The odds ratio for oxygen desaturation was `r CI_spo2[["effect"]]` `r CI_spo2[["CIbrackets"]]`. Anesthesia assistants rated the HFNO device as harder to use. The probability that patients are more likely to rate comfort with the oxygen supplementation device higher with HFNO compared to the facemask is `r comfortprob$above`. 
+
+**Conclusion**
+
+We investigated the effects of using HFNO with oxygen to air ratio settings estimated to deliver a FiO2 approximately equivalent to that achieved from standard practice with facemask oxygen. There was no clear advantage for using HFNO in preference to facemask oxygen during CIED procedures performed with sedation.
+
+**Trial registration number:** NCT03858257
+
