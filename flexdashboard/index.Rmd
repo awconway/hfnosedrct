@@ -68,6 +68,8 @@ HTML('<div>
 <li><span class="fa-li"><i class="fad fa-angle-double-right"></i></span><em>Kristina Chang</em> <p style="font-size:16px">Toronto General Hospital, UHN</p></li>
 
 <li><span class="fa-li"><i class="fad fa-angle-double-right"></i></span><em>Ana Lopez-Filici</em>  <p style="font-size:16px">Toronto General Hospital, UHN</p></li>
+
+<li><span class="fa-li"><i class="fad fa-angle-double-right"></i></span><em>Phoebe Lam</em>  <p style="font-size:16px">Toronto General Hospital, UHN</p></li>
   
 <li><span class="fa-li"><i class="fad fa-angle-double-right"></i></span><em>Matteo Parotto</em>  <p style="font-size:16px">Toronto General Hospital, UHN</p></li>
 </ul>
