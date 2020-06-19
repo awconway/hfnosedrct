@@ -7,16 +7,16 @@ output:
 ---
 
 
-Aaron Conway: Conceptualization, Visualization, Writing - Original Draft, Supervision, Funding acquisition
+Aaron Conway: Conceptualization, Project administration, Investigation, Visualization, Formal analysis, Writing - Original Draft, Supervision, Funding acquisition
 
 Peter Collins: Methodology, Visualization, Formal analysis, Writing - Review & Editing
 
-Kristina Chang: Investigation, Project administration, Project administration, Writing - Review & Editing
+Kristina Chang: Investigation, Project administration, Writing - Review & Editing
 
 Navpreet Kamboj: Writing - Review & Editing
 
 Ana Lopez-Filici: Methodology, Resources, Writing - Review & Editing
 
-Phoebe Lam: Conceptualization, Methodology, Resources, Writing - Review & Editing
+Phoebe Lam: Methodology, Resources, Writing - Review & Editing
 
-Matteo Parotto: Conceptualization, Methodology, Resources, Writing - Review & Editing
+Matteo Parotto: Methodology, Resources, Writing - Review & Editing

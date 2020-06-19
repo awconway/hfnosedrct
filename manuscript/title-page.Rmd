@@ -16,7 +16,7 @@ author:
   - Navpreet Kamboj BScN, MScN:
       institute: [LBFON]
       correspondence: false
-  - Ana Lopez-Filici MHSc(HA), HBSc, CCAA, RRT:
+  - Ana Lopez Filici MHSc(HA),HBSc, RRT, CCAA, FCSRT:
       institute: [TGH]
       correspondence: false
   - Phoebe Lam M.Ed, H.BSc, RRT, CCAA, FCSRT:
