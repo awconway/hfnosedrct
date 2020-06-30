@@ -1,28 +1,28 @@
 ---
-title: "High flow nasal oxygen during procedural sedation: A randomized controlled trial"
+title: "High flow nasal oxygen during procedural sedation for cardiac implantable electronic devices: A randomized controlled trial"
 author:
-  - Aaron Conway BN(Hons), PhD:
+  - Aaron Conway:
       email: aaron.conway@utoronto.ca
       phone: +1 416 946 7112
       address: 585 University Ave | Toronto, ON  M5G 2N2
       institute: [PMCC, LBFON, QUT]
       correspondence: true
-  - Peter Collins MStats:
+  - Peter Collins:
       institute: [PMCC]
       correspondence: false
-  - Kristina Chang BScN, MScN:
+  - Kristina Chang:
       institute: [PMCC]
       correspondence: false
-  - Navpreet Kamboj BScN, MScN:
+  - Navpreet Kamboj:
       institute: [LBFON]
       correspondence: false
-  - Ana Lopez Filici MHSc(HA),HBSc, RRT, CCAA, FCSRT:
+  - Ana Lopez Filici:
       institute: [TGH]
       correspondence: false
-  - Phoebe Lam M.Ed, H.BSc, RRT, CCAA, FCSRT:
+  - Phoebe Lam:
       institute: [TGH]
       correspondence: false
-  - Matteo Parotto MD, PhD:
+  - Matteo Parotto:
       institute: [TGH, UoT]
       correspondence: false
 institute:
@@ -67,47 +67,50 @@ loadd(troopsprob)
 ```
 
 
-**Acknowedgements:** This study was funded by a Connaught New Researcher Award (University of Toronto). MP is supported by an Early Investigator Merit Award from the Department of Anesthesia, University of Toronto and Toronto General Hospital.
-
-**Conflicts of interest:** The authors declare no competing interests.
-
-**Keywords:** Anesthesia, oxygen supplementation, deep sedation, conscious sedation, cardiology.
+**Running head:** High flow nasal oxygen during sedation
 
 \pagebreak
 
 
 ### Abstract
 
+**Background**
+
+High flow nasal oxygen may better support the vulnerable breathing state of patients during procedural sedation.
+
 **Objective**
 
-High flow nasal oxygen (HFNO) may better support the vulnerable breathing state of patients during procedural sedation. The objective of this study was to investigate the effects of HFNO in comparison to facemask oxygen during cardiac implantable electronic device (CIED) procedures performed with procedural sedation.
+The objective of this study was to investigate the effects of high flow nasal oxygen in comparison to facemask oxygen during cardiac implantable electronic device procedures performed with procedural sedation.
 
-**Methods**
-A randomized controlled trial was conducted. Participants were 1:1 randomized to facemask (≥ 8L/min) or HFNO (50L/min with a 50:50 oxygen to air ratio) during procedural sedation administered by Anesthesia Assistants (supervised by an Anesthesiologist). The primary outcome was peak transcutaneous carbon dioxide (TcCO~2~). Outcomes were analysed using Bayesian statistical models.
+**Design**
+
+Randomized controlled trial.
+
+**Setting**
+
+The study was conducted at one academic teaching hospital in Canada.
+
+**Participants**
+
+Adults undergoing an elective cardiac implantable electronic device procedure with sedation administered by an Anesthesia Assistant (supervised by an Anesthesiologist) from August 2019 to March 2020.
+
+**Interventions**
+
+Participants were 1:1 randomized to facemask (≥ 8L/min) or high flow nasal oxygen (50L/min with a 50:50 oxygen to air ratio.
+
+**Main outcome measures**
+
+The primary outcome was peak transcutaneous carbon dioxide. Outcomes were analysed using Bayesian statistical models.
 
 **Results**
 
-The 129 participants who were randomized and received a CIED with sedation were included. The difference in peak TcCO~2~ was `r CI_co2_peak[["fullCI"]]`. Minor adverse sedation events were `r CI_troops[["effect"]]` times more likely to occur in the HFNO group. This estimate is imprecise `r CI_troops[["CIbrackets"]]`. The odds ratio for oxygen desaturation for the HFNO group compared with the facemask group was `r CI_spo2[["effect"]]` `r CI_spo2[["CIbrackets"]]`. The difference in satisfaction with sedation scores betwen groups was `r CI_isas[["fullCI"]]`.
+The 129 participants who were randomized and received a cardiac implantable electronic device with sedation were included. The difference in peak transcutaneous carbon dioxide was `r CI_co2_peak[["fullCI"]]`. Minor adverse sedation events were `r CI_troops[["effect"]]` times more likely to occur in the high flow nasal oxygen group. This estimate is imprecise `r CI_troops[["CIbrackets"]]`. The odds ratio for oxygen desaturation for the high flow nasal oxygen group compared with the facemask group was `r CI_spo2[["effect"]]` `r CI_spo2[["CIbrackets"]]`. The difference in satisfaction with sedation scores betwen groups was `r CI_isas[["fullCI"]]`.
 
 **Conclusions**
 
-We investigated the effects of using HFNO with oxygen to air ratio settings estimated to deliver a FiO2 approximately equivalent to that achieved from standard practice with facemask oxygen. There was no clear advantage for using HFNO in preference to facemask oxygen during CIED procedures performed with sedation.
+We investigated the effects of using high flow nasal oxygen with oxygen to air ratio settings estimated to deliver a fraction of inspired oxygen approximately equivalent to that achieved from standard practice with facemask oxygen. There was no clear advantage for using high flow nasal oxygen in preference to facemask oxygen during cardiac implantable electronic device procedures performed with sedation.
 
 **Trial registration number:** NCT03858257
-
-**Section head:** Healthcare delivery, economics and global health
-
-**What is already known about this subject?**
-
-- A prior physiological modeling study identified a mechanism by which HFNO promotes carbon dioxide clearance.
-
-**What does this study add?**
-
-- We found that HFNO at 50L/min for patients undergoing elective CIED procedures with sedation is highly unlikely to *decrease* or *increase* peak TcCO~2~ concentration by a clinically important amount.
-
-**How might this impact on clinical practice?**
-
-- Using HFNO during CIED procedures performed with procedural sedation is not likely to prevent potential adverse sedation events that may be precipitated by hypercarbia.
 
 \pagebreak
 
@@ -124,7 +127,7 @@ A randomized controlled trial design was used with participants 1:1 randomized t
 1. Facemask oxygen; or
 2. High flow nasal oxygen.
 
-Informed consent was obtained. The study protocol conforms to the 1975 Declaration of Helsinki and received approval by the hospital research ethics board (18-6343). The trial was prospectively registered (NCT03858257).
+Informed consent was obtained. The study protocol conforms to the 1975 Declaration of Helsinki. Ethical approval for this study (Ethical Committee N° 18-6343) was provided by the University Health Network Research Ethics Board, Toronto, Canada (Co-chair Morris Sherman) on June 21 2019. The trial was prospectively registered (NCT03858257).
 
 ### Participants
 
@@ -193,11 +196,6 @@ Bayesian statistical models were used. Data and code are available [here](https:
 
 Posterior inference for all models except the functional ANOVA model was performed using Hamiltonian Monte Carlo through the brms package [@bruckner2017], version `r packageVersion("brms")`. For this set of models, 2000 posterior samples were obtained from 4 independent chains of 2000 samples, where the first 1000 warm-up samples were discarded. Posterior inference for the functional ANOVA model was performed using the Integrated Nested Laplacian Approximation [@rue2009] through the INLA package, version `r packageVersion("INLA")`. The marginal posterior distribution of parameters was summarized by their mean and a 95% credible interval defined by the interval spanning the 2.5% and 97.5% percentiles of their distributions. The clinical significance of treatment effects relating to TcCO~2~ concentration were evaluated by computing the posterior probability that an effect exceeds 4 mmHg in either direction. When the proportion of missing data was large and the missing completely at random (MCAR) assumption was unlikely to be satisfied, a sensitivity analysis was performed to investigate the robustness of the conclusions of the complete-case analysis.
 
-
-### Patient and public involvement
-
-This article was written without patient involvement. Patients were not invited to comment on the study design and were not consulted to develop patient-relevant outcomes or to interpret the results. Patients were not invited to contribute to the writing or editing of this document for readability or accuracy.
-
 ## Results
 
 
@@ -247,6 +245,18 @@ The primary outcome was peak TcCO~2~ and we accounted for the correlation betwee
 ### Conclusion
 
 We investigated the effects of using HFNO with the flow-rate and oxygen to air ratio set to deliver a FiO~2~ approximately equivalent to that achieved from standard practice with facemask oxygen. Ventilation, as measured by TcCO~2~, is highly unlikely to differ by a clinically important amount. The probability that minor adverse sedation events were more likely to occur in the HFNO group was high and the severity of oxygen desaturations is probably worse with HFNO. There is a higher probability that patients will be more comfortable during procedures with HFNO in comparison to the facemask, but overall patient satisfaction with sedation is likely to be similar. Overall, there was no clear advantage identified for using HFNO in place of facemask oxygen.
+
+\pagebreak
+
+## Acknowedgements
+
+1. Assistance with the article: none.
+
+2. Financial support and sponsorship: This study was funded by a Connaught New Researcher Award (University of Toronto). MP is supported by an Early Investigator Merit Award from the Department of Anesthesia, University of Toronto and Toronto General Hospital.
+
+3. Conflicts of interest: .one.
+
+4. Presentation: none.
 
 \pagebreak
 
