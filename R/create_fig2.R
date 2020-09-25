@@ -68,7 +68,7 @@ create_fig2_pdf <- function(plot_fanova_data,
 
   layout <- "
 AABB
-CCCC
+#CC#
 "
   combined <- p1 + p2 +
     plot_layout(design = layout)+
