@@ -8,6 +8,7 @@
 #' @importFrom forcats fct_drop
 #' @importFrom gtsummary tbl_summary all_continuous italicize_labels
 #' as_flextable
+#' #' @importFrom width
 create_characteristics_table <- function(trial_mod) {
 
   # Dataframe of all participant characteristics
@@ -60,6 +61,9 @@ create_characteristics_table <- function(trial_mod) {
                             admward.factor ~ "frequency")
     ) %>%
     italicize_labels() %>%
-    as_flextable()
+    as_flextable() %>%
+    width(j=1,width = 3.37) %>%
+    width(j=2,width = 1.67) %>%
+    width(j=3,width = 1.47)
 
 }
