@@ -31,8 +31,8 @@ make_flextable_outcomes_formatted <- function(model_list, data_list){
     select(
       model,
       response,
-      `Face mask oxygen`,
       `High Flow nasal oxygen`,
+      `Face mask oxygen`,
       effect_type,
       estimate
     )

@@ -117,5 +117,5 @@ make_plot_fanova_data <- function(data_fanova){
              angle=90,
              col="gray75")
 
-  plot_fmo + plot_hfno
+  plot_hfno + plot_fmo
 }

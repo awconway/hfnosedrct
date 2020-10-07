@@ -94,6 +94,10 @@ get_analysis_plan <- function(){
     # Dataframe of all participant characteristics
     characteristics_table = create_characteristics_table(trial_mod),
 
+    # Medication summary table
+
+    med_summary = create_med_summary(trial_mod),
+
     # Table of all columns of interest from trial dataframe
     trial_datatable = create_trial_datatable(trial_mod, data_labelled),
 
@@ -240,12 +244,12 @@ get_analysis_plan <- function(){
     # Save plots for manuscript
 
     fig2 = create_fig2(plot_fanova_data, plot_fanova_effect),
-    # fig2_tiff = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
-    # fig2_pdf = create_fig2_pdf(plot_fanova_data, plot_fanova_effect),
+     fig2_tiff = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
+     fig2_pdf = create_fig2_pdf(plot_fanova_data, plot_fanova_effect),
 
      fig3 = create_fig3(oxygen_flow_plot),
-    # fig3_tiff = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
-    # fig3_pdf = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
+     fig3_tiff = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
+     fig3_pdf = create_fig2_tiff(plot_fanova_data, plot_fanova_effect),
 
     # Codebook
 
