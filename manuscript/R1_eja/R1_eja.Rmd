@@ -1,0 +1,11 @@
+---
+toname: European Journal of Anaesthesiology
+toaddress: Editorial Board
+opening: To the editor,
+closing: Regards,
+spacing: 1
+output: ConwayLetterTemplate::letter
+# output: word_document
+---
+
+Thank you for allowing us to revise our manuscript for further consideration for publication. Please find our responses to the comments from the reviewers in the table attached below.
