@@ -142,14 +142,14 @@ get_analysis_plan <- function(){
 
     # Functional ANOVA analysis
     data_fanova = process_fanova(co2_long, reso = reso),
-    # model_fanova = fit_fanova(data_fanova),
-    # plot_fanova_data = make_plot_fanova_data(data_fanova),
-    # plot_fanova_effect = make_plot_component(data_fanova,
-                                             # model_fanova,
-                                             # reso,
-                                             # component_str = "alpha",
-                                             # title = "Treatment effect",
-                                             # ylim=c(-40,40)),
+     model_fanova = fit_fanova(data_fanova),
+     plot_fanova_data = make_plot_fanova_data(data_fanova),
+     plot_fanova_effect = make_plot_component(data_fanova,
+                                              model_fanova,
+                                              reso,
+                                              component_str = "alpha",
+                                              title = "Treatment effect",
+                                              ylim=c(-40,40)),
     # Omit unless you want to do FANOVA model checking. This can take ~ 10 minutes.
     # fanova_ppred_plot = make_ppred_plot(model=model_fanova, n_sim=1000, reso=reso, seed=seed),
 
