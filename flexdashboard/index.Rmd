@@ -42,7 +42,7 @@ div(class="page", #wrapper for whole home page to set margin
 div(class="jumbotron",    
 h1(HTML("<em>High flow nasal oxygen during sedation in the cardiac catheterisation laboratory</em>")),
   p("A randomized controlled trial"),
-HTML('<a class="button" href="">Click here to access the full review</a>')),
+HTML('<a class="button" href="https://journals.lww.com/ejanaesthesiology/Abstract/9000/High_flow_nasal_oxygen_during_procedural_sedation.98247.aspx">Click here to access the full study</a>')),
 br(),
 HTML('<h2>
 <ul class="fa-ul">
@@ -121,30 +121,8 @@ drake::readd(exclusions_plot)
 >The total number of exclusions displayed here is not equal to the actual total number of participants not meeting the inclusion criteria (displayed in the CONSORT diagram), as some participants had multiple reasons for exlcusion.
 
 
-### **Sample characteristics** 
-
-```{r characteristics-chunk}
-drake::readd(characteristics_table)
-```
-
-***
-
-- The sample was mostly elder and predominantly male. 
-- Anesthesia Assistants' rated the ASA Physical Classification Status for participants as either III or IV, reflecting the underlying cardiovascular disease and multiple comorbidities. 
-- Obstructive sleep apnea was common, with 27% of participants reporting a diagnosis of this condition. 
-- About 20% of procedures were for cardiac resnchronisation therapy. 
-
 TcCO~2~ {data-icon="fa-chart-bar" .storyboard}
 =======================================================================
-
-### **TcCO~2~ throughout procedures**
-
-
-```{r}
-drake::readd(plot_fanova_data)
-```
-
->Dotted lines display the time where 50% and 75% and 90% of procedures were completed
 
 
 ### **Peak TcCO~2~ against baseline**
@@ -163,14 +141,6 @@ drake::readd(plot_co2_mean)
 
 >The average difference (95% credible intervals) in mean TcCO~2~ between groups was `r CI_co2_mean[["full"]]`.
 
-### **Difference in mean TcCO~2~ between groups**
-
-
-```{r}
-drake::readd(plot_fanova_effect)
-```
-
->Dotted lines display the time where 50% and 75% and 90% of procedures were completed
 
 ### **Subgroup analysis for peak TcCO~2~**
 
@@ -326,50 +296,21 @@ drake::readd(oxygen_fio2_plot)
 - The oxygen to air ratio was increased higher than 50% for only a small number of participants, at the discretion of the Anesthesia Assistant to improve oxygenation.
 - For participants who were switched to oxygen supplementation via a standard facemask, the oxygen to air ratio was assumed to be 1.0.
 
-### **Number of times Anesthesia Assistants reported haing used high flow nasal oxygen**
+### **Number of times Anesthesia Assistants reported having used high flow nasal oxygen**
 
 ```{r }
 drake::readd(timesusedhfno_plot)
 ```
 
 
-Data {data-icon="fa-table" .storyboard}
+Data {data-icon="fa-table"}
 =======================================================================
 
-### <i class="fad fa-book"></i> **Codebook**
+<iframe src="https://widgets.figshare.com/articles/13656371/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
 
-```{r}
-DT::datatable(drake::readd(codebook), extensions = "Buttons", options = list(dom = "Bfrtip", buttons = c("copy", "csv", "excel")))
-```
+<iframe src="https://widgets.figshare.com/articles/13656365/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
 
-
->The dataset can be downloaded for secondary use. This table displays a summary of the variables collected for this study along with their types, levels (for factors) and the extent of missingness per variable. 
-
-### <i class='fad fa-download'></i> **Download dataset**
-
-```{r}
-drake::readd(trial_datatable) %>%
-  downloadthis::download_this(
-    output_name = "hfnosedrct-dataset",
-    output_extension = ".csv",
-    button_label = "Download clinical and demographic data as csv",
-    button_type = "warning",
-    has_icon = TRUE,
-    icon = "fa fa-save"
-  )
-```
-
-```{r}
-drake::readd(tcco2_data) %>%
-  downloadthis::download_this(
-    output_name = "hfnosedrct-tcc02-dataset",
-    output_extension = ".csv",
-    button_label = "Download Co2 data as csv",
-    button_type = "warning",
-    has_icon = TRUE,
-    icon = "fa fa-save"
-  )
-```
+<iframe src="https://widgets.figshare.com/articles/13656368/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
 
 
 Reproducibility {data-icon="fa-repeat"}

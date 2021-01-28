@@ -1,14 +1,13 @@
 #' @title Table of participant characteristics
 
 #' @param trial_mod dataframe of all variables collected
-#'
-#' @export
 
 #' @importFrom dplyr select
 #' @importFrom forcats fct_drop
-#' @importFrom gtsummary tbl_summary all_continuous italicize_labels
-#' as_flextable
-#' #' @importFrom width
+#' @importFrom gtsummary tbl_summary all_continuous italicize_labels as_flextable
+#' @importFrom flextable width
+#' @export
+
 create_characteristics_table <- function(trial_mod) {
 
   # Dataframe of all participant characteristics

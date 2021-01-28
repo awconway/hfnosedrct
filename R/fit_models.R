@@ -138,7 +138,8 @@ fit_fanova <- function(data_fanova){
                      control.predictor=list(compute=TRUE),
                      control.compute = list(config=TRUE),
                      control.family = list(hyper = list(prec = list(initial= 15, fixed = TRUE))),
-                     control.fixed = list(mean=0, prec=3^(-2)))
+                     control.fixed = list(mean=0, prec=3^(-2)),
+                 verbose=TRUE)
 
   return(result)
 }

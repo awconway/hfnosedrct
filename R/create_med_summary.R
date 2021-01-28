@@ -5,8 +5,8 @@
 #' @export
 
 #' @importFrom dplyr select
-#' @importFrom gtsummary tbl_summary all_continuous italicize_labels
-#' as_flextable add_p
+#' @importFrom gtsummary tbl_summary all_continuous italicize_labels as_flextable add_p
+
 create_med_summary <- function(trial_mod) {
 
   # Dataframe of all participant characteristics
@@ -17,7 +17,6 @@ create_med_summary <- function(trial_mod) {
            fentanyl
     ) %>%
     tbl_summary(by = randomization.factor,
-                # change statistics printed in table
                 statistic = list(all_continuous() ~ "{mean} ({sd})"),
                 type = list(midazolam ~ "continuous",
                             fentanyl ~ "continuous"),
